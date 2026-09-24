@@ -584,6 +584,24 @@ svg.icon * {
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   background: var(--bg-surface);
+  -webkit-overflow-scrolling: touch;
+}
+
+.table-responsive::-webkit-scrollbar {
+  height: 5px;
+}
+
+.table-responsive::-webkit-scrollbar-track {
+  background: var(--bg-surface-soft);
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
 }
 
 .data-table {
@@ -593,21 +611,21 @@ svg.icon * {
 }
 
 .data-table th {
-  padding: 0.75rem 0.95rem;
+  padding: 0.65rem 0.8rem;
   background-color: var(--bg-surface-soft);
   color: var(--text-muted);
-  font-size: 0.76rem;
+  font-size: 0.74rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   border-bottom: 1px solid var(--border);
   white-space: nowrap;
 }
 
 .data-table td {
-  padding: 0.85rem 0.95rem;
+  padding: 0.7rem 0.8rem;
   border-bottom: 1px solid var(--border);
-  font-size: 0.88rem;
+  font-size: 0.86rem;
   color: var(--text-sec);
   vertical-align: middle;
 }

@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="admin.css?v=2.2">
+  <link rel="stylesheet" href="admin.css?v=2.3">
 </head>
 <body>
 
@@ -348,13 +348,12 @@
               <table class="data-table">
                 <thead>
                   <tr>
-                    <th>Name</th>
-                    <th>Klasse / Schule</th>
-                    <th>Kontakt (Eltern/Tel)</th>
-                    <th>Adresse / Ort</th>
-                    <th>Honorar (90 Min)</th>
-                    <th>Besonderheiten (ADHS)</th>
-                    <th>Aktionen</th>
+                    <th>Schüler & Klasse</th>
+                    <th>Kontakt</th>
+                    <th>Ort & Adresse</th>
+                    <th>Konditionen</th>
+                    <th>Förderprofil</th>
+                    <th style="text-align: right;">Aktionen</th>
                   </tr>
                 </thead>
                 <tbody id="studentsTableTbody">
@@ -387,15 +386,12 @@
               <table class="data-table">
                 <thead>
                   <tr>
-                    <th>Datum & Uhrzeit</th>
-                    <th>Schüler</th>
+                    <th>Datum & Zeit</th>
+                    <th>Schüler & Ort</th>
                     <th>Fach & Thema</th>
-                    <th>Ort</th>
-                    <th>Dauer</th>
-                    <th>Honorar + Fahrt</th>
-                    <th>Gesamt</th>
-                    <th>Status</th>
-                    <th>Aktionen</th>
+                    <th style="text-align: right;">Betrag</th>
+                    <th style="text-align: center;">Status</th>
+                    <th style="text-align: right;">Aktionen</th>
                   </tr>
                 </thead>
                 <tbody id="sessionsTableTbody">
@@ -762,6 +758,6 @@
 
   <!-- Load Database and Admin Logic -->
   <script src="shared-db.js"></script>
-  <script src="admin.js?v=2.2"></script>
+  <script src="admin.js?v=2.3"></script>
 </body>
 </html>

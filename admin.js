@@ -263,7 +263,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const students = MatheDB.Students.getAll({ search: query });
 
     if (students.length === 0) {
-      tbody.innerHTML = `<tr><td colspan="7" class="text-center" style="padding: 2rem; color: var(--text-muted);">Keine Schüler gefunden.</td></tr>`;
+      tbody.innerHTML = `<tr><td colspan="6" class="text-center" style="padding: 2rem; color: var(--text-muted);">Keine Schüler gefunden.</td></tr>`;
       return;
     }
 
@@ -275,32 +275,42 @@ document.addEventListener('DOMContentLoaded', () => {
       return `
         <tr>
           <td>
-            <strong>${escapeHtml(st.name)}</strong>
-            ${!st.active ? `<span class="badge badge-inactive" style="margin-left:0.4rem;">Inaktiv</span>` : ''}
-            <div style="font-size: 0.8rem; color: var(--text-muted);">${escapeHtml(st.school || '')}</div>
-          </td>
-          <td>${escapeHtml(st.grade || '—')}</td>
-          <td>
-            ${st.parentName ? `<div>${escapeHtml(st.parentName)}</div>` : ''}
-            ${st.phone ? `<div style="font-size:0.8rem;"><a href="tel:${escapeHtml(st.phone)}" style="color:var(--primary); text-decoration:none;">${escapeHtml(st.phone)}</a></div>` : ''}
-            ${st.email ? `<div style="font-size:0.8rem; color:var(--text-muted);">${escapeHtml(st.email)}</div>` : ''}
+            <div style="font-weight: 600; color: var(--text-main); font-size: 0.92rem;">
+              ${escapeHtml(st.name)}
+              ${!st.active ? `<span class="badge badge-inactive" style="margin-left:0.35rem; font-size: 0.68rem; padding: 0.12rem 0.45rem;">Inaktiv</span>` : ''}
+            </div>
+            <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 0.15rem;">
+              ${escapeHtml(st.grade || '—')}${st.school ? ` · ${escapeHtml(st.school)}` : ''}
+            </div>
           </td>
           <td>
-            <div style="max-width: 180px; font-size: 0.85rem;" title="${escapeHtml(st.address || '')}">${escapeHtml(st.address || '—')}</div>
-            <div style="font-size:0.75rem; color:var(--text-muted);">${getLocationLabel(st.preferredLocation)}</div>
+            ${st.parentName ? `<div style="font-weight: 500; font-size: 0.85rem; color: var(--text-main);">${escapeHtml(st.parentName)}</div>` : ''}
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; font-size: 0.78rem; margin-top: 0.15rem;">
+              ${st.phone ? `<a href="tel:${escapeHtml(st.phone)}" style="color:var(--primary); text-decoration:none; font-weight: 500;">📞 ${escapeHtml(st.phone)}</a>` : ''}
+              ${st.email ? `<span style="color:var(--text-muted);">${escapeHtml(st.email)}</span>` : ''}
+              ${!st.parentName && !st.phone && !st.email ? '<span style="color:var(--text-muted);">—</span>' : ''}
+            </div>
           </td>
           <td>
-            <strong>${st.rate || 65} €</strong>
-            ${st.travelCostDefault ? `<div style="font-size:0.78rem; color:var(--text-muted);">+ ${st.travelCostDefault} € Anfahrt</div>` : ''}
+            <div style="margin-bottom: 0.2rem;">
+              <span class="badge badge-location" style="font-size: 0.72rem; padding: 0.15rem 0.5rem;">${getLocationLabel(st.preferredLocation)}</span>
+            </div>
+            <div style="max-width: 170px; font-size: 0.78rem; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${escapeHtml(st.address || '')}">
+              ${escapeHtml(st.address || '—')}
+            </div>
+          </td>
+          <td>
+            <div style="font-weight: 600; color: var(--text-main);">${st.rate || 65} € <span style="font-size: 0.75rem; font-weight: normal; color: var(--text-muted);">/ 90m</span></div>
+            ${st.travelCostDefault ? `<div style="font-size:0.75rem; color:var(--text-muted);">+ ${st.travelCostDefault} € Anfahrt</div>` : ''}
           </td>
           <td>${adhsBadge}</td>
-          <td>
-            <div style="display: flex; gap: 0.4rem;">
-              <button class="btn btn-secondary btn-sm" onclick="window.editStudent('${st.id}')" title="Bearbeiten">
-                <svg class="icon" style="width:0.9rem;height:0.9rem;"><use href="#icon-edit"/></svg>
+          <td style="text-align: right;">
+            <div style="display: inline-flex; gap: 0.35rem; justify-content: flex-end;">
+              <button class="btn btn-secondary btn-sm" onclick="window.editStudent('${st.id}')" title="Bearbeiten" style="padding: 0.35rem 0.55rem;">
+                <svg class="icon" style="width:0.85rem;height:0.85rem;"><use href="#icon-edit"/></svg>
               </button>
-              <button class="btn btn-danger btn-sm" onclick="window.deleteStudent('${st.id}')" title="Löschen">
-                <svg class="icon" style="width:0.9rem;height:0.9rem;"><use href="#icon-trash"/></svg>
+              <button class="btn btn-danger btn-sm" onclick="window.deleteStudent('${st.id}')" title="Löschen" style="padding: 0.35rem 0.55rem;">
+                <svg class="icon" style="width:0.85rem;height:0.85rem;"><use href="#icon-trash"/></svg>
               </button>
             </div>
           </td>
@@ -444,7 +454,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const sessions = MatheDB.Sessions.getAll({ month, studentId });
 
     if (sessions.length === 0) {
-      tbody.innerHTML = `<tr><td colspan="9" class="text-center" style="padding: 2rem; color: var(--text-muted);">Keine Stunden für diesen Zeitraum gefunden.</td></tr>`;
+      tbody.innerHTML = `<tr><td colspan="6" class="text-center" style="padding: 2rem; color: var(--text-muted);">Keine Stunden für diesen Zeitraum gefunden.</td></tr>`;
       return;
     }
 
@@ -454,39 +464,36 @@ document.addEventListener('DOMContentLoaded', () => {
       const fee = parseFloat(sess.sessionFee) || 0;
       const travel = parseFloat(sess.travelCost) || 0;
       const total = fee + travel;
+      const duration = sess.durationMinutes || 90;
 
       return `
         <tr>
           <td>
-            <strong>${formattedDate}</strong>
-            <div style="font-size:0.8rem;color:var(--text-muted);">${sess.time || '16:00'} Uhr</div>
+            <div style="font-weight: 600; color: var(--text-main); font-size: 0.92rem;">${formattedDate}</div>
+            <div style="font-size:0.78rem; color:var(--text-muted); margin-top: 0.1rem;">${sess.time || '16:00'} Uhr · ${duration} Min.</div>
           </td>
           <td>
-            <strong>${escapeHtml(sess.studentName || '—')}</strong>
+            <div style="font-weight: 600; color: var(--text-main);">${escapeHtml(sess.studentName || '—')}</div>
+            <div style="margin-top: 0.2rem;">
+              <span class="badge badge-location" style="font-size: 0.72rem; padding: 0.15rem 0.5rem;">${getLocationLabel(sess.locationType)}</span>
+            </div>
           </td>
           <td>
-            <div style="font-weight: 500;">${escapeHtml(sess.topics || 'Unterricht')}</div>
-            <div style="font-size:0.8rem; color:var(--text-muted);">${escapeHtml(sess.subject || 'Mathe')}</div>
+            <div style="font-weight: 500; color: var(--text-main); font-size: 0.88rem;">${escapeHtml(sess.topics || 'Unterricht')}</div>
+            <div style="font-size:0.78rem; color:var(--text-muted);">${escapeHtml(sess.subject || 'Mathematik')}</div>
           </td>
-          <td>
-            <span class="badge badge-location">${getLocationLabel(sess.locationType)}</span>
+          <td style="text-align: right;">
+            <div style="font-weight: 700; color: var(--text-main); font-size: 0.95rem;">${total.toFixed(2)} €</div>
+            <div style="font-size:0.75rem; color:var(--text-muted);">${fee.toFixed(0)} €${travel > 0 ? ` + ${travel.toFixed(0)} € F.` : ''}</div>
           </td>
-          <td>${sess.durationMinutes || 90} Min.</td>
-          <td>
-            <div>${fee.toFixed(2)} €</div>
-            ${travel > 0 ? `<div style="font-size:0.78rem;color:var(--text-muted);">+ ${travel.toFixed(2)} € Fahrt</div>` : ''}
-          </td>
-          <td>
-            <strong style="color:var(--text-main); font-size:1.05rem;">${total.toFixed(2)} €</strong>
-          </td>
-          <td>${statusBadge}</td>
-          <td>
-            <div style="display: flex; gap: 0.4rem;">
-              <button class="btn btn-secondary btn-sm" onclick="window.editSession('${sess.id}')" title="Bearbeiten">
-                <svg class="icon" style="width:0.9rem;height:0.9rem;"><use href="#icon-edit"/></svg>
+          <td style="text-align: center;">${statusBadge}</td>
+          <td style="text-align: right;">
+            <div style="display: inline-flex; gap: 0.35rem; justify-content: flex-end;">
+              <button class="btn btn-secondary btn-sm" onclick="window.editSession('${sess.id}')" title="Bearbeiten" style="padding: 0.35rem 0.55rem;">
+                <svg class="icon" style="width:0.85rem;height:0.85rem;"><use href="#icon-edit"/></svg>
               </button>
-              <button class="btn btn-danger btn-sm" onclick="window.deleteSession('${sess.id}')" title="Löschen">
-                <svg class="icon" style="width:0.9rem;height:0.9rem;"><use href="#icon-trash"/></svg>
+              <button class="btn btn-danger btn-sm" onclick="window.deleteSession('${sess.id}')" title="Löschen" style="padding: 0.35rem 0.55rem;">
+                <svg class="icon" style="width:0.85rem;height:0.85rem;"><use href="#icon-trash"/></svg>
               </button>
             </div>
           </td>
