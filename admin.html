@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="admin.css?v=2.3">
+  <link rel="stylesheet" href="admin.css?v=2.4">
 </head>
 <body>
 
@@ -130,10 +130,57 @@
         <line x1="3" y1="18" x2="21" y2="18"/>
       </g>
     </symbol>
-    <symbol id="icon-x" viewBox="0 0 24 24">
+    <symbol id="icon-eye" viewBox="0 0 24 24">
       <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="18" y1="6" x2="6" y2="18"/>
-        <line x1="6" y1="6" x2="18" y2="18"/>
+        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+        <circle cx="12" cy="12" r="3"/>
+      </g>
+    </symbol>
+    <symbol id="icon-phone" viewBox="0 0 24 24">
+      <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+      </g>
+    </symbol>
+    <symbol id="icon-mail" viewBox="0 0 24 24">
+      <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+        <polyline points="22,6 12,13 2,6"/>
+      </g>
+    </symbol>
+    <symbol id="icon-map-pin" viewBox="0 0 24 24">
+      <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+        <circle cx="12" cy="10" r="3"/>
+      </g>
+    </symbol>
+    <symbol id="icon-grid" viewBox="0 0 24 24">
+      <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="7" height="7"/>
+        <rect x="14" y="3" width="7" height="7"/>
+        <rect x="14" y="14" width="7" height="7"/>
+        <rect x="3" y="14" width="7" height="7"/>
+      </g>
+    </symbol>
+    <symbol id="icon-list" viewBox="0 0 24 24">
+      <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="8" y1="6" x2="21" y2="6"/>
+        <line x1="8" y1="12" x2="21" y2="12"/>
+        <line x1="8" y1="18" x2="21" y2="18"/>
+        <line x1="3" y1="6" x2="3.01" y2="6"/>
+        <line x1="3" y1="12" x2="3.01" y2="12"/>
+        <line x1="3" y1="18" x2="3.01" y2="18"/>
+      </g>
+    </symbol>
+    <symbol id="icon-external-link" viewBox="0 0 24 24">
+      <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+        <polyline points="15 3 21 3 21 9"/>
+        <line x1="10" y1="14" x2="21" y2="3"/>
+      </g>
+    </symbol>
+    <symbol id="icon-message-circle" viewBox="0 0 24 24">
+      <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
       </g>
     </symbol>
   </svg>
@@ -333,18 +380,37 @@
           <div class="dash-panel">
             <div class="panel-header">
               <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
-                <h3>Schülerkartei</h3>
-                <div style="position: relative; width: 260px;">
-                  <input type="text" id="studentSearchInput" class="form-control" placeholder="Schüler, Eltern oder Ort suchen..." style="padding-left: 2.2rem;">
+                <div>
+                  <h3 style="margin-bottom: 0.15rem;">Schülerkartei</h3>
+                  <div style="font-size: 0.8rem; color: var(--text-muted);" id="studentsCountLabel">0 Schüler</div>
+                </div>
+                <div style="position: relative; width: 250px;">
+                  <input type="text" id="studentSearchInput" class="form-control" placeholder="Schüler, Eltern, Ort..." style="padding-left: 2.2rem;">
                   <svg class="icon" style="position: absolute; left: 0.75rem; top: 50%; transform: translateY(-50%); width: 1rem; height: 1rem; color: var(--text-muted);"><use href="#icon-search"/></svg>
                 </div>
               </div>
-              <button class="btn btn-primary btn-sm" id="btnAddStudentModalOpen">
-                <svg class="icon" style="width: 1rem; height: 1rem;"><use href="#icon-plus"/></svg> Neuer Schüler
-              </button>
+              <div style="display: flex; align-items: center; gap: 0.65rem;">
+                <div class="view-toggle-group">
+                  <button type="button" class="view-toggle-btn active" id="btnViewCards" title="Kartenansicht (Klickbar)">
+                    <svg class="icon" style="width: 0.95rem; height: 0.95rem;"><use href="#icon-grid"/></svg> Kartei
+                  </button>
+                  <button type="button" class="view-toggle-btn" id="btnViewTable" title="Tabellenansicht">
+                    <svg class="icon" style="width: 0.95rem; height: 0.95rem;"><use href="#icon-list"/></svg> Tabelle
+                  </button>
+                </div>
+                <button class="btn btn-primary btn-sm" id="btnAddStudentModalOpen">
+                  <svg class="icon" style="width: 1rem; height: 1rem;"><use href="#icon-plus"/></svg> Neuer Schüler
+                </button>
+              </div>
             </div>
 
-            <div class="table-responsive">
+            <!-- KARTEN-ANSICHT (Standard, jedes Kärtchen öffnet per Klick die volle Schülerakte) -->
+            <div id="studentsCardsContainer" class="student-cards-grid">
+              <!-- Populated via JS -->
+            </div>
+
+            <!-- TABELLEN-ANSICHT (Optional per Toggle) -->
+            <div id="studentsTableContainer" class="table-responsive" style="display: none;">
               <table class="data-table">
                 <thead>
                   <tr>
@@ -568,96 +634,171 @@
     </div>
   </div>
 
+  <!-- ==================== MODAL: SCHÜLERAKTE / DETAILANSICHT ==================== -->
+  <div class="modal-backdrop hidden" id="studentDetailModal">
+    <div class="modal-content" style="max-width: 740px;">
+      <div class="modal-header">
+        <div style="display: flex; align-items: center; gap: 0.6rem;">
+          <svg class="icon" style="width: 1.25rem; height: 1.25rem; color: var(--primary);"><use href="#icon-users"/></svg>
+          <h3 id="studentDetailTitle" style="margin: 0;">Schülerakte — Details</h3>
+        </div>
+        <button class="icon-btn close-modal-btn" data-modal="studentDetailModal">
+          <svg class="icon" style="width: 1.1rem; height: 1.1rem;"><use href="#icon-x"/></svg>
+        </button>
+      </div>
+      <div class="modal-body" id="studentDetailBody">
+        <!-- Rendered dynamically via JS -->
+      </div>
+      <div class="modal-footer" style="justify-content: space-between;">
+        <button type="button" class="btn btn-danger btn-sm" id="btnDetailDeleteStudent">
+          <svg class="icon" style="width: 0.9rem; height: 0.9rem;"><use href="#icon-trash"/></svg> Schüler löschen
+        </button>
+        <div style="display: flex; gap: 0.6rem;">
+          <button type="button" class="btn btn-secondary close-modal-btn" data-modal="studentDetailModal">Schließen</button>
+          <button type="button" class="btn btn-primary" id="btnDetailEditStudent">
+            <svg class="icon" style="width: 0.95rem; height: 0.95rem;"><use href="#icon-edit"/></svg> Bearbeiten
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- ==================== MODAL: SCHÜLER ANLEGEN / BEARBEITEN ==================== -->
   <div class="modal-backdrop hidden" id="studentModal">
-    <div class="modal-content">
+    <div class="modal-content" style="max-width: 660px;">
       <div class="modal-header">
-        <h3 id="studentModalTitle">Neuen Schüler anlegen</h3>
+        <div style="display: flex; align-items: center; gap: 0.6rem;">
+          <svg class="icon" style="width: 1.2rem; height: 1.2rem; color: var(--primary);"><use href="#icon-users"/></svg>
+          <h3 id="studentModalTitle" style="margin: 0;">Neuen Schüler anlegen</h3>
+        </div>
         <button class="icon-btn close-modal-btn" data-modal="studentModal">
           <svg class="icon" style="width: 1.1rem; height: 1.1rem;"><use href="#icon-x"/></svg>
         </button>
       </div>
       <form id="studentForm">
         <input type="hidden" id="studentEditId">
-        <div class="modal-body">
-          <div class="form-row">
+        <div class="modal-body" style="gap: 1.1rem;">
+
+          <!-- ABSCHNITT 1: BASISDATEN & SCHULE -->
+          <div class="form-section">
+            <div class="form-section-title">
+              <span class="section-num">1</span>
+              <span>Schüler-Basisdaten & Schule</span>
+            </div>
+            <div class="form-row">
+              <div class="form-group" style="flex: 1.3;">
+                <label class="form-label">Name des Schülers *</label>
+                <input type="text" id="studName" class="form-control" placeholder="Vor- und Nachname" required>
+              </div>
+              <div class="form-group" style="flex: 1;">
+                <label class="form-label">Klassenstufe & Schulform</label>
+                <input type="text" id="studGrade" class="form-control" placeholder="z. B. 11. Klasse (Gym)">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Schule (optional)</label>
+                <input type="text" id="studSchool" class="form-control" placeholder="z. B. Heinrich-Mann-Schule">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Unterrichtsfach</label>
+                <input type="text" id="studSubject" class="form-control" value="Mathematik">
+              </div>
+            </div>
+            <div class="form-group" style="margin-top: 0.2rem;">
+              <label style="display: flex; align-items: center; gap: 0.55rem; cursor: pointer; font-size: 0.88rem; color: var(--text-main);">
+                <input type="checkbox" id="studActive" checked style="width: 1.05rem; height: 1.05rem; accent-color: var(--primary);">
+                <span><strong>Aktiver Schüler</strong> (wird im Schnellzugriff und für neue Stunden geführt)</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- ABSCHNITT 2: ANSCHRIFT & UNTERRICHTSORT (SEPARAT!) -->
+          <div class="form-section">
+            <div class="form-section-title">
+              <span class="section-num">2</span>
+              <span>Anschrift & Unterrichtsort</span>
+            </div>
+            <div class="form-row">
+              <div class="form-group" style="flex: 1.4;">
+                <label class="form-label">Straße & Hausnummer</label>
+                <input type="text" id="studStreet" class="form-control" placeholder="z. B. Waldackerstr. 14">
+              </div>
+              <div class="form-group" style="flex: 1;">
+                <label class="form-label">PLZ & Wohnort</label>
+                <input type="text" id="studZipCity" class="form-control" placeholder="z. B. 63128 Dietzenbach">
+              </div>
+            </div>
             <div class="form-group">
-              <label class="form-label">Name des Schülers *</label>
-              <input type="text" id="studName" class="form-control" placeholder="z. B. Lars Müller" required>
+              <label class="form-label">Bevorzugter Unterrichtsort</label>
+              <select id="studLocationPref" class="form-control">
+                <option value="office">🏢 Büroraum Dietzenbach (reizarm & fokussiert)</option>
+                <option value="home">🏠 Beim Schüler Zuhause (Hausbesuch mit Anfahrt)</option>
+                <option value="online">💻 Online per Tablet & Digitalem Whiteboard</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- ABSCHNITT 3: ELTERN & KONTAKTDATEN -->
+          <div class="form-section">
+            <div class="form-section-title">
+              <span class="section-num">3</span>
+              <span>Eltern & Kontaktdaten</span>
             </div>
             <div class="form-group">
               <label class="form-label">Eltern / Ansprechpartner</label>
               <input type="text" id="studParent" class="form-control" placeholder="z. B. Sabine Müller">
             </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label">Telefon / WhatsApp</label>
-              <input type="text" id="studPhone" class="form-control" placeholder="+49 170 1234567">
-            </div>
-            <div class="form-group">
-              <label class="form-label">E-Mail</label>
-              <input type="email" id="studEmail" class="form-control" placeholder="eltern@beispiel.de">
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label">Adresse (für Anfahrt & Vor-Ort-Unterricht)</label>
-            <input type="text" id="studAddress" class="form-control" placeholder="Straße, Hausnummer, PLZ Ort (z. B. Waldackerstr. 14, 63128 Dietzenbach)">
-          </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label">Klassenstufe & Schulform</label>
-              <input type="text" id="studGrade" class="form-control" placeholder="z. B. 12. Klasse (Gymnasium)">
-            </div>
-            <div class="form-group">
-              <label class="form-label">Fach</label>
-              <input type="text" id="studSubject" class="form-control" value="Mathematik">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Telefon / WhatsApp</label>
+                <input type="tel" id="studPhone" class="form-control" placeholder="z. B. +49 170 1234567">
+              </div>
+              <div class="form-group">
+                <label class="form-label">E-Mail-Adresse</label>
+                <input type="email" id="studEmail" class="form-control" placeholder="eltern@beispiel.de">
+              </div>
             </div>
           </div>
 
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label">Honorar pro 90 Min. (€)</label>
-              <input type="number" id="studRate" class="form-control" value="65" required>
+          <!-- ABSCHNITT 4: HONORAR & KONDITIONEN -->
+          <div class="form-section">
+            <div class="form-section-title">
+              <span class="section-num">4</span>
+              <span>Honorar & Konditionen</span>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Honorar pro 90 Min. (€) *</label>
+                <input type="number" id="studRate" class="form-control" value="65" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Anfahrtspauschale (€, bei Hausbesuch)</label>
+                <input type="number" step="0.50" id="studTravelDefault" class="form-control" value="10">
+              </div>
+            </div>
+          </div>
+
+          <!-- ABSCHNITT 5: NEURODIVERSITÄT, ADHS & NOTIZEN -->
+          <div class="form-section">
+            <div class="form-section-title">
+              <span class="section-num">5</span>
+              <span>Neurodiversität, ADHS & Förderprofil</span>
             </div>
             <div class="form-group">
-              <label class="form-label">Anfahrtspauschale (€, falls vor Ort)</label>
-              <input type="number" id="studTravelDefault" class="form-control" value="10">
+              <label class="form-label">ADHS-Besonderheiten, Stärken & Fokusstrategien</label>
+              <textarea id="studNeuroNotes" class="form-control" rows="2" placeholder="z. B. Diagnostiziertes ADHS, braucht visuelle Struktur, 5-Min-Reizpausen nach 45 Min, stark in Geometrie..."></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Pädagogische Notizen, Klausurtermine & Themen</label>
+              <textarea id="studNotes" class="form-control" rows="2" placeholder="Themen, Klassenarbeiten, Prüfungsangst bei Textaufgaben..."></textarea>
             </div>
           </div>
 
-          <div class="form-group">
-            <label class="form-label">Bevorzugter Unterrichtsort</label>
-            <select id="studLocationPref" class="form-control">
-              <option value="office">Büroraum Dietzenbach (reizarm)</option>
-              <option value="home">Beim Schüler Zuhause</option>
-              <option value="online">Online per Tablet / Whiteboard</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label">Neurodivergenz / ADHS Besonderheiten & Stärken</label>
-            <textarea id="studNeuroNotes" class="form-control" placeholder="z. B. Diagnostiziertes ADHS, braucht visuelle Struktur, Reizpausen, stark in geometrischem Verständnis..."></textarea>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label">Allgemeine Notizen & bisherige Themen</label>
-            <textarea id="studNotes" class="form-control" placeholder="Themen, Klassenarbeiten, Prüfungsangst..."></textarea>
-          </div>
-
-          <div class="form-group">
-            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
-              <input type="checkbox" id="studActive" checked>
-              <span>Aktiver Schüler (in Betreuung)</span>
-            </label>
-          </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary close-modal-btn" data-modal="studentModal">Abbrechen</button>
-          <button type="submit" class="btn btn-primary">Speichern</button>
+          <button type="submit" class="btn btn-primary">Schüler speichern</button>
         </div>
       </form>
     </div>
@@ -758,6 +899,6 @@
 
   <!-- Load Database and Admin Logic -->
   <script src="shared-db.js"></script>
-  <script src="admin.js?v=2.3"></script>
+  <script src="admin.js?v=2.4"></script>
 </body>
 </html>

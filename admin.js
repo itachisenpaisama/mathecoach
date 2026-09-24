@@ -246,9 +246,45 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // -------------------------------------------------------------
-  // 5. STUDENTS MANAGEMENT
+  // 5. STUDENTS MANAGEMENT & INTERACTIVE KARTEI
   // -------------------------------------------------------------
   const studentSearchInput = document.getElementById('studentSearchInput');
+  const btnViewCards = document.getElementById('btnViewCards');
+  const btnViewTable = document.getElementById('btnViewTable');
+  const studentsCardsContainer = document.getElementById('studentsCardsContainer');
+  const studentsTableContainer = document.getElementById('studentsTableContainer');
+  const studentsCountLabel = document.getElementById('studentsCountLabel');
+
+  let currentStudentsView = localStorage.getItem('mathecoach_students_view') || 'cards';
+
+  function setStudentsView(viewMode) {
+    currentStudentsView = viewMode;
+    localStorage.setItem('mathecoach_students_view', viewMode);
+
+    if (btnViewCards && btnViewTable) {
+      if (viewMode === 'cards') {
+        btnViewCards.classList.add('active');
+        btnViewTable.classList.remove('active');
+      } else {
+        btnViewTable.classList.add('active');
+        btnViewCards.classList.remove('active');
+      }
+    }
+
+    if (studentsCardsContainer && studentsTableContainer) {
+      if (viewMode === 'cards') {
+        studentsCardsContainer.style.display = 'grid';
+        studentsTableContainer.style.display = 'none';
+      } else {
+        studentsCardsContainer.style.display = 'none';
+        studentsTableContainer.style.display = 'block';
+      }
+    }
+  }
+
+  if (btnViewCards) btnViewCards.addEventListener('click', () => setStudentsView('cards'));
+  if (btnViewTable) btnViewTable.addEventListener('click', () => setStudentsView('table'));
+
   if (studentSearchInput) {
     studentSearchInput.addEventListener('input', () => {
       renderStudentsTable();
@@ -256,68 +292,422 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function renderStudentsTable() {
-    const tbody = document.getElementById('studentsTableTbody');
-    if (!tbody) return;
+    setStudentsView(currentStudentsView);
 
     const query = studentSearchInput ? studentSearchInput.value : '';
     const students = MatheDB.Students.getAll({ search: query });
 
-    if (students.length === 0) {
-      tbody.innerHTML = `<tr><td colspan="6" class="text-center" style="padding: 2rem; color: var(--text-muted);">Keine Schüler gefunden.</td></tr>`;
-      return;
+    if (studentsCountLabel) {
+      const activeCount = students.filter(s => s.active !== false).length;
+      studentsCountLabel.textContent = `${students.length} Schüler (${activeCount} aktiv)`;
     }
 
-    tbody.innerHTML = students.map(st => {
-      const adhsBadge = st.neurodivergentNotes 
-        ? `<span class="badge badge-adhs" title="${escapeHtml(st.neurodivergentNotes)}">ADHS / Fokus</span>`
-        : `<span style="color:var(--text-muted); font-size:0.8rem;">—</span>`;
+    // 1. Render Cards Grid (Interaktive Karteikarten mit Klick für Detailakte)
+    if (studentsCardsContainer) {
+      if (students.length === 0) {
+        studentsCardsContainer.innerHTML = `
+          <div style="grid-column: 1 / -1; padding: 2.5rem; text-align: center; color: var(--text-muted); background: var(--bg-surface); border: 1px dashed var(--border); border-radius: var(--radius-lg);">
+            <svg class="icon" style="width: 2rem; height: 2rem; margin-bottom: 0.5rem; opacity: 0.6;"><use href="#icon-users"/></svg>
+            <div style="font-weight: 600; font-size: 1rem;">Keine Schüler gefunden</div>
+            <p style="font-size: 0.85rem; margin-top: 0.25rem;">Passe die Suche an oder lege einen neuen Schüler an.</p>
+          </div>
+        `;
+      } else {
+        studentsCardsContainer.innerHTML = students.map(st => {
+          const initials = getInitials(st.name);
+          const adhsBadge = st.neurodivergentNotes 
+            ? `<span class="badge badge-adhs" title="${escapeHtml(st.neurodivergentNotes)}">ADHS / Fokus</span>`
+            : '';
+          const addressPreview = st.address || [st.street, st.zipCity].filter(Boolean).join(', ') || '—';
+          const cleanPhone = getCleanPhoneForWhatsApp(st.phone);
 
-      return `
-        <tr>
-          <td>
-            <div style="font-weight: 600; color: var(--text-main); font-size: 0.92rem;">
-              ${escapeHtml(st.name)}
-              ${!st.active ? `<span class="badge badge-inactive" style="margin-left:0.35rem; font-size: 0.68rem; padding: 0.12rem 0.45rem;">Inaktiv</span>` : ''}
+          return `
+            <div class="student-card" onclick="window.viewStudentDetails('${st.id}')">
+              <div>
+                <div class="student-card-header">
+                  <div class="student-avatar">${initials}</div>
+                  <div class="student-card-info">
+                    <div class="student-card-name">
+                      <span>${escapeHtml(st.name)}</span>
+                      ${!st.active ? `<span class="badge badge-inactive" style="font-size:0.68rem; padding:0.12rem 0.45rem;">Inaktiv</span>` : ''}
+                    </div>
+                    <div class="student-card-sub" title="${escapeHtml(st.grade || '')} · ${escapeHtml(st.school || '')}">
+                      ${escapeHtml(st.grade || '—')}${st.school ? ` · ${escapeHtml(st.school)}` : ''}
+                    </div>
+                  </div>
+                </div>
+
+                <div class="student-card-body">
+                  <div class="student-card-row">
+                    <span class="student-card-label"><svg class="icon" style="width:0.8rem;height:0.8rem;"><use href="#icon-map-pin"/></svg> Ort</span>
+                    <span class="badge badge-location" style="font-size: 0.72rem; padding: 0.15rem 0.5rem;">${getLocationLabel(st.preferredLocation)}</span>
+                  </div>
+
+                  <div class="student-card-row">
+                    <span class="student-card-label">💶 Konditionen</span>
+                    <span class="student-card-val">${st.rate || 65} € / 90m ${st.travelCostDefault ? `(+${st.travelCostDefault}€)` : ''}</span>
+                  </div>
+
+                  ${st.parentName || st.phone ? `
+                    <div class="student-card-row">
+                      <span class="student-card-label"><svg class="icon" style="width:0.8rem;height:0.8rem;"><use href="#icon-users"/></svg> Kontakt</span>
+                      <span class="student-card-val" title="${escapeHtml(st.parentName || '')}">${escapeHtml(st.parentName || st.phone || '—')}</span>
+                    </div>
+                  ` : ''}
+
+                  ${adhsBadge ? `
+                    <div class="student-card-row" style="margin-top: 0.15rem;">
+                      <span class="student-card-label">🧠 Profil</span>
+                      <div>${adhsBadge}</div>
+                    </div>
+                  ` : ''}
+                </div>
+              </div>
+
+              <div class="student-card-footer">
+                <span class="card-click-hint">
+                  <svg class="icon" style="width:0.9rem;height:0.9rem;"><use href="#icon-eye"/></svg> Details & Akte
+                </span>
+                <div style="display: flex; gap: 0.35rem; align-items: center;" onclick="event.stopPropagation();">
+                  ${st.phone ? `
+                    <a href="tel:${escapeHtml(st.phone)}" class="icon-btn" title="Anrufen: ${escapeHtml(st.phone)}" style="width:1.9rem;height:1.9rem;">
+                      <svg class="icon" style="width:0.85rem;height:0.85rem;"><use href="#icon-phone"/></svg>
+                    </a>
+                  ` : ''}
+                  ${cleanPhone ? `
+                    <a href="https://wa.me/${cleanPhone}" target="_blank" class="icon-btn" title="WhatsApp schreiben" style="width:1.9rem;height:1.9rem; color: #16a34a;">
+                      <svg class="icon" style="width:0.85rem;height:0.85rem;"><use href="#icon-message-circle"/></svg>
+                    </a>
+                  ` : ''}
+                  <button class="btn btn-secondary btn-sm" onclick="window.editStudent('${st.id}')" title="Bearbeiten" style="padding: 0.35rem 0.55rem;">
+                    <svg class="icon" style="width:0.85rem;height:0.85rem;"><use href="#icon-edit"/></svg>
+                  </button>
+                  <button class="btn btn-primary btn-sm" onclick="window.quickLogSessionFor('${st.id}')" title="Stunde erfassen" style="padding: 0.35rem 0.65rem;">
+                    <svg class="icon" style="width:0.85rem;height:0.85rem;"><use href="#icon-plus"/></svg>
+                  </button>
+                </div>
+              </div>
             </div>
-            <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 0.15rem;">
-              ${escapeHtml(st.grade || '—')}${st.school ? ` · ${escapeHtml(st.school)}` : ''}
-            </div>
-          </td>
-          <td>
-            ${st.parentName ? `<div style="font-weight: 500; font-size: 0.85rem; color: var(--text-main);">${escapeHtml(st.parentName)}</div>` : ''}
-            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; font-size: 0.78rem; margin-top: 0.15rem;">
-              ${st.phone ? `<a href="tel:${escapeHtml(st.phone)}" style="color:var(--primary); text-decoration:none; font-weight: 500;">📞 ${escapeHtml(st.phone)}</a>` : ''}
-              ${st.email ? `<span style="color:var(--text-muted);">${escapeHtml(st.email)}</span>` : ''}
-              ${!st.parentName && !st.phone && !st.email ? '<span style="color:var(--text-muted);">—</span>' : ''}
-            </div>
-          </td>
-          <td>
-            <div style="margin-bottom: 0.2rem;">
-              <span class="badge badge-location" style="font-size: 0.72rem; padding: 0.15rem 0.5rem;">${getLocationLabel(st.preferredLocation)}</span>
-            </div>
-            <div style="max-width: 170px; font-size: 0.78rem; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${escapeHtml(st.address || '')}">
-              ${escapeHtml(st.address || '—')}
-            </div>
-          </td>
-          <td>
-            <div style="font-weight: 600; color: var(--text-main);">${st.rate || 65} € <span style="font-size: 0.75rem; font-weight: normal; color: var(--text-muted);">/ 90m</span></div>
-            ${st.travelCostDefault ? `<div style="font-size:0.75rem; color:var(--text-muted);">+ ${st.travelCostDefault} € Anfahrt</div>` : ''}
-          </td>
-          <td>${adhsBadge}</td>
-          <td style="text-align: right;">
-            <div style="display: inline-flex; gap: 0.35rem; justify-content: flex-end;">
-              <button class="btn btn-secondary btn-sm" onclick="window.editStudent('${st.id}')" title="Bearbeiten" style="padding: 0.35rem 0.55rem;">
-                <svg class="icon" style="width:0.85rem;height:0.85rem;"><use href="#icon-edit"/></svg>
-              </button>
-              <button class="btn btn-danger btn-sm" onclick="window.deleteStudent('${st.id}')" title="Löschen" style="padding: 0.35rem 0.55rem;">
-                <svg class="icon" style="width:0.85rem;height:0.85rem;"><use href="#icon-trash"/></svg>
-              </button>
-            </div>
-          </td>
-        </tr>
-      `;
-    }).join('');
+          `;
+        }).join('');
+      }
+    }
+
+    // 2. Render Table View (Alternative)
+    const tbody = document.getElementById('studentsTableTbody');
+    if (tbody) {
+      if (students.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" class="text-center" style="padding: 2rem; color: var(--text-muted);">Keine Schüler gefunden.</td></tr>`;
+      } else {
+        tbody.innerHTML = students.map(st => {
+          const adhsBadge = st.neurodivergentNotes 
+            ? `<span class="badge badge-adhs" title="${escapeHtml(st.neurodivergentNotes)}">ADHS / Fokus</span>`
+            : `<span style="color:var(--text-muted); font-size:0.8rem;">—</span>`;
+          const addressStr = st.address || [st.street, st.zipCity].filter(Boolean).join(', ') || '—';
+
+          return `
+            <tr class="clickable-row" onclick="window.viewStudentDetails('${st.id}')" title="Klicken für vollständige Schülerakte">
+              <td>
+                <div style="font-weight: 600; color: var(--text-main); font-size: 0.92rem;">
+                  ${escapeHtml(st.name)}
+                  ${!st.active ? `<span class="badge badge-inactive" style="margin-left:0.35rem; font-size: 0.68rem; padding: 0.12rem 0.45rem;">Inaktiv</span>` : ''}
+                </div>
+                <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 0.15rem;">
+                  ${escapeHtml(st.grade || '—')}${st.school ? ` · ${escapeHtml(st.school)}` : ''}
+                </div>
+              </td>
+              <td>
+                ${st.parentName ? `<div style="font-weight: 500; font-size: 0.85rem; color: var(--text-main);">${escapeHtml(st.parentName)}</div>` : ''}
+                <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; font-size: 0.78rem; margin-top: 0.15rem;" onclick="event.stopPropagation();">
+                  ${st.phone ? `<a href="tel:${escapeHtml(st.phone)}" style="color:var(--primary); text-decoration:none; font-weight: 500;">📞 ${escapeHtml(st.phone)}</a>` : ''}
+                  ${st.email ? `<span style="color:var(--text-muted);">${escapeHtml(st.email)}</span>` : ''}
+                  ${!st.parentName && !st.phone && !st.email ? '<span style="color:var(--text-muted);">—</span>' : ''}
+                </div>
+              </td>
+              <td>
+                <div style="margin-bottom: 0.2rem;">
+                  <span class="badge badge-location" style="font-size: 0.72rem; padding: 0.15rem 0.5rem;">${getLocationLabel(st.preferredLocation)}</span>
+                </div>
+                <div style="max-width: 170px; font-size: 0.78rem; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${escapeHtml(addressStr)}">
+                  ${escapeHtml(addressStr)}
+                </div>
+              </td>
+              <td>
+                <div style="font-weight: 600; color: var(--text-main);">${st.rate || 65} € <span style="font-size: 0.75rem; font-weight: normal; color: var(--text-muted);">/ 90m</span></div>
+                ${st.travelCostDefault ? `<div style="font-size:0.75rem; color:var(--text-muted);">+ ${st.travelCostDefault} € Anfahrt</div>` : ''}
+              </td>
+              <td>${adhsBadge}</td>
+              <td style="text-align: right;" onclick="event.stopPropagation();">
+                <div style="display: inline-flex; gap: 0.35rem; justify-content: flex-end;">
+                  <button class="btn btn-secondary btn-sm" onclick="window.viewStudentDetails('${st.id}')" title="Details / Schülerakte ansehen" style="padding: 0.35rem 0.55rem;">
+                    <svg class="icon" style="width:0.85rem;height:0.85rem;"><use href="#icon-eye"/></svg>
+                  </button>
+                  <button class="btn btn-secondary btn-sm" onclick="window.editStudent('${st.id}')" title="Bearbeiten" style="padding: 0.35rem 0.55rem;">
+                    <svg class="icon" style="width:0.85rem;height:0.85rem;"><use href="#icon-edit"/></svg>
+                  </button>
+                  <button class="btn btn-danger btn-sm" onclick="window.deleteStudent('${st.id}')" title="Löschen" style="padding: 0.35rem 0.55rem;">
+                    <svg class="icon" style="width:0.85rem;height:0.85rem;"><use href="#icon-trash"/></svg>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          `;
+        }).join('');
+      }
+    }
   }
+
+  // Helper for Initials
+  function getInitials(name) {
+    if (!name) return '??';
+    const parts = name.trim().split(/\s+/);
+    if (parts.length === 1) return parts[0].substring(0, 2).toUpperCase();
+    return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+  }
+
+  // Helper for clean WhatsApp link
+  function getCleanPhoneForWhatsApp(phone) {
+    if (!phone) return '';
+    let clean = phone.replace(/[^0-9+]/g, '');
+    if (clean.startsWith('0')) {
+      clean = '49' + clean.substring(1);
+    } else if (clean.startsWith('+')) {
+      clean = clean.substring(1);
+    }
+    return clean;
+  }
+
+  // -------------------------------------------------------------
+  // SCHÜLERAKTE (DETAIL-MODAL)
+  // -------------------------------------------------------------
+  const studentDetailModal = document.getElementById('studentDetailModal');
+  const studentDetailTitle = document.getElementById('studentDetailTitle');
+  const studentDetailBody = document.getElementById('studentDetailBody');
+  const btnDetailDeleteStudent = document.getElementById('btnDetailDeleteStudent');
+  const btnDetailEditStudent = document.getElementById('btnDetailEditStudent');
+
+  window.viewStudentDetails = function(studentId) {
+    if (!studentDetailModal || !studentDetailBody) return;
+    const student = MatheDB.Students.getById(studentId);
+    if (!student) return;
+
+    if (studentDetailTitle) {
+      studentDetailTitle.textContent = `Schülerakte — ${student.name}`;
+    }
+
+    const sessions = MatheDB.Sessions.getAll({ studentId: student.id });
+    const paidSessions = sessions.filter(s => s.status === 'paid');
+    const openSessions = sessions.filter(s => s.status !== 'paid');
+
+    const totalRevenue = sessions.reduce((sum, s) => sum + (parseFloat(s.totalAmount) || (parseFloat(s.sessionFee) || 0) + (parseFloat(s.travelCost) || 0)), 0);
+    const paidRevenue = paidSessions.reduce((sum, s) => sum + (parseFloat(s.totalAmount) || (parseFloat(s.sessionFee) || 0) + (parseFloat(s.travelCost) || 0)), 0);
+    const openRevenue = openSessions.reduce((sum, s) => sum + (parseFloat(s.totalAmount) || (parseFloat(s.sessionFee) || 0) + (parseFloat(s.travelCost) || 0)), 0);
+
+    const address = student.address || [student.street, student.zipCity].filter(Boolean).join(', ') || '';
+    const cleanPhone = getCleanPhoneForWhatsApp(student.phone);
+    const mapsUrl = address ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}` : '';
+    const initials = getInitials(student.name);
+
+    studentDetailBody.innerHTML = `
+      <!-- HERO CARD -->
+      <div class="student-detail-hero">
+        <div class="student-detail-hero-left">
+          <div class="student-detail-avatar">${initials}</div>
+          <div class="student-detail-hero-info">
+            <h2>
+              <span>${escapeHtml(student.name)}</span>
+              ${student.active !== false 
+                ? '<span class="badge badge-paid" style="font-size:0.75rem;">Aktiv in Betreuung</span>' 
+                : '<span class="badge badge-inactive" style="font-size:0.75rem;">Inaktiv / Archiviert</span>'}
+            </h2>
+            <p>
+              ${escapeHtml(student.grade || 'Klassenstufe nicht hinterlegt')}
+              ${student.school ? ` · ${escapeHtml(student.school)}` : ''}
+              ${student.subject ? ` · <strong>${escapeHtml(student.subject)}</strong>` : ''}
+            </p>
+          </div>
+        </div>
+        <div class="student-detail-actions">
+          <button class="btn btn-primary btn-sm" onclick="studentDetailModal.classList.add('hidden'); window.quickLogSessionFor('${student.id}');">
+            <svg class="icon" style="width:0.95rem;height:0.95rem;"><use href="#icon-plus"/></svg> Stunde erfassen
+          </button>
+          <button class="btn btn-secondary btn-sm" onclick="studentDetailModal.classList.add('hidden'); window.editStudent('${student.id}');">
+            <svg class="icon" style="width:0.9rem;height:0.9rem;"><use href="#icon-edit"/></svg> Bearbeiten
+          </button>
+        </div>
+      </div>
+
+      <!-- DETAIL CARDS GRID -->
+      <div class="detail-grid" style="margin-top: 1rem;">
+
+        <!-- 1. ANSCHRIFT & UNTERRICHTSORT -->
+        <div class="detail-card">
+          <div class="detail-card-title">
+            <svg class="icon" style="width:0.9rem;height:0.9rem; color:var(--primary);"><use href="#icon-map-pin"/></svg>
+            Anschrift & Unterrichtsort
+          </div>
+          <div class="detail-item">
+            <span class="detail-item-label">Adresse:</span>
+            <span class="detail-item-val">${escapeHtml(address || 'Keine Adresse hinterlegt')}</span>
+          </div>
+          <div class="detail-item" style="margin-top:0.3rem;">
+            <span class="detail-item-label">Bevorzugter Unterrichtsort:</span>
+            <div><span class="badge badge-location" style="margin-top:0.2rem;">${getLocationLabel(student.preferredLocation)}</span></div>
+          </div>
+          ${mapsUrl ? `
+            <div style="margin-top: 0.4rem;">
+              <a href="${mapsUrl}" target="_blank" class="btn btn-secondary btn-sm" style="font-size: 0.78rem; padding: 0.35rem 0.65rem; width: 100%;">
+                <svg class="icon" style="width:0.85rem;height:0.85rem;"><use href="#icon-external-link"/></svg> In Google Maps öffnen
+              </a>
+            </div>
+          ` : ''}
+        </div>
+
+        <!-- 2. ELTERN & ERREICHBARKEIT -->
+        <div class="detail-card">
+          <div class="detail-card-title">
+            <svg class="icon" style="width:0.9rem;height:0.9rem; color:var(--primary);"><use href="#icon-users"/></svg>
+            Eltern & Kontaktdaten
+          </div>
+          <div class="detail-item">
+            <span class="detail-item-label">Ansprechpartner / Eltern:</span>
+            <span class="detail-item-val">${escapeHtml(student.parentName || '—')}</span>
+          </div>
+          <div class="detail-item" style="margin-top:0.3rem;">
+            <span class="detail-item-label">Telefon / WhatsApp:</span>
+            ${student.phone ? `
+              <div style="display: flex; gap: 0.5rem; align-items: center; margin-top: 0.15rem; flex-wrap: wrap;">
+                <a href="tel:${escapeHtml(student.phone)}" style="color:var(--primary); font-weight:600; text-decoration:none; display: inline-flex; align-items:center; gap:0.3rem;">
+                  📞 ${escapeHtml(student.phone)}
+                </a>
+                ${cleanPhone ? `
+                  <a href="https://wa.me/${cleanPhone}" target="_blank" class="btn btn-secondary btn-sm" style="padding: 0.2rem 0.5rem; font-size: 0.75rem; color: #16a34a;">
+                    💬 WhatsApp
+                  </a>
+                ` : ''}
+              </div>
+            ` : '<span class="detail-item-val">—</span>'}
+          </div>
+          <div class="detail-item" style="margin-top:0.3rem;">
+            <span class="detail-item-label">E-Mail:</span>
+            ${student.email ? `
+              <a href="mailto:${escapeHtml(student.email)}" style="color:var(--primary); text-decoration:none; font-size:0.88rem; margin-top:0.1rem;">
+                ✉️ ${escapeHtml(student.email)}
+              </a>
+            ` : '<span class="detail-item-val">—</span>'}
+          </div>
+        </div>
+
+        <!-- 3. KONDITIONEN & FINANZEN -->
+        <div class="detail-card">
+          <div class="detail-card-title">
+            💶 Honorar & Einheiten
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span class="detail-item-label">Satz (90 Min.):</span>
+            <span style="font-weight: 700; color: var(--text-main); font-size: 1.05rem;">${student.rate || 65} €</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span class="detail-item-label">Anfahrtspauschale:</span>
+            <span style="font-weight: 600; color: var(--text-sec);">${student.travelCostDefault ? `${student.travelCostDefault} €` : '0 €'}</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px dashed var(--border); padding-top: 0.4rem; margin-top: 0.2rem;">
+            <span class="detail-item-label">Einheiten gesamt:</span>
+            <span style="font-weight: 600; color: var(--text-main);">${sessions.length} Stunden</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span class="detail-item-label">Gesamtumsatz:</span>
+            <span style="font-weight: 700; color: var(--primary); font-size: 1.05rem;">${totalRevenue.toFixed(2)} €</span>
+          </div>
+          <div style="font-size: 0.75rem; color: var(--text-muted); text-align: right;">
+            Bezahlt: ${paidRevenue.toFixed(2)} € · Offen: <strong style="color:var(--accent);">${openRevenue.toFixed(2)} €</strong>
+          </div>
+        </div>
+
+        <!-- 4. ADHS & NEURODIVERSITÄT -->
+        <div class="detail-card ${student.neurodivergentNotes ? 'detail-adhs-box' : ''}">
+          <div class="detail-card-title" style="${student.neurodivergentNotes ? 'color: var(--accent);' : ''}">
+            🧠 Neurodivergenz & ADHS
+          </div>
+          ${student.neurodivergentNotes ? `
+            <div style="font-size: 0.88rem; line-height: 1.5; color: var(--text-main);">
+              ${escapeHtml(student.neurodivergentNotes)}
+            </div>
+          ` : `
+            <div style="font-size: 0.82rem; color: var(--text-muted);">
+              Keine Besonderheiten oder Reizfilter-Hinweise eingetragen.
+            </div>
+          `}
+        </div>
+
+      </div>
+
+      <!-- 5. NOTIZEN -->
+      ${student.notes ? `
+        <div class="detail-card" style="margin-top: 1rem;">
+          <div class="detail-card-title">📝 Pädagogische Notizen & Klausuren</div>
+          <div style="font-size: 0.88rem; line-height: 1.55; color: var(--text-main); white-space: pre-wrap;">${escapeHtml(student.notes)}</div>
+        </div>
+      ` : ''}
+
+      <!-- 6. LETZTE UNTERRICHTSSTUNDEN -->
+      <div class="detail-card" style="margin-top: 1rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div class="detail-card-title" style="margin: 0;">
+            <svg class="icon" style="width:0.9rem;height:0.9rem; color:var(--primary);"><use href="#icon-clock"/></svg>
+            Bisherige Stunden (${sessions.length})
+          </div>
+          <button class="btn btn-secondary btn-sm" onclick="studentDetailModal.classList.add('hidden'); switchTab('sessions'); sessionStudentFilter.value = '${student.id}'; sessionStudentFilter.dispatchEvent(new Event('change'));" style="font-size:0.75rem; padding: 0.25rem 0.5rem;">
+            Alle im Kalender ansehen →
+          </button>
+        </div>
+
+        ${sessions.length === 0 ? `
+          <div style="font-size: 0.84rem; color: var(--text-muted); padding: 0.5rem 0;">Noch keine Stunden für diesen Schüler erfasst.</div>
+        ` : `
+          <div class="detail-sessions-list">
+            ${sessions.slice(0, 5).map(sess => {
+              const statusBadge = getStatusBadge(sess.status, sess.id);
+              const formattedDate = formatDate(sess.date);
+              const total = parseFloat(sess.totalAmount) || (parseFloat(sess.sessionFee) || 0) + (parseFloat(sess.travelCost) || 0);
+
+              return `
+                <div class="detail-session-row">
+                  <div>
+                    <div style="font-weight: 600; color: var(--text-main);">${formattedDate} · ${sess.time || '16:00'} Uhr</div>
+                    <div style="font-size: 0.78rem; color: var(--text-muted);">${escapeHtml(sess.topics || 'Unterricht')} · ${sess.durationMinutes || 90} Min.</div>
+                  </div>
+                  <div style="display: flex; align-items: center; gap: 0.75rem;">
+                    <strong style="color: var(--text-main); font-size: 0.95rem;">${total.toFixed(2)} €</strong>
+                    ${statusBadge}
+                    <button class="btn btn-secondary btn-sm" onclick="studentDetailModal.classList.add('hidden'); window.editSession('${sess.id}');" title="Stunde bearbeiten" style="padding:0.25rem 0.45rem;">
+                      <svg class="icon" style="width:0.8rem;height:0.8rem;"><use href="#icon-edit"/></svg>
+                    </button>
+                  </div>
+                </div>
+              `;
+            }).join('')}
+          </div>
+        `}
+      </div>
+    `;
+
+    // Wire up footer buttons
+    if (btnDetailDeleteStudent) {
+      btnDetailDeleteStudent.onclick = () => {
+        studentDetailModal.classList.add('hidden');
+        window.deleteStudent(student.id);
+      };
+    }
+    if (btnDetailEditStudent) {
+      btnDetailEditStudent.onclick = () => {
+        studentDetailModal.classList.add('hidden');
+        window.editStudent(student.id);
+      };
+    }
+
+    studentDetailModal.classList.remove('hidden');
+  };
 
   // Student Modal Logic
   const studentModal = document.getElementById('studentModal');
@@ -335,25 +725,45 @@ document.addEventListener('DOMContentLoaded', () => {
         studentModalTitle.textContent = 'Schüler bearbeiten';
         document.getElementById('studentEditId').value = student.id;
         document.getElementById('studName').value = student.name || '';
+        document.getElementById('studGrade').value = student.grade || '';
+        document.getElementById('studSchool').value = student.school || '';
+        document.getElementById('studSubject').value = student.subject || 'Mathematik';
+        document.getElementById('studActive').checked = student.active !== false;
+
+        // Separate address fields
+        let street = student.street || '';
+        let zipCity = student.zipCity || '';
+        if (!street && !zipCity && student.address) {
+          const parts = student.address.split(',');
+          if (parts.length >= 2) {
+            street = parts[0].trim();
+            zipCity = parts.slice(1).join(',').trim();
+          } else {
+            street = student.address.trim();
+          }
+        }
+        document.getElementById('studStreet').value = street;
+        document.getElementById('studZipCity').value = zipCity;
+        document.getElementById('studLocationPref').value = student.preferredLocation || 'office';
+
         document.getElementById('studParent').value = student.parentName || '';
         document.getElementById('studPhone').value = student.phone || '';
         document.getElementById('studEmail').value = student.email || '';
-        document.getElementById('studAddress').value = student.address || '';
-        document.getElementById('studGrade').value = student.grade || '';
-        document.getElementById('studSubject').value = student.subject || 'Mathematik';
         document.getElementById('studRate').value = student.rate || 65;
-        document.getElementById('studTravelDefault').value = student.travelCostDefault || 0;
-        document.getElementById('studLocationPref').value = student.preferredLocation || 'office';
+        document.getElementById('studTravelDefault').value = student.travelCostDefault !== undefined ? student.travelCostDefault : 10;
         document.getElementById('studNeuroNotes').value = student.neurodivergentNotes || '';
         document.getElementById('studNotes').value = student.notes || '';
-        document.getElementById('studActive').checked = student.active !== false;
       }
     } else {
       studentModalTitle.textContent = 'Neuen Schüler anlegen';
       const settings = MatheDB.Settings.get();
       document.getElementById('studRate').value = settings.defaultHourlyRate || 60;
+      document.getElementById('studTravelDefault').value = 10;
       document.getElementById('studSubject').value = 'Mathematik';
       document.getElementById('studActive').checked = true;
+      document.getElementById('studStreet').value = '';
+      document.getElementById('studZipCity').value = '';
+      document.getElementById('studSchool').value = '';
     }
 
     if (studentModal) studentModal.classList.remove('hidden');
@@ -363,13 +773,20 @@ document.addEventListener('DOMContentLoaded', () => {
     studentForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const id = document.getElementById('studentEditId').value.trim();
+      const street = document.getElementById('studStreet').value.trim();
+      const zipCity = document.getElementById('studZipCity').value.trim();
+      const address = [street, zipCity].filter(Boolean).join(', ');
+
       const data = {
         name: document.getElementById('studName').value.trim(),
         parentName: document.getElementById('studParent').value.trim(),
         phone: document.getElementById('studPhone').value.trim(),
         email: document.getElementById('studEmail').value.trim(),
-        address: document.getElementById('studAddress').value.trim(),
+        street: street,
+        zipCity: zipCity,
+        address: address,
         grade: document.getElementById('studGrade').value.trim(),
+        school: document.getElementById('studSchool').value.trim(),
         subject: document.getElementById('studSubject').value.trim(),
         rate: parseFloat(document.getElementById('studRate').value) || 60,
         travelCostDefault: parseFloat(document.getElementById('studTravelDefault').value) || 0,
@@ -381,11 +798,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (id) data.id = id;
 
-      MatheDB.Students.save(data);
+      const saved = MatheDB.Students.save(data);
       if (studentModal) studentModal.classList.add('hidden');
       renderStudentsTable();
       renderDashboard();
       initInvoiceSelectors();
+
+      // If detail modal was open for this student, refresh it
+      if (studentDetailModal && !studentDetailModal.classList.contains('hidden') && saved && saved.id) {
+        window.viewStudentDetails(saved.id);
+      }
     });
   }
 
@@ -395,6 +817,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!student) return;
     if (confirm(`Möchtest du Schüler "${student.name}" wirklich löschen? Alle zugehörigen Stunden bleiben im Archiv.`)) {
       MatheDB.Students.delete(id);
+      if (studentDetailModal) studentDetailModal.classList.add('hidden');
       renderStudentsTable();
       renderDashboard();
     }
