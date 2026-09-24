@@ -3,645 +3,908 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MatheCoach Farid Häder — Empathische Mathe-Nachhilfe & Coaching</title>
-  <meta name="description" content="Individuelle 1-zu-1 Mathe-Nachhilfe für Oberstufe, Abitur und neurodivergente Köpfe (ADHS & Co.). Ruhige Lernumgebung in Dietzenbach & Online.">
+  <title>Farid Häder — Mathe-Coach & ADHS-Mentor | Individuelle 1-zu-1 Nachhilfe</title>
+  <meta name="description" content="Individuelle 1-zu-1 Mathe-Nachhilfe & Lerncoaching für Oberstufe, Abitur und neurodivergente Köpfe (ADHS & Co.). Reizarm, verständlich & ohne Druck. Dietzenbach & Online.">
   
-  <!-- Sensory-Friendly Typography: Lexend (Headings) + Plus Jakarta Sans (Body) -->
+  <!-- Sensory-Friendly Typography: Lexend (Headings / Focus) + Plus Jakarta Sans (Body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  
-  <!-- FontAwesome 6 -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+  <!-- SVG Sprite Definitionen (Zero External Icon Dependencies for Max Performance) -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="icon-brain" viewBox="0 0 24 24">
+      <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.44-2.04zM14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-4.44-2.04z"/>
+    </symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24">
+      <polyline points="20 6 9 17 4 12"/>
+    </symbol>
+    <symbol id="icon-check-circle" viewBox="0 0 24 24">
+      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+      <polyline points="22 4 12 14.01 9 11.01"/>
+    </symbol>
+    <symbol id="icon-shield" viewBox="0 0 24 24">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+    </symbol>
+    <symbol id="icon-lightbulb" viewBox="0 0 24 24">
+      <path d="M9 18h6"/>
+      <path d="M10 22h4"/>
+      <path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"/>
+    </symbol>
+    <symbol id="icon-star" viewBox="0 0 24 24">
+      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+    </symbol>
+    <symbol id="icon-whatsapp" viewBox="0 0 24 24">
+      <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+    </symbol>
+    <symbol id="icon-mail" viewBox="0 0 24 24">
+      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+      <polyline points="22,6 12,13 2,6"/>
+    </symbol>
+    <symbol id="icon-phone" viewBox="0 0 24 24">
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+    </symbol>
+    <symbol id="icon-clock" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="10"/>
+      <polyline points="12 6 12 12 16 14"/>
+    </symbol>
+    <symbol id="icon-map-pin" viewBox="0 0 24 24">
+      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+      <circle cx="12" cy="10" r="3"/>
+    </symbol>
+    <symbol id="icon-building" viewBox="0 0 24 24">
+      <rect x="4" y="2" width="16" height="20" rx="2" ry="2"/>
+      <line x1="9" y1="22" x2="9" y2="2"/>
+      <line x1="8" y1="6" x2="8.01" y2="6"/>
+      <line x1="16" y1="6" x2="16.01" y2="6"/>
+      <line x1="16" y1="10" x2="16.01" y2="10"/>
+      <line x1="16" y1="14" x2="16.01" y2="14"/>
+      <line x1="16" y1="18" x2="16.01" y2="18"/>
+    </symbol>
+    <symbol id="icon-home" viewBox="0 0 24 24">
+      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+      <polyline points="9 22 9 12 15 12 15 22"/>
+    </symbol>
+    <symbol id="icon-laptop" viewBox="0 0 24 24">
+      <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+      <line x1="2" y1="20" x2="22" y2="20"/>
+    </symbol>
+    <symbol id="icon-award" viewBox="0 0 24 24">
+      <circle cx="12" cy="8" r="7"/>
+      <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/>
+    </symbol>
+    <symbol id="icon-file-text" viewBox="0 0 24 24">
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+      <polyline points="14 2 14 8 20 8"/>
+      <line x1="16" y1="13" x2="8" y2="13"/>
+      <line x1="16" y1="17" x2="8" y2="17"/>
+      <polyline points="10 9 9 9 8 9"/>
+    </symbol>
+    <symbol id="icon-chevron-down" viewBox="0 0 24 24">
+      <polyline points="6 9 12 15 18 9"/>
+    </symbol>
+    <symbol id="icon-arrow-right" viewBox="0 0 24 24">
+      <line x1="5" y1="12" x2="19" y2="12"/>
+      <polyline points="12 5 19 12 12 19"/>
+    </symbol>
+    <symbol id="icon-moon" viewBox="0 0 24 24">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+    </symbol>
+    <symbol id="icon-sun" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="5"/>
+      <line x1="12" y1="1" x2="12" y2="3"/>
+      <line x1="12" y1="21" x2="12" y2="23"/>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+      <line x1="1" y1="12" x2="3" y2="12"/>
+      <line x1="21" y1="12" x2="23" y2="12"/>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+    </symbol>
+    <symbol id="icon-eye" viewBox="0 0 24 24">
+      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+      <circle cx="12" cy="12" r="3"/>
+    </symbol>
+    <symbol id="icon-x" viewBox="0 0 24 24">
+      <line x1="18" y1="6" x2="6" y2="18"/>
+      <line x1="6" y1="6" x2="18" y2="18"/>
+    </symbol>
+    <symbol id="icon-menu" viewBox="0 0 24 24">
+      <line x1="3" y1="12" x2="21" y2="12"/>
+      <line x1="3" y1="6" x2="21" y2="6"/>
+      <line x1="3" y1="18" x2="21" y2="18"/>
+    </symbol>
+  </svg>
+
   <!-- ==================== NAVIGATION ==================== -->
-  <nav class="navbar" id="mainNavbar">
-    <div class="container nav-container">
-      <a href="#hero" class="logo" aria-label="MatheCoach Startseite">
-        <span class="logo-badge">∑</span>
-        <div>Mathe<span>Coach</span></div>
-      </a>
+  <header>
+    <nav class="navbar" id="mainNavbar" aria-label="Hauptnavigation">
+      <div class="container nav-container">
+        <a href="#hero" class="logo" aria-label="Zur Startseite">
+          <span class="logo-badge">∑</span>
+          <div>Mathe<span>Coach</span> Farid Häder</div>
+        </a>
 
-      <ul class="nav-menu" id="navMenu">
-        <li><a href="#zielgruppen" class="nav-link">Für wen?</a></li>
-        <li><a href="#ueber-mich" class="nav-link">Über mich</a></li>
-        <li><a href="#philosophie" class="nav-link">Philosophie</a></li>
-        <li><a href="#standorte" class="nav-link">Unterrichtsorte</a></li>
-        <li><a href="#preise" class="nav-link">Honorar</a></li>
-        <li><a href="#nachweise" class="nav-link">Nachweise</a></li>
-        <li><a href="#bewertungen" class="nav-link">Bewertungen</a></li>
-        <li><a href="#kontakt" class="btn btn-primary btn-sm">Kontaktieren</a></li>
-      </ul>
-
-      <div class="nav-actions">
-        <button class="theme-toggle-btn" id="themeToggleBtn" title="Design anpassen (Hell / Dunkel)" aria-label="Farbmodus umschalten">
-          <i class="fas fa-moon" id="themeIcon"></i>
-        </button>
-        <button class="hamburger" id="hamburgerBtn" aria-label="Menü öffnen">
-          <i class="fas fa-bars"></i>
-        </button>
-      </div>
-    </div>
-  </nav>
-
-  <!-- ==================== HERO SECTION ==================== -->
-  <header class="hero" id="hero">
-    <div class="container hero-grid">
-      <div class="hero-content">
-        <div class="section-tag">
-          <i class="fas fa-brain"></i> Individuelle 1-zu-1 Mathe-Nachhilfe
-        </div>
-        <h1>Mathematik verstehen – <span class="highlight-text">ohne Druck</span> und Überforderung.</h1>
-        <p class="hero-lead">
-          Einfühlsames Coaching für Oberstufe, Abitur und <strong>neurodivergente Köpfe (ADHS & Co.)</strong>, 
-          die logisch denken, aber im klassischen Schulsystem an ihre Grenzen stoßen.
-        </p>
-
-        <div class="hero-cta-group">
-          <a href="https://wa.me/49123456789?text=Hallo%20Farid,%20ich%20interessiere%20mich%20f%C3%BCr%20eine%20Mathe-Nachhilfe." target="_blank" class="btn btn-whatsapp" id="heroWhatsappBtn">
-            <i class="fab fa-whatsapp"></i> Direkt per WhatsApp schreiben
-          </a>
-          <a href="#kontakt" class="btn btn-secondary">
-            <i class="fas fa-envelope"></i> Unverbindlich anfragen
-          </a>
-        </div>
-
-        <ul class="hero-badges-list">
-          <li class="hero-badge-item"><i class="fas fa-check-circle"></i> 1-zu-1 Einzelstunden</li>
-          <li class="hero-badge-item"><i class="fas fa-check-circle"></i> Volle 90 Min. Fokus</li>
-          <li class="hero-badge-item"><i class="fas fa-check-circle"></i> Auf Augenhöhe & mit Geduld</li>
-          <li class="hero-badge-item"><i class="fas fa-check-circle"></i> Dietzenbach & Online</li>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="#ueber-mich" class="nav-link">Wer ich bin & Mein Weg</a></li>
+          <li><a href="#zielgruppen" class="nav-link">Für Eltern & Schüler</a></li>
+          <li><a href="#methodik" class="nav-link">Was ich kann & Didaktik</a></li>
+          <li><a href="#ablauf" class="nav-link">Ablauf</a></li>
+          <li><a href="#standorte" class="nav-link">Orte</a></li>
+          <li><a href="#preise" class="nav-link">Honorar</a></li>
+          <li><a href="#nachweise" class="nav-link">Belege</a></li>
+          <li><a href="#faq" class="nav-link">FAQ</a></li>
+          <li><a href="#kontakt" class="btn btn-primary btn-sm">Kontaktieren</a></li>
         </ul>
-      </div>
 
-      <div class="hero-card-preview">
-        <div class="hero-card-header">
-          <div class="hero-avatar">
-            <i class="fas fa-user-check"></i>
-          </div>
-          <div class="hero-card-title">
-            <h3>Farid Häder</h3>
-            <p>Mathe-Coach & ADHS-Mentor</p>
-          </div>
-        </div>
-
-        <div class="hero-quote-box">
-          „Mathe ist keine Frage von angeborenem Talent – sondern davon, ob es auf die Art erklärt wird, wie dein Gehirn denkt.“
-        </div>
-
-        <div class="hero-pills">
-          <span class="hero-pill"><i class="fas fa-graduation-cap"></i> Abi & Oberstufe</span>
-          <span class="hero-pill"><i class="fas fa-infinity"></i> ADHS-Verständnis</span>
-          <span class="hero-pill"><i class="fas fa-medal"></i> Schülerhilfe-Referenz</span>
-          <span class="hero-pill"><i class="fas fa-calculator"></i> Fundiertes Rechnen</span>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <!-- ==================== DUAL AUDIENCE SECTION ==================== -->
-  <section class="section" id="zielgruppen">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-tag"><i class="fas fa-users"></i> Für wen ist das Angebot?</div>
-        <h2>Genau auf eure Bedürfnisse abgestimmt</h2>
-        <p>Gute Nachhilfe holt sowohl Eltern als auch Schüler da ab, wo sie gerade stehen.</p>
-      </div>
-
-      <div class="audience-grid">
-        <!-- Card 1: Für Eltern -->
-        <div class="audience-card parents">
-          <div class="audience-card-icon">
-            <i class="fas fa-shield-alt"></i>
-          </div>
-          <h3>Für Eltern: Sicherheit & Entlastung</h3>
-          <p>Sie möchten, dass Ihr Kind den Anschluss nicht verliert und der tägliche Hausaufgaben- und Notenstress endlich aufhört.</p>
+        <div class="nav-actions">
+          <!-- Reizarm / Fokus-Modus Schalter -->
+          <button class="icon-btn" id="focusToggleBtn" title="Reizarmen Fokus-Modus aktivieren" aria-label="Reizarmen Modus umschalten">
+            <svg class="icon"><use href="#icon-eye"/></svg>
+          </button>
           
-          <ul class="audience-list">
-            <li class="audience-item">
-              <i class="fas fa-check"></i>
-              <div><strong>Kein Streit mehr zu Hause:</strong> Ich übernehme die Mathe-Begleitung mit Ruhe und Fachkompetenz.</div>
-            </li>
-            <li class="audience-item">
-              <i class="fas fa-check"></i>
-              <div><strong>Erprobte Neurodiversitäts-Kompetenz:</strong> Ich kenne die Hürden von ADHS aus eigener Erfahrung und gehe individuell darauf ein.</div>
-            </li>
-            <li class="audience-item">
-              <i class="fas fa-check"></i>
-              <div><strong>Transparente 90-Min-Einheiten:</strong> Genügend Zeit, um Stoff tief zu verankern – ohne hektischen 45-Minuten-Takt.</div>
-            </li>
-            <li class="audience-item">
-              <i class="fas fa-check"></i>
-              <div><strong>Keine langfristigen Knebelverträge:</strong> Flexible, faire Zusammenarbeit auf Vertrauensbasis.</div>
-            </li>
-          </ul>
-        </div>
+          <!-- Hell / Dunkel Modus Schalter -->
+          <button class="icon-btn" id="themeToggleBtn" title="Farbmodus umschalten (Hell / Dunkel)" aria-label="Farbmodus umschalten">
+            <svg class="icon" id="themeIcon"><use href="#icon-moon"/></svg>
+          </button>
 
-        <!-- Card 2: Für Schüler -->
-        <div class="audience-card students">
-          <div class="audience-card-icon">
-            <i class="fas fa-lightbulb"></i>
-          </div>
-          <h3>Für Schüler: Verständnis & Aha-Momente</h3>
-          <p>Du willst Mathe endlich kapieren, ohne dich im Unterricht bloßgestellt oder unter Druck gesetzt zu fühlen.</p>
-
-          <ul class="audience-list">
-            <li class="audience-item">
-              <i class="fas fa-check"></i>
-              <div><strong>Keine dummen Fragen:</strong> Wir wiederholen Grundlagen so oft, bis es bei dir wirklich Klick macht.</div>
-            </li>
-            <li class="audience-item">
-              <i class="fas fa-check"></i>
-              <div><strong>Erklärungen auf Augenhöhe:</strong> Kein Lehrer-Monolog von oben herab, sondern ein gemeinsames Erarbeiten.</div>
-            </li>
-            <li class="audience-item">
-              <i class="fas fa-check"></i>
-              <div><strong>Prüfungsangst abbauen:</strong> Klare Strategien für Klausuren und Abitur, damit du sicher in den Raum gehst.</div>
-            </li>
-            <li class="audience-item">
-              <i class="fas fa-check"></i>
-              <div><strong>Echtes Verstehen:</strong> Du lernst Zusammenhänge, statt nur formell Schemata auswendig zu lernen.</div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== ABOUT ME SECTION ==================== -->
-  <section class="section section-soft" id="ueber-mich">
-    <div class="container about-grid">
-      <div class="about-card-visual">
-        <div class="about-avatar-large">
-          <i class="fas fa-user-astronaut"></i>
-        </div>
-        <h3>Farid Häder</h3>
-        <p style="color: var(--primary); font-weight: 600; margin-bottom: 0.5rem;">Dein Partner für Mathe & Logik</p>
-        <p style="font-size: 0.95rem; color: var(--text-muted);">Dietzenbach · Hessen</p>
-        
-        <div class="about-highlight-box">
-          <i class="fas fa-quote-left" style="color: var(--primary); margin-right: 0.4rem;"></i>
-          Ehemaliger Mathelehrer bei der Schülerhilfe mit Bestbewertungen & Mensa-Mitgliedschaft.
-        </div>
-      </div>
-
-      <div class="about-content">
-        <div class="section-tag"><i class="fas fa-id-badge"></i> Persönlicher Hintergrund</div>
-        <h2>Hallo, ich bin Farid! 👋</h2>
-        <p class="about-text-lead">
-          Mathe und Physik haben mich schon immer fasziniert. Dennoch hatte ich in der Schulzeit selbst oft zu kämpfen – 
-          bedingt durch damals noch unentdecktes ADHS und Lehrer, die meine Denkweise nicht verstanden haben.
-        </p>
-        <p>
-          Dass ich mein Abitur mit Mathe- und Physik-Leistungskurs trotzdem erfolgreich gemeistert habe, verdanke ich meiner 
-          großen Begeisterung für Logik. Später studierte ich Nanostrukturtechnik sowie Elektro- und Informationstechnik. 
-          Das klassische universitäre System passte zwar nicht zu meinem ADHS, doch eines wurde mir glasklar: 
-          <strong>Mein Talent liegt darin, komplexe Zusammenhänge einfach und greifbar zu vermitteln.</strong>
-        </p>
-        <p>
-          Schon seit vielen Jahren helfe ich Schülern und habe etliche erfolgreich durchs Mathe-Abi gebracht. 
-          Bei meiner Arbeit bei der Schülerhilfe wurde ich rasch zum gefragtesten Mathe-Tutor – Schüler wollten ausschließlich 
-          in meinen Unterricht. 
-          Der Grund dafür? <strong>Ich arbeite geduldig auf Augenhöhe, nehme mir Zeit für die Denkweise meines Gegenübers 
-          und gebe erst Ruhe, wenn der Knoten wirklich geplatzt ist.</strong>
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== PHILOSOPHY SECTION ==================== -->
-  <section class="section" id="philosophie">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-tag"><i class="fas fa-compass"></i> Methodik & Prinzipien</div>
-        <h2>Meine Lernphilosophie</h2>
-        <p>Klare Prinzipien für nachhaltigen Lernerfolg statt kurzfristiges Auswendiglernen.</p>
-      </div>
-
-      <div class="pillars-grid">
-        <div class="pillar-card">
-          <div class="pillar-icon"><i class="fas fa-brain"></i></div>
-          <h3>1. Selber Denken lernen</h3>
-          <p>Ich kaue keine Lösungen vor. Meine Schüler erarbeiten den Lösungsweg selbst. Nur so wird die logische Struktur im Langzeitgedächtnis verankert.</p>
-        </div>
-
-        <div class="pillar-card">
-          <div class="pillar-icon"><i class="fas fa-calculator"></i></div>
-          <h3>2. Zahlensinn vor Technik</h3>
-          <p>Solange es nicht zwingend nötig ist, bleibt der Taschenrechner aus. Ein gutes Gespür für Zahlen und Kopfrechnen ist das Fundament jeder höheren Mathematik.</p>
-        </div>
-
-        <div class="pillar-card">
-          <div class="pillar-icon"><i class="fas fa-user-friends"></i></div>
-          <h3>3. 1-zu-1 Reizarmut</h3>
-          <p>Ausschließlich Einzelunterricht in ruhiger Umgebung. Keine Ablenkungen durch Gruppen, kein Vergleichen, sondern 100 % Konzentration auf deinen Fortschritt.</p>
-        </div>
-
-        <div class="pillar-card">
-          <div class="pillar-icon"><i class="fas fa-fire"></i></div>
-          <h3>4. Eigenmotivation</h3>
-          <p>Nachhilfe funktioniert dann am besten, wenn Schüler mit eigenen Fragen kommen und auch unter der Woche selbstständig 20–30 Minuten am Ball bleiben.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== CREDENTIALS & PROOF ==================== -->
-  <section class="section section-soft" id="nachweise">
-    <div class="container">
-      <div class="credentials-container">
-        <div class="section-tag"><i class="fas fa-file-alt"></i> Transparenz & Belege</div>
-        <h2>Offenheit, Qualifikationen & Nachweise</h2>
-        <div class="credentials-intro">
-          <p>
-            <strong>Warum ich mein Abizeugnis zeige (2,7 Schnitt mit Mathe & Physik LK):</strong><br>
-            Ich habe mein Abi mit damals unentdecktem ADHS absolviert. Diese Erfahrung hat mir gezeigt: 
-            Standard-Schulsysteme spiegeln selten das wahre Denkvermögen wider. 
-            Heute weiß ich genau, welche Lernmethoden neurodivergenten Köpfen fehlen – und gebe dieses Handwerkszeug 1:1 weiter.
-          </p>
-        </div>
-
-        <div class="credentials-grid">
-          <!-- Zeugnis Schülerhilfe -->
-          <div class="credential-item">
-            <div>
-              <div class="credential-item-header">
-                <div class="credential-icon"><i class="fas fa-chalkboard-teacher"></i></div>
-                <div>
-                  <h4>Zeugnis Schülerhilfe</h4>
-                  <p>Arbeitszeugnis & Feedback</p>
-                </div>
-              </div>
-              <p>Offizielle Bestätigung meiner Unterrichtsqualität und hohen Beliebtheit bei Schülern und Kollegen.</p>
-            </div>
-            <a href="Dokumente/Zwischenzeugnis.pdf" target="_blank" class="btn btn-secondary btn-sm">
-              <i class="fas fa-external-link-alt"></i> Zeugnis ansehen (PDF)
-            </a>
-          </div>
-
-          <!-- Mensa IQ -->
-          <div class="credential-item">
-            <div>
-              <div class="credential-item-header">
-                <div class="credential-icon"><i class="fas fa-brain"></i></div>
-                <div>
-                  <h4>Mensa IQ-Zertifikat</h4>
-                  <p>Mensa in Deutschland e.V.</p>
-                </div>
-              </div>
-              <p>Nachweis über analytisches und logisch-mathematisches Denkvermögen im oberen Prozentrang.</p>
-            </div>
-            <a href="Dokumente/Mensa.pdf" target="_blank" class="btn btn-secondary btn-sm">
-              <i class="fas fa-external-link-alt"></i> Nachweis ansehen (PDF)
-            </a>
-          </div>
-
-          <!-- Abiturzeugnis -->
-          <div class="credential-item">
-            <div>
-              <div class="credential-item-header">
-                <div class="credential-icon"><i class="fas fa-graduation-cap"></i></div>
-                <div>
-                  <h4>Abiturzeugnis</h4>
-                  <p>Leistungskurse Mathe & Physik</p>
-                </div>
-              </div>
-              <p>Authentischer Einblick in meinen schulischen Weg mit Mathe- und Physik-Schwerpunkt.</p>
-            </div>
-            <a href="Dokumente/Abiturzeugnis.pdf" target="_blank" class="btn btn-secondary btn-sm">
-              <i class="fas fa-external-link-alt"></i> Zeugnis ansehen (PDF)
-            </a>
-          </div>
-        </div>
-
-        <p style="font-size: 0.9rem; color: var(--text-muted);">
-          <i class="fas fa-shield-alt"></i> Alle Dokumente öffnen sich sicher als Original-PDF in einem neuen Browser-Tab.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== LOCATIONS & FORMATS ==================== -->
-  <section class="section" id="standorte">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-tag"><i class="fas fa-map-marked-alt"></i> Flexibel lernen</div>
-        <h2>Wo und wie findet der Unterricht statt?</h2>
-        <p>Drei Möglichkeiten, die zu eurem Alltag und der bevorzugten Lernumgebung passen.</p>
-      </div>
-
-      <div class="location-grid">
-        <div class="location-card">
-          <div>
-            <div class="audience-card-icon" style="background-color: var(--primary-light); color: var(--primary);">
-              <i class="fas fa-building"></i>
-            </div>
-            <h3>Im Büroraum Dietzenbach</h3>
-            <p>Ein eigener, ruhiger und reizarmer Raum in <strong>Dietzenbach</strong>. Optimal für fokussiertes Lernen ohne Störungen durch Familie oder Alltagstrubel.</p>
-          </div>
-          <div class="location-tag"><i class="fas fa-map-marker-alt"></i> Dietzenbach (Empfohlen)</div>
-        </div>
-
-        <div class="location-card">
-          <div>
-            <div class="audience-card-icon" style="background-color: var(--accent-light); color: var(--accent);">
-              <i class="fas fa-home"></i>
-            </div>
-            <h3>Bei dir Zuhause</h3>
-            <p>Lernen im gewohnten Umfeld im Raum <strong>Dietzenbach & Waldacker</strong>. Bitte beachten: Je nach Entfernung fallen faire Anfahrtskosten an.</p>
-          </div>
-          <div class="location-tag"><i class="fas fa-car"></i> Vor Ort + Anfahrt</div>
-        </div>
-
-        <div class="location-card">
-          <div>
-            <div class="audience-card-icon" style="background-color: var(--primary-light); color: var(--primary);">
-              <i class="fas fa-laptop"></i>
-            </div>
-            <h3>Online-Coaching</h3>
-            <p>Ortsunabhängiger Unterricht per Video. <strong>Voraussetzung:</strong> Ein Tablet (z. B. iPad mit Stift), damit wir zeitgleich auf einem geteilten Notizblatt rechnen können.</p>
-          </div>
-          <div class="location-tag"><i class="fas fa-tablet-alt"></i> iPad / Stift erforderlich</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== INDIVIDUAL PRICING SECTION ==================== -->
-  <section class="section section-soft" id="preise">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-tag"><i class="fas fa-balance-scale"></i> Faire & Individuelle Honorargestaltung</div>
-        <h2>Transparente Preise, exakt abgestimmt auf euren Bedarf</h2>
-        <p>Jeder Schüler bringt andere Voraussetzungen mit. Eine Lerneinheit dauert immer <strong>volle 90 Minuten</strong> für nachhaltigen Fokus.</p>
-      </div>
-
-      <div class="pricing-banner">
-        <div class="pricing-range-badge">
-          <i class="fas fa-tags"></i> Orientierungsrahmen: 30 € bis 100 € / 90 Minuten
-        </div>
-        <p style="margin: 0; font-size: 0.96rem; color: var(--text-sec);">
-          Das konkrete Honorar stimmen wir gemeinsam im unverbindlichen Kennenlerngespräch ab – 
-          <strong>ohne Mindestvertragslaufzeit</strong> und flexibel kündbar.
-        </p>
-      </div>
-
-      <!-- 3 Orientation Cards -->
-      <div class="pricing-grid">
-        <!-- Card 1: Grundlagen & Mittelstufe -->
-        <div class="pricing-card">
-          <div>
-            <h3>Mittelstufe & Grundlagen</h3>
-            <p style="color: var(--text-muted); font-size: 0.92rem;">Klassen 7 bis 10</p>
-            
-            <div class="price-orientation-tag">
-              <i class="fas fa-arrow-right"></i> ab 30 € / 90 Min.
-            </div>
-
-            <ul class="pricing-features">
-              <li><i class="fas fa-check"></i> Schließen von elementaren Wissenslücken</li>
-              <li><i class="fas fa-check"></i> Zahlensinn & Rechenregeln nachhaltig festigen</li>
-              <li><i class="fas fa-check"></i> Gezielte Vorbereitung auf Klassenarbeiten</li>
-              <li><i class="fas fa-check"></i> Begleitung beim Übergang in die Oberstufe</li>
-            </ul>
-          </div>
-          <a href="#kontakt" class="btn btn-secondary">Unverbindlich anfragen</a>
-        </div>
-
-        <!-- Card 2: Oberstufe (Featured) -->
-        <div class="pricing-card featured">
-          <div class="popular-badge">Mein Spezialgebiet</div>
-          <div>
-            <h3>Oberstufe & Fachabitur</h3>
-            <p style="color: var(--text-muted); font-size: 0.92rem;">Klassen 11 bis 12 / 13</p>
-            
-            <div class="price-orientation-tag">
-              <i class="fas fa-sliders-h"></i> Individuell nach Themenstand
-            </div>
-
-            <ul class="pricing-features">
-              <li><i class="fas fa-check"></i> Analysis, Geometrie & Stochastik durchdringen</li>
-              <li><i class="fas fa-check"></i> Spezielle Denkwege & Strategien für ADHS</li>
-              <li><i class="fas fa-check"></i> Klausurvorbereitung & Notenstabilisierung</li>
-              <li><i class="fas fa-check"></i> Regelmäßiges Feedback & gezielte Betreuung</li>
-            </ul>
-          </div>
-          <a href="#kontakt" class="btn btn-primary">Angebot besprechen</a>
-        </div>
-
-        <!-- Card 3: Abitur Endspurt -->
-        <div class="pricing-card">
-          <div>
-            <h3>Abitur-Intensiv & Akuthilfe</h3>
-            <p style="color: var(--text-muted); font-size: 0.92rem;">Prüfungsphase & Endspurt</p>
-            
-            <div class="price-orientation-tag">
-              <i class="fas fa-award"></i> Individuelles Förderpaket
-            </div>
-
-            <ul class="pricing-features">
-              <li><i class="fas fa-check"></i> Original-Abiturklausuren strukturiert lösen</li>
-              <li><i class="fas fa-check"></i> Abbau von Prüfungsangst & Blockaden</li>
-              <li><i class="fas fa-check"></i> Zeit- und Stressmanagement unter Realbedingungen</li>
-              <li><i class="fas fa-check"></i> Flexible Terminverdichtung vor Prüfungsterminen</li>
-            </ul>
-          </div>
-          <a href="#kontakt" class="btn btn-secondary">Abi-Coaching anfragen</a>
-        </div>
-      </div>
-
-      <!-- Explanatory Criteria Box for Parents -->
-      <div class="pricing-criteria-box">
-        <h3><i class="fas fa-clipboard-check" style="color: var(--primary); margin-right: 0.5rem;"></i> Wie setzt sich das Honorar zusammen?</h3>
-        <p style="max-width: 680px; margin: 0 auto; color: var(--text-muted);">
-          Statt starrer Pauschalen richtet sich das Honorar nach den tatsächlichen Anforderungen, 
-          damit ihr nur genau das bezahlt, was an Unterstützung wirklich benötigt wird:
-        </p>
-
-        <div class="criteria-grid">
-          <div class="criteria-card">
-            <div class="criteria-card-header">
-              <i class="fas fa-graduation-cap"></i>
-              <span>Schulstufe & Niveau</span>
-            </div>
-            <p>Mittelstufen-Basis, qualifizierende Oberstufen-Mathematik oder anspruchsvoller Leistungskurs.</p>
-          </div>
-
-          <div class="criteria-card">
-            <div class="criteria-card-header">
-              <i class="fas fa-search-plus"></i>
-              <span>Förder- & Betreuungsgrad</span>
-            </div>
-            <p>Laufende Lernbegleitung vs. tiefgreifende Aufarbeitung großer Lücken oder ADHS-spezifische Didaktik.</p>
-          </div>
-
-          <div class="criteria-card">
-            <div class="criteria-card-header">
-              <i class="fas fa-calendar-alt"></i>
-              <span>Intensität & Frequenz</span>
-            </div>
-            <p>Regelmäßige wöchentliche Termine oder flexibel gebuchte Intensiv-Blöcke vor Prüfungsphasen.</p>
-          </div>
-
-          <div class="criteria-card">
-            <div class="criteria-card-header">
-              <i class="fas fa-map-pin"></i>
-              <span>Unterrichtsform</span>
-            </div>
-            <p>Reizarmes Lernen im Büroraum Dietzenbach, Online-Interaktion per Tablet oder Vor-Ort-Besuch.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== REVIEWS & TESTIMONIALS (INTERACTIVE) ==================== -->
-  <section class="section" id="bewertungen">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-tag"><i class="fas fa-star"></i> Echte Erfahrungen</div>
-        <h2>Was Schüler und Eltern berichten</h2>
-        <p>Echte Rückmeldungen aus meiner bisherigen Nachhilfepraxis.</p>
-        
-        <div class="reviews-header-actions">
-          <button class="btn btn-primary btn-sm" id="openReviewModalBtn">
-            <i class="fas fa-pen"></i> Erfahrung teilen / Bewertung abgeben
+          <!-- Mobile Hamburger -->
+          <button class="hamburger" id="hamburgerBtn" aria-label="Menü öffnen" aria-expanded="false">
+            <svg class="icon" id="hamburgerIcon"><use href="#icon-menu"/></svg>
           </button>
         </div>
       </div>
+    </nav>
+  </header>
 
-      <!-- Dynamic Reviews Grid populated via JS -->
-      <div class="reviews-grid" id="reviewsGrid">
-        <!-- Cards inserted dynamically by script.js -->
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== REVIEW MODAL ==================== -->
-  <div class="modal-backdrop" id="reviewModalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-    <div class="modal-card">
-      <div class="modal-header">
-        <h3 id="modalTitle"><i class="fas fa-star" style="color: #f59e0b; margin-right: 0.4rem;"></i> Deine Erfahrung teilen</h3>
-        <button class="modal-close-btn" id="closeReviewModalBtn" aria-label="Schließen">&times;</button>
-      </div>
-
-      <form id="addReviewForm">
-        <div class="form-group">
-          <label class="form-label">Deine Bewertung (Sterne anklicken)</label>
-          <div class="star-rating-picker" id="starRatingPicker">
-            <i class="fas fa-star active" data-rating="1"></i>
-            <i class="fas fa-star active" data-rating="2"></i>
-            <i class="fas fa-star active" data-rating="3"></i>
-            <i class="fas fa-star active" data-rating="4"></i>
-            <i class="fas fa-star active" data-rating="5"></i>
+  <main>
+    <!-- ==================== HERO SECTION ==================== -->
+    <section class="hero" id="hero">
+      <div class="hero-glow"></div>
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <div class="section-tag">
+            <svg class="icon"><use href="#icon-brain"/></svg> 1-zu-1 Mathe-Nachhilfe & ADHS-Mentoring
           </div>
-          <div class="star-rating-label" id="starRatingLabel">5 von 5 Sternen — Hervorragend</div>
+          <h1>Mathematik verstehen – <span style="color: var(--primary);">ohne Druck, Frust</span> und Überforderung.</h1>
+          <p class="hero-lead">
+            Einfühlsame Begleitung für die Oberstufe, Abiturienten und <strong>neurodivergente Köpfe (ADHS, Autismus & Co.)</strong>, 
+            die logisch denken, aber im starren Schulsystem an ihre Grenzen stoßen.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="https://wa.me/49123456789?text=Hallo%20Farid,%20ich%20interessiere%20mich%20f%C3%BCr%20deine%201-zu-1%20Mathe-Nachhilfe." target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp" id="heroWhatsappBtn">
+              <svg class="icon"><use href="#icon-whatsapp"/></svg> Direkt per WhatsApp schreiben
+            </a>
+            <a href="#kontakt" class="btn btn-secondary">
+              <svg class="icon"><use href="#icon-mail"/></svg> Kennenlernen anfragen
+            </a>
+          </div>
+
+          <ul class="hero-badges-list">
+            <li class="hero-badge-item"><svg class="icon"><use href="#icon-check-circle"/></svg> 1-zu-1 Reizarmut</li>
+            <li class="hero-badge-item"><svg class="icon"><use href="#icon-clock"/></svg> Volle 90 Min. Fokus</li>
+            <li class="hero-badge-item"><svg class="icon"><use href="#icon-shield"/></svg> Ohne Vertragslaufzeit</li>
+            <li class="hero-badge-item"><svg class="icon"><use href="#icon-map-pin"/></svg> Dietzenbach & Online</li>
+          </ul>
         </div>
 
-        <div class="form-group">
-          <label for="reviewName" class="form-label">Dein Name oder Initialen</label>
-          <input type="text" id="reviewName" class="form-control" placeholder="z. B. Julian K. oder Familie M." required>
-        </div>
+        <!-- Profil- & Vertrauenskarte -->
+        <div class="hero-profile-card">
+          <div class="hero-profile-header">
+            <div class="hero-profile-avatar" aria-hidden="true">
+              FH
+            </div>
+            <div class="hero-profile-meta">
+              <h3>Farid Häder</h3>
+              <p>Mathe-Coach & ADHS-Mentor</p>
+            </div>
+          </div>
 
-        <div class="form-group">
-          <label class="form-label">Wer bewertet?</label>
-          <div class="role-radio-group">
-            <label class="role-radio-label">
-              <input type="radio" name="reviewerRole" value="Schüler/in" checked> Schüler/in
-            </label>
-            <label class="role-radio-label">
-              <input type="radio" name="reviewerRole" value="Elternteil"> Elternteil
-            </label>
+          <div class="hero-quote-box">
+            „Mathe ist keine Frage von Talent – sondern davon, ob es auf die Art erklärt wird, wie dein individuelles Gehirn denkt.“
+          </div>
+
+          <div class="hero-stats-row">
+            <div class="hero-stat-item">
+              <h4>100%</h4>
+              <p>Einzelbetreuung</p>
+            </div>
+            <div class="hero-stat-item">
+              <h4>90 Min.</h4>
+              <p>Echte Tiefenzeit</p>
+            </div>
+            <div class="hero-stat-item">
+              <h4>Mensa</h4>
+              <p>Top 2% IQ</p>
+            </div>
           </div>
         </div>
+      </div>
+    </section>
 
-        <div class="form-group">
-          <label for="reviewContext" class="form-label">Klassenstufe / Kontext (optional)</label>
-          <input type="text" id="reviewContext" class="form-control" placeholder="z. B. 11. Klasse Mathe LK, Abitur 2025, 9. Klasse...">
+    <!-- ==================== DIE 5 KERNPUNKTE AUF EINEN BLICK ==================== -->
+    <section class="section section-soft" id="ueberblick" aria-labelledby="ueberblick-title">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag"><svg class="icon"><use href="#icon-lightbulb"/></svg> Direkte Orientierung</div>
+          <h2 id="ueberblick-title">Die 5 wichtigsten Fragen auf einen Blick</h2>
+          <p>Schnell, transparent und ohne Umschweife – genau das, was du und deine Eltern wissen müsst.</p>
         </div>
 
-        <div class="form-group">
-          <label for="reviewText" class="form-label">Dein Erfahrungsbericht</label>
-          <textarea id="reviewText" class="form-control" rows="4" placeholder="Wie hat dir Farids Nachhilfe geholfen? Was hat dir besonders gut gefallen?" required></textarea>
+        <div class="overview-grid">
+          <div class="overview-card">
+            <div class="overview-number">01</div>
+            <h3>Wer ich bin</h3>
+            <p>Farid Häder – empathischer Mathe-Coach, ADHS-Betroffener und Mensa-Mitglied mit Talent für intuitive Erklärungen.</p>
+          </div>
+          <div class="overview-card">
+            <div class="overview-number">02</div>
+            <h3>Was ich mache</h3>
+            <p>Reizarme 1:1 Mathe-Begleitung (90 Min.) für Mittelstufe, Oberstufe und Abitur – vor Ort in Dietzenbach oder via Tablet-Online.</p>
+          </div>
+          <div class="overview-card">
+            <div class="overview-number">03</div>
+            <h3>Was ich kann</h3>
+            <p>Didaktisch komplexe Formeln in greifbare visuelle Logik übersetzen. Früherer Schülerhilfe-Tutor mit Bestnoten.</p>
+          </div>
+          <div class="overview-card">
+            <div class="overview-number">04</div>
+            <h3>Mein Weg</h3>
+            <p>Selbst mit unentdecktem ADHS durchs Abi gekämpft (Mathe/Physik LK). Ich kenne Prüfungsangst und Blockaden aus eigener Erfahrung.</p>
+          </div>
+          <div class="overview-card">
+            <div class="overview-number">05</div>
+            <h3>Wie du startest</h3>
+            <p>Ganz einfach per WhatsApp oder kurzer Mail. Kurzes 15-Min-Kennenlernen – unverbindlich und ohne Knebelverträge.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== ÜBER MICH & MEIN WEG (STORY) ==================== -->
+    <section class="section" id="ueber-mich" aria-labelledby="story-title">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag"><svg class="icon"><use href="#icon-award"/></svg> Persönlicher Hintergrund</div>
+          <h2 id="story-title">Mein Weg: Vom Schulfrust zum Mathe-Mentor</h2>
+          <p>Warum ich genau verstehe, was in deinem Kopf vorgeht, wenn die Schule dich nicht versteht.</p>
         </div>
 
-        <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;" id="submitReviewBtn">
-          <i class="fas fa-check"></i> Bewertung veröffentlichen
-        </button>
-      </form>
-    </div>
-  </div>
+        <div class="story-grid">
+          <!-- Timeline: Was ich durchgemacht habe -->
+          <div class="story-timeline">
+            <div class="timeline-step active">
+              <div class="timeline-dot"></div>
+              <div class="timeline-year">Schulzeit & Jugend</div>
+              <h4>Kampf im starren Schulsystem (Unerkanntes ADHS)</h4>
+              <p>Trotz starkem logischen Verständnis führten monotone Aufgaben und starre Frontalunterricht-Methoden oft zu Notenfrust, Flüchtigkeitsfehlern und Unverständnis bei Lehrkräften.</p>
+            </div>
 
-  <!-- ==================== CONTACT SECTION ==================== -->
-  <section class="section section-soft" id="kontakt">
-    <div class="container">
-      <div class="contact-card">
-        <div class="contact-grid">
-          <div>
-            <div class="section-tag"><i class="fas fa-comment-dots"></i> Unverbindlich Kontakt aufnehmen</div>
-            <h2>Lass uns sprechen!</h2>
+            <div class="timeline-step active">
+              <div class="timeline-dot"></div>
+              <div class="timeline-year">Der Wendepunkt</div>
+              <h4>Eigene Lernstrategien & Abitur mit Mathe- & Physik-LK</h4>
+              <p>Ich entwickelte eigene visuelle Strukturierungsmethoden. Das Ergebnis: Erfolgreiches Abitur mit Leistungskursen in Mathematik und Physik.</p>
+            </div>
+
+            <div class="timeline-step active">
+              <div class="timeline-dot"></div>
+              <div class="timeline-year">Studium & Talent</div>
+              <h4>Nanostrukturtechnik & Elektro-/Informationstechnik</h4>
+              <p>An der Universität tauchte ich tief in höhere Mathematik und theoretische Physik ein. Dabei wurde mir glasklar: Mein größtes Talent ist es, selbst schwerste Sachverhalte greifbar und lebendig zu erklären.</p>
+            </div>
+
+            <div class="timeline-step active">
+              <div class="timeline-dot"></div>
+              <div class="timeline-year">Praxis & Referenz</div>
+              <h4>Gefragtester Mathe-Tutor bei der Schülerhilfe</h4>
+              <p>Schnell wollten Schüler fast ausschließlich in meinen Unterricht. Der Grund: Geduldige Augenhöhe, absolute Reizarmut und der feste Wille, erst aufzuhören, wenn der Knoten wirklich geplatzt ist.</p>
+            </div>
+          </div>
+
+          <!-- Story Details Card -->
+          <div class="story-content-card">
+            <h3>Hallo, ich bin Farid! 👋</h3>
             <p>
-              Egal ob Schüler oder Elternteil: Erzählt mir kurz von eurer aktuellen Situation. 
-              Wir vereinbaren ein kurzes, entspanntes Kennenlernen, um zu schauen, ob die Chemie stimmt.
+              Ich unterrichte Mathematik nicht wie ein typischer Schullehrer. Ich kenne das beklemmende Gefühl vor einer Klausur, wenn das Gehirn blockiert, 
+              und den Druck, wenn Lehrer und Eltern anfangen zu verzweifeln.
             </p>
+            
+            <div class="story-quote-highlight">
+              „Schüler mit ADHS oder unkonventionellen Denkmustern sind nicht faul oder unbegabt. Ihnen fehlt lediglich ein Gegenüber, das ihre Sprache spricht und ihnen die Zeit gibt, Zusammenhänge logisch zu begreifen.“
+            </div>
 
-            <div class="contact-direct-list">
-              <a href="https://wa.me/49123456789?text=Hallo%20Farid,%20ich%20interessiere%20mich%20f%C3%BCr%20deine%20Mathe-Nachhilfe." target="_blank" class="contact-direct-item whatsapp-item" id="contactWhatsappLink">
-                <div class="contact-direct-icon"><i class="fab fa-whatsapp"></i></div>
-                <div>
-                  <div style="font-size: 0.85rem; opacity: 0.85;">Schnellste Rückmeldung</div>
-                  <div>WhatsApp Chat starten</div>
+            <p>
+              Als Mitglied von <strong>Mensa in Deutschland e.V.</strong> (Verein für Menschen mit einem IQ im oberen 2%-Bereich) bringe ich ein tiefes 
+              analytisches Verständnis mit. Noch wichtiger als meine eigene Logik ist mir jedoch, <strong>wie wir dein Selbstvertrauen zurückgewinnen</strong>: 
+              Schritt für Schritt, mit viel Humor, Ruhe und ohne jegliche Bloßstellung.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== FÜR WEN? (DUAL AUDIENCE) ==================== -->
+    <section class="section section-soft" id="zielgruppen" aria-labelledby="zielgruppen-title">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag"><svg class="icon"><use href="#icon-shield"/></svg> Zielgruppen im Fokus</div>
+          <h2 id="zielgruppen-title">Zwei Perspektiven – eine gemeinsame Lösung</h2>
+          <p>Gute Nachhilfe nimmt beiden Seiten den Druck: den Schülern die Angst, den Eltern die ständige Sorge.</p>
+        </div>
+
+        <div class="audience-grid">
+          <!-- Card 1: Für Eltern -->
+          <div class="audience-card parents">
+            <span class="audience-badge">Für Eltern</span>
+            <h3>Entlastung & endlich wieder Frieden am Esstisch</h3>
+            
+            <div class="audience-pain-box">
+              „Mein Kind sitzt stundenlang vor den Aufgaben, resigniert und wir streiten uns nur noch über die Schule.“
+            </div>
+
+            <ul class="audience-list">
+              <li class="audience-item">
+                <svg class="icon"><use href="#icon-check"/></svg>
+                <div><strong>Kein häuslicher Streit mehr:</strong> Ich übernehme die Mathe-Begleitung mit professioneller Ruhe und Fachkompetenz.</div>
+              </li>
+              <li class="audience-item">
+                <svg class="icon"><use href="#icon-check"/></svg>
+                <div><strong>Echtes ADHS-Verständnis:</strong> Ich kenne die Konzentrationsschwankungen aus eigener Biografie und verurteile das Kind niemals.</div>
+              </li>
+              <li class="audience-item">
+                <svg class="icon"><use href="#icon-check"/></svg>
+                <div><strong>Transparente 90-Min-Einheiten:</strong> Genügend Zeit für warmes Reinkommen und tiefe Verankerung – kein hektischer 45-Min-Takt.</div>
+              </li>
+              <li class="audience-item">
+                <svg class="icon"><use href="#icon-check"/></svg>
+                <div><strong>100% Flexibilität:</strong> Keine Mindestlaufzeiten, keine Knebelverträge, ehrliches Feedback nach jeder Etappe.</div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Card 2: Für Schüler -->
+          <div class="audience-card students">
+            <span class="audience-badge">Für Schüler</span>
+            <h3>Verständnis auf Augenhöhe & echte Aha-Momente</h3>
+
+            <div class="audience-pain-box">
+              „Der Lehrer erklärt es zum zehnten Mal genauso unverständlich und ich traue mich gar nicht mehr zu fragen.“
+            </div>
+
+            <ul class="audience-list">
+              <li class="audience-item">
+                <svg class="icon"><use href="#icon-check"/></svg>
+                <div><strong>Es gibt keine dummen Fragen:</strong> Wir wiederholen Grundlagen so oft und auf so viele Arten, bis es bei dir Klick macht.</div>
+              </li>
+              <li class="audience-item">
+                <svg class="icon"><use href="#icon-check"/></svg>
+                <div><strong>Augenhöhe statt Lehrer-Monolog:</strong> Wir erarbeiten Aufgaben als Team. Du bestimmst das Tempo.</div>
+              </li>
+              <li class="audience-item">
+                <svg class="icon"><use href="#icon-check"/></svg>
+                <div><strong>Prüfungsangst & Blackouts abbauen:</strong> Klare Notfall-Strategien für Klausuren und Abiturprüfungen.</div>
+              </li>
+              <li class="audience-item">
+                <svg class="icon"><use href="#icon-check"/></svg>
+                <div><strong>Selber Denken lernen:</strong> Du verstehst die Logik dahinter, statt nur stur Formeln auswendig zu lernen.</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== METHODIK & ADHS-DIDAKTIK ("Was ich kann") ==================== -->
+    <section class="section" id="methodik" aria-labelledby="methodik-title">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag"><svg class="icon"><use href="#icon-brain"/></svg> Didaktik & Prinzipien</div>
+          <h2 id="methodik-title">Wie ich arbeite – und warum es funktioniert</h2>
+          <p>Vier klare Säulen für nachhaltigen Lernerfolg statt kurzfristiges Schema-F-Lernen.</p>
+        </div>
+
+        <div class="pillars-grid">
+          <div class="pillar-card">
+            <div class="pillar-icon"><svg class="icon"><use href="#icon-lightbulb"/></svg></div>
+            <h3>1. Visuelle Logik statt Formeln</h3>
+            <p>Wir zeichnen Funktionsgraphen, leiten Formeln intuitiv her und zerlegen abstrakte Monsteraufgaben in klare, überschaubare Häppchen.</p>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-icon"><svg class="icon"><use href="#icon-shield"/></svg></div>
+            <h3>2. 1-zu-1 Reizarmut</h3>
+            <p>Ausschließlich Einzelunterricht ohne Gruppenablenkung oder Vergleichsdruck. Zeit und Raum, um Konzentrationsphasen individuell zu steuern.</p>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-icon"><svg class="icon"><use href="#icon-check-circle"/></svg></div>
+            <h3>3. Zahlensinn vor Taschenrechner</h3>
+            <p>Wir stärken Kopfrechnen und Intuition für Größenordnungen. Wer ein Gespür für Zahlen hat, lässt sich von komplizierten Klausuraufgaben nicht mehr verwirren.</p>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-icon"><svg class="icon"><use href="#icon-award"/></svg></div>
+            <h3>4. Psychologische Sicherheit</h3>
+            <p>Angst blockiert das Gehirn. Bei mir darf gelacht, geraten, korrigiert und neu gedacht werden. Fehler sind die besten Lernchancen.</p>
+          </div>
+        </div>
+
+        <!-- Gegenüberstellung: Was unterscheidet mein Coaching? -->
+        <div class="comparison-box">
+          <h3 style="text-align: center; margin-bottom: 0.5rem;">Der entscheidende Unterschied</h3>
+          <p style="text-align: center; color: var(--text-muted); margin-bottom: 1.5rem;">Warum herkömmliche Nachhilfeinstitute bei neurodivergenten Schülern oft scheitern:</p>
+          
+          <div class="comparison-grid">
+            <div class="comparison-col bad">
+              <h4><svg class="icon"><use href="#icon-x"/></svg> Klassische Nachhilfe / Gruppen</h4>
+              <ul class="comparison-list">
+                <li><svg class="icon"><use href="#icon-x"/></svg> 3 bis 5 Schüler mit unterschiedlichen Fächern in einem Raum</li>
+                <li><svg class="icon"><use href="#icon-x"/></svg> Hektische 45-Minuten-Taktung (Lehrer hat pro Kind nur 10 Min.)</li>
+                <li><svg class="icon"><use href="#icon-x"/></svg> Bloßes Vorkauen von Hausaufgaben ohne tiefes Verständnis</li>
+                <li><svg class="icon"><use href="#icon-x"/></svg> Feste Knebelverträge mit 6 bis 12 Monaten Laufzeit</li>
+              </ul>
+            </div>
+
+            <div class="comparison-col good">
+              <h4><svg class="icon"><use href="#icon-check"/></svg> Mein 1-zu-1 ADHS-Mentoring</h4>
+              <ul class="comparison-list">
+                <li><svg class="icon"><use href="#icon-check"/></svg> 100% ruhiger Einzelunterricht ohne jede Ablenkung</li>
+                <li><svg class="icon"><use href="#icon-check"/></svg> Volle 90 Minuten ungeteilte Aufmerksamkeit</li>
+                <li><svg class="icon"><use href="#icon-check"/></svg> Selbstständiges Herleiten und Schließen elementarer Lücken</li>
+                <li><svg class="icon"><use href="#icon-check"/></svg> Keine Mindestlaufzeit – flexibel und auf Vertrauensbasis</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== ABLAUF: IN 3 SCHRITTEN ==================== -->
+    <section class="section section-soft" id="ablauf" aria-labelledby="ablauf-title">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag"><svg class="icon"><use href="#icon-arrow-right"/></svg> Unkomplizierter Start</div>
+          <h2 id="ablauf-title">In 3 einfachen Schritten zu besseren Noten</h2>
+          <p>Keine bürokratischen Anmeldungen, keine Hemmschwellen. So einfach geht's:</p>
+        </div>
+
+        <div class="roadmap-grid">
+          <div class="roadmap-card">
+            <div class="roadmap-step-badge">1</div>
+            <h3>Kurze Nachricht senden</h3>
+            <p>Schreib mir einfach per WhatsApp oder über das Formular. Schildere kurz, in welcher Klasse du / dein Kind ist und wo die größten Hürden liegen.</p>
+          </div>
+
+          <div class="roadmap-card">
+            <div class="roadmap-step-badge">2</div>
+            <h3>15 Min. Kennenlernen</h3>
+            <p>Wir telefonieren kurz oder machen einen kurzen Video-Call. Wir besprechen den aktuellen Stand und schauen ganz entspannt, ob die persönliche Chemie passt.</p>
+          </div>
+
+          <div class="roadmap-card">
+            <div class="roadmap-step-badge">3</div>
+            <h3>Erste 90-Min-Einheit</h3>
+            <p>Wir starten mit der ersten vollen Lerneinheit (in Dietzenbach oder Online). Wir analysieren den Stoff, schließen die ersten Lücken und nehmen sofort den Stress raus.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== UNTERRICHTSORTE ==================== -->
+    <section class="section" id="standorte" aria-labelledby="standorte-title">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag"><svg class="icon"><use href="#icon-map-pin"/></svg> Flexible Orte</div>
+          <h2 id="standorte-title">Wo findet das Coaching statt?</h2>
+          <p>Drei Möglichkeiten, die sich perfekt an euren Alltag und die bevorzugte Reizumgebung anpassen.</p>
+        </div>
+
+        <div class="location-grid">
+          <div class="location-card">
+            <div>
+              <div class="location-icon"><svg class="icon"><use href="#icon-building"/></svg></div>
+              <h3>Im Büroraum Dietzenbach</h3>
+              <p>Ein eigener, absolut ruhiger und reizarmer Raum in <strong>Dietzenbach</strong>. Optimal für fokussiertes Lernen ohne Störungen durch Geschwister oder Alltagsgeräusche.</p>
+            </div>
+            <div class="location-tag"><svg class="icon"><use href="#icon-check"/></svg> Dietzenbach (Empfohlen)</div>
+          </div>
+
+          <div class="location-card">
+            <div>
+              <div class="location-icon"><svg class="icon"><use href="#icon-home"/></svg></div>
+              <h3>Bei dir Zuhause</h3>
+              <p>Lernen im gewohnten häuslichen Umfeld im Raum <strong>Dietzenbach & Waldacker</strong>. Bitte beachten: Je nach Entfernung fällt eine faire Anfahrtspauschale an.</p>
+            </div>
+            <div class="location-tag"><svg class="icon"><use href="#icon-map-pin"/></svg> Vor Ort + Anfahrt</div>
+          </div>
+
+          <div class="location-card">
+            <div>
+              <div class="location-icon"><svg class="icon"><use href="#icon-laptop"/></svg></div>
+              <h3>Online per Tablet</h3>
+              <p>Ortsunabhängig via Zoom/Teams. <strong>Voraussetzung:</strong> Ein Tablet mit Stift (z. B. iPad), damit wir zeitgleich live auf demselben digitalen Notizblatt rechnen können.</p>
+            </div>
+            <div class="location-tag"><svg class="icon"><use href="#icon-laptop"/></svg> iPad / Stift erforderlich</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== HONORAR & PREISE ==================== -->
+    <section class="section section-soft" id="preise" aria-labelledby="preise-title">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag"><svg class="icon"><use href="#icon-shield"/></svg> Transparente Konditionen</div>
+          <h2 id="preise-title">Faire Honorargestaltung – ohne Knebelverträge</h2>
+          <p>Eine Lerneinheit dauert bei mir immer <strong>volle 90 Minuten</strong> für nachhaltigen Fokus und echtes Durchdringen des Stoffes.</p>
+        </div>
+
+        <div class="pricing-banner">
+          <div class="pricing-range-badge">
+            Orientierungsrahmen: 30 € bis 100 € pro 90 Minuten
+          </div>
+          <p style="margin: 0; font-size: 0.95rem; color: var(--text-sec);">
+            Das genaue Honorar richtet sich nach Klassenstufe, Betreuungsintensität und Vorbereitungsaufwand. 
+            Absprache erfolgt transparent vorab – <strong>jederzeit flexibel kündbar</strong>.
+          </p>
+        </div>
+
+        <div class="pricing-grid">
+          <!-- Stufe 1: Mittelstufe -->
+          <div class="pricing-card">
+            <div>
+              <h3>Mittelstufe & Grundlagen</h3>
+              <p style="color: var(--text-muted); font-size: 0.9rem;">Klassen 7 bis 10</p>
+              
+              <div class="price-orientation-tag">
+                ab 30 € / 90 Min.
+              </div>
+
+              <ul class="pricing-features">
+                <li><svg class="icon"><use href="#icon-check"/></svg> Schließen elementarer Rechenlücken</li>
+                <li><svg class="icon"><use href="#icon-check"/></svg> Bruchrechnen, Terme & Gleichungen</li>
+                <li><svg class="icon"><use href="#icon-check"/></svg> Gezielte Vorbereitung auf Klassenarbeiten</li>
+                <li><svg class="icon"><use href="#icon-check"/></svg> Begleitung beim Übergang zur Oberstufe</li>
+              </ul>
+            </div>
+            <a href="#kontakt" class="btn btn-secondary">Unverbindlich anfragen</a>
+          </div>
+
+          <!-- Stufe 2: Oberstufe (Featured) -->
+          <div class="pricing-card featured">
+            <div class="popular-badge">Mein Spezialgebiet</div>
+            <div>
+              <h3>Oberstufe & Fachabitur</h3>
+              <p style="color: var(--text-muted); font-size: 0.9rem;">Klassen 11 bis 12 / 13</p>
+              
+              <div class="price-orientation-tag">
+                Individuell nach Themenstand
+              </div>
+
+              <ul class="pricing-features">
+                <li><svg class="icon"><use href="#icon-check"/></svg> Analysis, Analytische Geometrie, Stochastik</li>
+                <li><svg class="icon"><use href="#icon-check"/></svg> Spezielle Visualisierungsstrategien bei ADHS</li>
+                <li><svg class="icon"><use href="#icon-check"/></svg> Klausurvorbereitung & Notenstabilisierung</li>
+                <li><svg class="icon"><use href="#icon-check"/></svg> Regelmäßiges Feedback an Schüler & Eltern</li>
+              </ul>
+            </div>
+            <a href="#kontakt" class="btn btn-primary">Angebot besprechen</a>
+          </div>
+
+          <!-- Stufe 3: Abitur Endspurt -->
+          <div class="pricing-card">
+            <div>
+              <h3>Abitur-Intensiv & Akuthilfe</h3>
+              <p style="color: var(--text-muted); font-size: 0.9rem;">Prüfungsphase & Endspurt</p>
+              
+              <div class="price-orientation-tag">
+                Individuelles Förderpaket
+              </div>
+
+              <ul class="pricing-features">
+                <li><svg class="icon"><use href="#icon-check"/></svg> Original-Abiturklausuren strukturiert lösen</li>
+                <li><svg class="icon"><use href="#icon-check"/></svg> Abbau akuter Prüfungsängste & Blackouts</li>
+                <li><svg class="icon"><use href="#icon-check"/></svg> Zeit- & Stressmanagement unter Realbedingungen</li>
+                <li><svg class="icon"><use href="#icon-check"/></svg> Flexible Terminverdichtung vor Prüfungsterminen</li>
+              </ul>
+            </div>
+            <a href="#kontakt" class="btn btn-secondary">Abi-Coaching anfragen</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== NACHWEISE & BELEGE (PDFs) ==================== -->
+    <section class="section" id="nachweise" aria-labelledby="nachweise-title">
+      <div class="container">
+        <div class="credentials-container">
+          <div class="section-tag"><svg class="icon"><use href="#icon-award"/></svg> Transparenz & Vertrauen</div>
+          <h2 id="nachweise-title">Offizielle Qualifikationen & Nachweise</h2>
+          
+          <div class="credentials-intro">
+            <p>
+              <strong>Warum ich meine Zeugnisse transparent offenlege:</strong><br>
+              Mein Abischnitt (2,7 mit Mathe & Physik LK) spiegelt die Realität von Schülern mit unentdecktem ADHS wider: 
+              Noten zeigen oft nur, wie gut man sich an ein starres System anpassen kann – nicht das wahre logische Denkvermögen. 
+              Heute zeige ich Schülern, wie man beide Welten meistert.
+            </p>
+          </div>
+
+          <div class="credentials-grid">
+            <!-- Schülerhilfe Zeugnis -->
+            <div class="credential-item">
+              <div>
+                <div class="credential-item-header">
+                  <div class="credential-icon"><svg class="icon"><use href="#icon-file-text"/></svg></div>
+                  <div>
+                    <h4>Arbeitszeugnis Schülerhilfe</h4>
+                    <p>Offizielle Bestätigung</p>
+                  </div>
                 </div>
+                <p>Schriftlicher Nachweis meiner Unterrichtsqualität, Beliebtheit bei Schülern und methodischen Fachkompetenz.</p>
+              </div>
+              <a href="Dokumente/Zwischenzeugnis.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+                <svg class="icon"><use href="#icon-file-text"/></svg> Zeugnis öffnen (PDF)
               </a>
+            </div>
 
-              <a href="mailto:hallo@beispiel.de" class="contact-direct-item">
-                <div class="contact-direct-icon"><i class="fas fa-envelope"></i></div>
-                <div>
-                  <div style="font-size: 0.85rem; color: var(--text-muted);">Per E-Mail</div>
-                  <div>hallo@beispiel.de</div>
+            <!-- Mensa IQ -->
+            <div class="credential-item">
+              <div>
+                <div class="credential-item-header">
+                  <div class="credential-icon"><svg class="icon"><use href="#icon-brain"/></svg></div>
+                  <div>
+                    <h4>Mensa IQ-Zertifikat</h4>
+                    <p>Mensa in Deutschland e.V.</p>
+                  </div>
                 </div>
+                <p>Nachweis über analytisches und logisch-mathematisches Denkvermögen im oberen Prozentrang (Top 2%).</p>
+              </div>
+              <a href="Dokumente/Mensa.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+                <svg class="icon"><use href="#icon-brain"/></svg> Nachweis öffnen (PDF)
               </a>
+            </div>
 
-              <a href="tel:+49123456789" class="contact-direct-item">
-                <div class="contact-direct-icon"><i class="fas fa-phone-alt"></i></div>
-                <div>
-                  <div style="font-size: 0.85rem; color: var(--text-muted);">Telefonisch</div>
-                  <div>+49 (0) 123 456 789</div>
+            <!-- Abiturzeugnis -->
+            <div class="credential-item">
+              <div>
+                <div class="credential-item-header">
+                  <div class="credential-icon"><svg class="icon"><use href="#icon-award"/></svg></div>
+                  <div>
+                    <h4>Abiturzeugnis</h4>
+                    <p>Leistungskurse Mathe & Physik</p>
+                  </div>
                 </div>
+                <p>Authentischer Einblick in meinen schulischen Weg mit naturwissenschaftlich-mathematischem Schwerpunkt.</p>
+              </div>
+              <a href="Dokumente/Abiturzeugnis.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+                <svg class="icon"><use href="#icon-award"/></svg> Zeugnis öffnen (PDF)
               </a>
             </div>
           </div>
 
-          <!-- Contact Form -->
-          <form id="contactForm" class="contact-form-wrapper">
-            <div class="form-group">
-              <label for="name" class="form-label">Dein Name / Name der Eltern</label>
-              <input type="text" id="name" class="form-control" placeholder="z. B. Familie Müller oder Sarah" required>
-            </div>
-
-            <div class="form-group">
-              <label for="contactInfo" class="form-label">E-Mail-Adresse oder Telefonnummer</label>
-              <input type="text" id="contactInfo" class="form-control" placeholder="Damit ich euch erreichen kann" required>
-            </div>
-
-            <div class="form-group">
-              <label for="message" class="form-label">Klassenstufe & Thema (oder kurze Nachricht)</label>
-              <textarea id="message" class="form-control" placeholder="z. B. 11. Klasse, Schwierigkeiten mit Ableitungen & Vorbereitung auf die nächste Klausur..." required></textarea>
-            </div>
-
-            <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;" id="submitBtn">
-              <i class="fas fa-paper-plane"></i> Nachricht absenden
-            </button>
-            <p id="formStatusMessage" style="font-size: 0.9rem; margin-top: 1rem; text-align: center; display: none;"></p>
-          </form>
+          <p style="font-size: 0.88rem; color: var(--text-muted); text-align: center;">
+            <svg class="icon"><use href="#icon-shield"/></svg> Alle Dokumente öffnen sich direkt als Original-PDF in einem neuen Tab.
+          </p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <!-- ==================== BEWERTUNGEN & ERFAHRUNGEN ==================== -->
+    <section class="section section-soft" id="bewertungen" aria-labelledby="bewertungen-title">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag"><svg class="icon"><use href="#icon-star"/></svg> Echte Stimmen</div>
+          <h2 id="bewertungen-title">Was Schüler und Eltern berichten</h2>
+          <p>Echte Rückmeldungen aus meiner bisherigen Nachhilfepraxis.</p>
+        </div>
+
+        <div class="reviews-grid">
+          <div class="review-card">
+            <div>
+              <div class="review-card-top">
+                <div class="review-stars">
+                  <svg class="icon"><use href="#icon-star"/></svg>
+                  <svg class="icon"><use href="#icon-star"/></svg>
+                  <svg class="icon"><use href="#icon-star"/></svg>
+                  <svg class="icon"><use href="#icon-star"/></svg>
+                  <svg class="icon"><use href="#icon-star"/></svg>
+                </div>
+              </div>
+              <p class="review-text">„Dank der Nachhilfe habe ich Analysis endlich verstanden. Besonders geholfen hat mir, dass Farid genau verstanden hat, wie mein Kopf bei ADHS tickt. Kein Stress, keine Hektik – absolut empfehlenswert!“</p>
+            </div>
+            <div class="reviewer-info">
+              <div class="reviewer-avatar">L</div>
+              <div class="reviewer-meta">
+                <h4>Lars M.</h4>
+                <p>Schüler · Mathematik Leistungskurs</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div>
+              <div class="review-card-top">
+                <div class="review-stars">
+                  <svg class="icon"><use href="#icon-star"/></svg>
+                  <svg class="icon"><use href="#icon-star"/></svg>
+                  <svg class="icon"><use href="#icon-star"/></svg>
+                  <svg class="icon"><use href="#icon-star"/></svg>
+                  <svg class="icon"><use href="#icon-star"/></svg>
+                </div>
+              </div>
+              <p class="review-text">„Meine Tochter hatte in der Oberstufe extreme Blockaden in Mathe. Durch Farids ruhige, verständnisvolle und strukturierte Art ging sie wieder gerne zum Lernen und hat ihr Abi mit einer tollen Note abgeschlossen.“</p>
+            </div>
+            <div class="reviewer-info">
+              <div class="reviewer-avatar">S</div>
+              <div class="reviewer-meta">
+                <h4>Sabine K.</h4>
+                <p>Mutter einer Abiturientin (Klasse 12)</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div>
+              <div class="review-card-top">
+                <div class="review-stars">
+                  <svg class="icon"><use href="#icon-star"/></svg>
+                  <svg class="icon"><use href="#icon-star"/></svg>
+                  <svg class="icon"><use href="#icon-star"/></svg>
+                  <svg class="icon"><use href="#icon-star"/></svg>
+                  <svg class="icon"><use href="#icon-star"/></svg>
+                </div>
+              </div>
+              <p class="review-text">„Endlich jemand, der nicht nur stur Formeln vorrechnet, sondern erklärt, WARUM man etwas so rechnet. Der Unterricht im reizarmen Raum in Dietzenbach hat unserem Sohn enorm geholfen.“</p>
+            </div>
+            <div class="reviewer-info">
+              <div class="reviewer-avatar">M</div>
+              <div class="reviewer-meta">
+                <h4>Familie Meier</h4>
+                <p>Eltern eines Schülers (10. Klasse Realschule)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== FAQ AKKORDEON ==================== -->
+    <section class="section" id="faq" aria-labelledby="faq-title">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag"><svg class="icon"><use href="#icon-lightbulb"/></svg> Häufige Fragen</div>
+          <h2 id="faq-title">Fragen, die Eltern und Schüler oft stellen</h2>
+          <p>Klare Antworten für ein sicheres Gefühl vor dem ersten Gespräch.</p>
+        </div>
+
+        <div class="faq-container">
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>Braucht mein Kind eine offizielle ADHS- oder Autismus-Diagnose?</span>
+              <svg class="icon faq-icon"><use href="#icon-chevron-down"/></svg>
+            </button>
+            <div class="faq-answer">
+              <p>Nein, absolut nicht! Mein Coaching richtet sich an alle Schüler, die mit klassischen Unterrichtsmethoden nicht klarkommen, schnell reizüberflutet sind oder einfach eine ruhige, geduldige 1-zu-1 Erklärung auf Augenhöhe brauchen.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>Warum dauern deine Einheiten 90 Minuten statt 45 Minuten?</span>
+              <svg class="icon faq-icon"><use href="#icon-chevron-down"/></svg>
+            </button>
+            <div class="faq-answer">
+              <p>Neurodivergente Köpfe brauchen oft 10 bis 15 Minuten, um anzukommen, äußere Ablenkungen abzuschütteln und in den logischen Denkfluss zu gelangen. In 45 Minuten bricht man genau dann ab, wenn es gerade klick macht. 90 Minuten geben uns die Ruhe für echtes Verstehen und Entspannung.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>Gibt es Mindestlaufzeiten oder monatliche Verträge?</span>
+              <svg class="icon faq-icon"><use href="#icon-chevron-down"/></svg>
+            </button>
+            <div class="faq-answer">
+              <p>Nein! Ich halte nichts von Knebelverträgen. Nachhilfe funktioniert nur, wenn die Chemie stimmt und alle Beteiligten merken, dass es vorangeht. Wir arbeiten auf Vertrauensbasis und ihr könnt die Begleitung jederzeit flexibel anpassen oder beenden.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>Was tun wir, wenn mein Kind unter extremer Prüfungsangst leidet?</span>
+              <svg class="icon faq-icon"><use href="#icon-chevron-down"/></svg>
+            </button>
+            <div class="faq-answer">
+              <p>Prüfungsangst entsteht meist durch das Gefühl von Kontrollverlust und befürchtetem Scheitern. Wir üben gezielt Notfall-Strategien ein: Wie fange ich bei einem Blackout an? Welche Aufgaben wähle ich zuerst? So wandeln wir Panik schrittweise in Vertrauen um.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>Wie läuft der Online-Unterricht technisch ab?</span>
+              <svg class="icon faq-icon"><use href="#icon-chevron-down"/></svg>
+            </button>
+            <div class="faq-answer">
+              <p>Sehr unkompliziert: Wir nutzen eine Videoverbindung (z. B. Zoom oder Teams) und ein gemeinsames digitales Whiteboard. Voraussetzung ist ein Tablet mit Eingabestift (z. B. iPad mit Apple Pencil). Beide schreiben gleichzeitig auf demselben Blatt – genau wie am echten Schreibtisch!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== KONTAKT SECTION ==================== -->
+    <section class="section section-soft" id="kontakt" aria-labelledby="kontakt-title">
+      <div class="container">
+        <div class="contact-card">
+          <div class="contact-grid">
+            <div>
+              <div class="section-tag"><svg class="icon"><use href="#icon-mail"/></svg> Unverbindlich Kontaktieren</div>
+              <h2 id="kontakt-title">Lass uns sprechen!</h2>
+              <p>
+                Egal ob Schüler oder Elternteil: Schreibt mir kurz von eurer aktuellen Situation. 
+                Wir vereinbaren ein kurzes, entspanntes Kennenlernen (15 Min.), um zu prüfen, ob die Chemie stimmt.
+              </p>
+
+              <div class="contact-direct-list">
+                <a href="https://wa.me/49123456789?text=Hallo%20Farid,%20ich%20interessiere%20mich%20f%C3%BCr%20deine%201-zu-1%20Mathe-Nachhilfe." target="_blank" rel="noopener noreferrer" class="contact-direct-item whatsapp-item" id="contactWhatsappLink">
+                  <div class="contact-direct-icon"><svg class="icon"><use href="#icon-whatsapp"/></svg></div>
+                  <div>
+                    <div style="font-size: 0.82rem; opacity: 0.85;">Schnellste Rückmeldung</div>
+                    <div>WhatsApp Chat starten</div>
+                  </div>
+                </a>
+
+                <a href="mailto:kontakt@farid-haeder.de" class="contact-direct-item">
+                  <div class="contact-direct-icon"><svg class="icon"><use href="#icon-mail"/></svg></div>
+                  <div>
+                    <div style="font-size: 0.82rem; color: var(--text-muted);">Per E-Mail</div>
+                    <div>kontakt@farid-haeder.de</div>
+                  </div>
+                </a>
+
+                <a href="tel:+49123456789" class="contact-direct-item">
+                  <div class="contact-direct-icon"><svg class="icon"><use href="#icon-phone"/></svg></div>
+                  <div>
+                    <div style="font-size: 0.82rem; color: var(--text-muted);">Telefon / SMS</div>
+                    <div>+49 (0) 123 456 789</div>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+            <!-- Schlankes Kontaktformular -->
+            <form id="contactForm" class="contact-form-wrapper" novalidate>
+              <div class="form-group">
+                <label for="name" class="form-label">Dein Name / Name der Eltern</label>
+                <input type="text" id="name" class="form-control" placeholder="z. B. Familie Müller oder Sarah" required>
+              </div>
+
+              <div class="form-group">
+                <label for="contactInfo" class="form-label">E-Mail-Adresse oder Handynummer</label>
+                <input type="text" id="contactInfo" class="form-control" placeholder="Damit ich mich zurückmelden kann" required>
+              </div>
+
+              <div class="form-group">
+                <label for="message" class="form-label">Klassenstufe & aktuelles Mathe-Thema</label>
+                <textarea id="message" class="form-control" placeholder="z. B. 11. Klasse Gymnasium, Ableitungen & Vorbereitung auf die nächste Klausur..." required></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;" id="submitBtn">
+                <svg class="icon"><use href="#icon-arrow-right"/></svg> Nachricht absenden
+              </button>
+              <p id="formStatusMessage" style="font-size: 0.92rem; margin-top: 1rem; text-align: center; display: none;"></p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <!-- ==================== FOOTER ==================== -->
   <footer class="footer">
@@ -650,8 +913,9 @@
         <span class="logo-badge">∑</span>
         <div>Mathe<span>Coach</span> Farid Häder</div>
       </div>
-      <p>&copy; 2026 Private Mathe-Nachhilfe Farid Häder. Alle Rechte vorbehalten.</p>
+      <p>&copy; 2026 Farid Häder — Private 1-zu-1 Mathe-Nachhilfe & Mentoring in Dietzenbach & Online.</p>
       <div class="footer-links">
+        <a href="#hero">Nach oben</a>
         <a href="#impressum">Impressum</a>
         <a href="#datenschutz">Datenschutz</a>
       </div>
