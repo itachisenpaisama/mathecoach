@@ -129,7 +129,8 @@ h1, h2, h3, h4 {
 /* ==========================================================================
    GLOBAL SVG ICONS
    ========================================================================== */
-.icon {
+.icon,
+svg.icon {
   display: inline-block;
   width: 1.2rem;
   height: 1.2rem;
@@ -142,16 +143,15 @@ h1, h2, h3, h4 {
   flex-shrink: 0;
 }
 
-.icon path,
-.icon circle,
-.icon line,
-.icon polyline,
-.icon rect {
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+symbol,
+symbol *,
+.icon *,
+svg.icon * {
+  fill: none !important;
+  stroke: currentColor !important;
+  stroke-width: 2 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
 }
 
 /* ==========================================================================
