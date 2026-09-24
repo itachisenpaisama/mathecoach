@@ -269,14 +269,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     tbody.innerHTML = students.map(st => {
       const adhsBadge = st.neurodivergentNotes 
-        ? `<div style="display:inline-block; font-size: 0.75rem; padding: 0.2rem 0.5rem; background: rgba(217, 119, 6, 0.12); color: var(--accent); border-radius: 9999px; font-weight:600; margin-top:0.3rem;" title="${escapeHtml(st.neurodivergentNotes)}">ADHS / Fokus Profil</div>`
+        ? `<span class="badge badge-adhs" title="${escapeHtml(st.neurodivergentNotes)}">ADHS / Fokus</span>`
         : `<span style="color:var(--text-muted); font-size:0.8rem;">—</span>`;
 
       return `
         <tr>
           <td>
             <strong>${escapeHtml(st.name)}</strong>
-            ${!st.active ? `<span class="badge" style="background:#ef444422; color:#ef4444; margin-left:0.4rem;">Inaktiv</span>` : ''}
+            ${!st.active ? `<span class="badge badge-inactive" style="margin-left:0.4rem;">Inaktiv</span>` : ''}
             <div style="font-size: 0.8rem; color: var(--text-muted);">${escapeHtml(st.school || '')}</div>
           </td>
           <td>${escapeHtml(st.grade || '—')}</td>
@@ -469,7 +469,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div style="font-size:0.8rem; color:var(--text-muted);">${escapeHtml(sess.subject || 'Mathe')}</div>
           </td>
           <td>
-            <span class="badge" style="background:var(--bg-card); border:1px solid var(--border);">${getLocationLabel(sess.locationType)}</span>
+            <span class="badge badge-location">${getLocationLabel(sess.locationType)}</span>
           </td>
           <td>${sess.durationMinutes || 90} Min.</td>
           <td>
@@ -666,7 +666,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <td><span style="font-size:0.85rem;color:var(--text-muted);">${escapeHtml(t.origin || 'Dietzenbach')}</span></td>
           <td><span style="font-size:0.85rem;font-weight:500;">${escapeHtml(t.destination || '—')}</span></td>
           <td><strong>${km.toFixed(1)} km</strong></td>
-          <td>${t.isRoundTrip !== false ? '<span class="badge" style="background:#0d948822;color:var(--primary);">Hin & Rück</span>' : 'Einfach'}</td>
+          <td>${t.isRoundTrip !== false ? '<span class="badge badge-roundtrip">Hin & Rück</span>' : '<span class="badge badge-subtle">Einfach</span>'}</td>
           <td><strong style="color:var(--text-main); font-size:1.05rem;">${cost.toFixed(2)} €</strong></td>
           <td>
             <button class="btn btn-danger btn-sm" onclick="window.deleteTrip('${t.id}')" title="Fahrt löschen">
@@ -746,19 +746,20 @@ document.addEventListener('DOMContentLoaded', () => {
         const fee = parseFloat(s.sessionFee) || 0;
         const travel = parseFloat(s.travelCost) || 0;
         return `
-          <tr style="border-bottom: 1px solid #e2e8f0;">
-            <td style="padding: 10px 8px;">${idx + 1}</td>
-            <td style="padding: 10px 8px;">
+          <tr>
+            <td style="padding: 10px; width: 32px;">${idx + 1}</td>
+            <td style="padding: 10px; width: 150px;">
               <strong>${formatDate(s.date)}</strong> (${s.time || '16:00'})<br>
-              <span style="font-size: 0.85rem; color: #64748b;">${getLocationLabel(s.locationType)}</span>
+              <span style="font-size: 0.8rem; color: var(--text-muted);">${getLocationLabel(s.locationType)}</span>
             </td>
-            <td style="padding: 10px 8px;">
-              ${escapeHtml(s.subject || 'Mathematik')} — ${escapeHtml(s.topics || 'Individuelle Förderung')}
+            <td style="padding: 10px;">
+              <div style="font-weight: 600;">${escapeHtml(s.subject || 'Mathematik')}</div>
+              <div style="font-size: 0.82rem; color: var(--text-muted);">${escapeHtml(s.topics || 'Individuelle Förderung')}</div>
             </td>
-            <td style="padding: 10px 8px; text-align: center;">${s.durationMinutes || 90} Min.</td>
-            <td style="padding: 10px 8px; text-align: right; font-weight: 600;">
+            <td style="padding: 10px; text-align: center; width: 90px;">${s.durationMinutes || 90} Min.</td>
+            <td style="padding: 10px; text-align: right; width: 120px; font-weight: 600;">
               ${fee.toFixed(2)} €
-              ${travel > 0 ? `<div style="font-size:0.75rem; color:#64748b;">+ ${travel.toFixed(2)} € Fahrt</div>` : ''}
+              ${travel > 0 ? `<div style="font-size:0.75rem; color:var(--text-muted); font-weight: normal;">+ ${travel.toFixed(2)} € Fahrt</div>` : ''}
             </td>
           </tr>
         `;
@@ -766,83 +767,84 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const html = `
-      <div class="printable-invoice" style="background:#ffffff; color:#0f172a; padding: 2.5rem; border-radius: 12px; border: 1px solid #e2e8f0; box-shadow: 0 4px 15px rgba(0,0,0,0.05); font-family: 'Plus Jakarta Sans', sans-serif;">
-        
+      <div class="printable-invoice">
         <!-- Header -->
-        <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom: 2.5rem; border-bottom: 2px solid #0d9488; padding-bottom: 1.5rem;">
+        <div class="invoice-header">
           <div>
-            <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom: 0.5rem;">
-              <span style="font-size:1.6rem; font-weight:800; color:#0d9488; font-family:'Lexend', sans-serif;">∑ MatheCoach</span>
+            <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom: 0.4rem;">
+              <span style="font-size:1.55rem; font-weight:800; color:var(--primary); font-family:var(--font-heading);">∑ MatheCoach</span>
             </div>
-            <div style="font-size: 0.9rem; color: #64748b;">
+            <div style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.45;">
               Farid — Individuelle Mathematikförderung & ADHS-Coaching<br>
               Dietzenbach & Rhein-Main-Gebiet
             </div>
           </div>
           <div style="text-align: right;">
-            <h2 style="font-size: 1.4rem; color: #0f172a; margin: 0; font-family:'Lexend', sans-serif;">MONATSABRECHNUNG</h2>
-            <div style="font-size: 0.9rem; color: #64748b; margin-top: 0.3rem;">Beleg-Nr.: <strong>${invNumber}</strong></div>
-            <div style="font-size: 0.9rem; color: #64748b;">Datum: ${invDate}</div>
-            <div style="font-size: 0.9rem; color: #64748b;">Abrechnungsmonat: <strong>${formatYearMonth(month)}</strong></div>
+            <h2 style="font-size: 1.35rem; margin: 0; font-family:var(--font-heading);">MONATSABRECHNUNG</h2>
+            <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.35rem;">Beleg-Nr.: <strong style="color:var(--text-main);">${invNumber}</strong></div>
+            <div style="font-size: 0.85rem; color: var(--text-muted);">Datum: <span style="color:var(--text-sec);">${invDate}</span></div>
+            <div style="font-size: 0.85rem; color: var(--text-muted);">Abrechnungsmonat: <strong style="color:var(--primary);">${formatYearMonth(month)}</strong></div>
           </div>
         </div>
 
         <!-- Recipient & Details -->
-        <div style="display:flex; justify-content:space-between; margin-bottom: 2.5rem; gap: 2rem;">
-          <div style="background:#f8fafc; padding: 1.2rem; border-radius: 8px; flex: 1; border: 1px solid #e2e8f0;">
-            <div style="font-size: 0.8rem; text-transform: uppercase; color: #64748b; font-weight: 700; margin-bottom: 0.4rem;">Schüler / Empfänger</div>
-            <div style="font-size: 1.1rem; font-weight: 700; color: #0f172a;">${escapeHtml(student.name)}</div>
-            ${student.parentName ? `<div style="font-size: 0.95rem; color: #475569;">z. Hd. ${escapeHtml(student.parentName)}</div>` : ''}
-            <div style="font-size: 0.9rem; color: #475569; margin-top: 0.3rem;">${escapeHtml(student.address || 'Dietzenbach')}</div>
-            ${student.phone ? `<div style="font-size: 0.85rem; color: #64748b; margin-top: 0.2rem;">Tel: ${escapeHtml(student.phone)}</div>` : ''}
+        <div class="invoice-boxes-grid">
+          <div class="invoice-box">
+            <div style="font-size: 0.74rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700; margin-bottom: 0.35rem; letter-spacing: 0.05em;">Schüler / Empfänger</div>
+            <div style="font-size: 1.05rem; font-weight: 700; color: var(--text-main);">${escapeHtml(student.name)}</div>
+            ${student.parentName ? `<div style="font-size: 0.9rem; color: var(--text-sec);">${escapeHtml(student.parentName)}</div>` : ''}
+            <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">${escapeHtml(student.address || 'Dietzenbach')}</div>
+            ${student.phone ? `<div style="font-size: 0.82rem; color: var(--primary); margin-top: 0.2rem;">Tel: ${escapeHtml(student.phone)}</div>` : ''}
           </div>
 
-          <div style="background:#f8fafc; padding: 1.2rem; border-radius: 8px; flex: 1; border: 1px solid #e2e8f0; display:flex; flex-direction:column; justify-content:center;">
-            <div style="font-size: 0.85rem; color: #64748b; margin-bottom: 0.3rem;">Gehaltene Einheiten: <strong>${sessions.length}</strong></div>
-            <div style="font-size: 0.85rem; color: #64748b; margin-bottom: 0.3rem;">Unterrichtszeit gesamt: <strong>${(sessions.length * 1.5).toFixed(1)} Stunden</strong></div>
-            <div style="font-size: 0.85rem; color: #64748b;">Fahrtpauschalen erfasst: <strong>${totalTravelFee.toFixed(2)} €</strong></div>
+          <div class="invoice-box" style="display:flex; flex-direction:column; justify-content:center; gap:0.35rem;">
+            <div style="font-size: 0.85rem; color: var(--text-muted);">Gehaltene Einheiten: <strong style="color:var(--text-main);">${sessions.length}</strong></div>
+            <div style="font-size: 0.85rem; color: var(--text-muted);">Unterrichtszeit gesamt: <strong style="color:var(--text-main);">${(sessions.length * 1.5).toFixed(1)} Stunden</strong></div>
+            <div style="font-size: 0.85rem; color: var(--text-muted);">Fahrtpauschalen erfasst: <strong style="color:var(--text-main);">${totalTravelFee.toFixed(2)} €</strong></div>
           </div>
         </div>
 
         <!-- Sessions Table -->
-        <table style="width: 100%; border-collapse: collapse; margin-bottom: 2rem; font-size: 0.95rem;">
-          <thead>
-            <tr style="background: #f1f5f9; border-bottom: 2px solid #cbd5e1; text-align: left;">
-              <th style="padding: 10px 8px; width: 30px;">#</th>
-              <th style="padding: 10px 8px; width: 150px;">Datum & Ort</th>
-              <th style="padding: 10px 8px;">Fach & Behandelte Themen</th>
-              <th style="padding: 10px 8px; text-align: center; width: 100px;">Dauer</th>
-              <th style="padding: 10px 8px; text-align: right; width: 120px;">Betrag</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${sessionsRowsHtml}
-          </tbody>
-        </table>
+        <div class="table-responsive" style="margin-bottom: 1.75rem;">
+          <table class="data-table invoice-table">
+            <thead>
+              <tr>
+                <th style="width: 32px;">#</th>
+                <th style="width: 150px;">Datum & Ort</th>
+                <th>Fach & Behandelte Themen</th>
+                <th style="text-align: center; width: 90px;">Dauer</th>
+                <th style="text-align: right; width: 120px;">Betrag</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${sessionsRowsHtml}
+            </tbody>
+          </table>
+        </div>
 
         <!-- Totals Calculation -->
-        <div style="display:flex; justify-content:flex-end; margin-bottom: 2.5rem;">
-          <div style="width: 320px; background: #f8fafc; padding: 1.2rem; border-radius: 8px; border: 1px solid #e2e8f0;">
-            <div style="display:flex; justify-content:space-between; margin-bottom: 0.5rem; font-size: 0.95rem; color: #475569;">
+        <div style="display:flex; justify-content:flex-end; margin-bottom: 1.75rem;">
+          <div class="invoice-totals-box">
+            <div style="display:flex; justify-content:space-between; margin-bottom: 0.4rem; font-size: 0.9rem; color: var(--text-muted);">
               <span>Zwischensumme Unterricht:</span>
-              <span>${totalSessionFee.toFixed(2)} €</span>
+              <span style="font-weight:600; color:var(--text-main);">${totalSessionFee.toFixed(2)} €</span>
             </div>
             ${totalTravelFee > 0 ? `
-              <div style="display:flex; justify-content:space-between; margin-bottom: 0.5rem; font-size: 0.95rem; color: #475569;">
+              <div style="display:flex; justify-content:space-between; margin-bottom: 0.4rem; font-size: 0.9rem; color: var(--text-muted);">
                 <span>Fahrtkosten / Anfahrt:</span>
-                <span>${totalTravelFee.toFixed(2)} €</span>
+                <span style="font-weight:600; color:var(--text-main);">${totalTravelFee.toFixed(2)} €</span>
               </div>
             ` : ''}
-            <div style="display:flex; justify-content:space-between; padding-top: 0.75rem; border-top: 2px solid #cbd5e1; font-size: 1.2rem; font-weight: 800; color: #0f172a;">
+            <div style="display:flex; justify-content:space-between; padding-top: 0.65rem; border-top: 2px solid var(--border); font-size: 1.18rem; font-weight: 800; color: var(--text-main); margin-top:0.4rem;">
               <span>Gesamtbetrag:</span>
-              <span style="color: #0d9488;">${grandTotal.toFixed(2)} €</span>
+              <span style="color: var(--primary);">${grandTotal.toFixed(2)} €</span>
             </div>
           </div>
         </div>
 
         <!-- Tax / Note Footer -->
-        <div style="font-size: 0.85rem; color: #64748b; border-top: 1px solid #e2e8f0; padding-top: 1.2rem; line-height: 1.5;">
-          <p style="margin: 0 0 0.4rem 0;">
+        <div class="invoice-footer-notes">
+          <p style="margin: 0 0 0.35rem 0;">
             Gemäß § 19 UStG wird keine Umsatzsteuer berechnet (Kleinunternehmerregelung) bzw. steuerfreie Nachhilfe-/Unterrichtsleistung nach § 4 Nr. 21 UStG.
           </p>
           <p style="margin: 0;">
@@ -851,7 +853,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
 
         <!-- Action Print Button inside Preview (Hidden on print) -->
-        <div class="no-print" style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: flex-end;">
+        <div class="no-print" style="margin-top: 1.75rem; display: flex; gap: 0.8rem; justify-content: flex-end;">
           <button class="btn btn-primary" onclick="window.print()">
             <svg class="icon" style="width: 1rem; height: 1rem;"><use href="#icon-file-text"/></svg> Jetzt Drucken / Als PDF speichern
           </button>
