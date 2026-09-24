@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MatheCoach Admin — CRM & Unterrichts-Management</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+  <!-- ==================== SVG SPRITE DEFINITIONS ==================== -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="icon-dash" viewBox="0 0 24 24">
+      <rect x="3" y="3" width="7" height="7"/>
+      <rect x="14" y="3" width="7" height="7"/>
+      <rect x="14" y="14" width="7" height="7"/>
+      <rect x="3" y="14" width="7" height="7"/>
+    </symbol>
+    <symbol id="icon-users" viewBox="0 0 24 24">
+      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+      <circle cx="9" cy="7" r="4"/>
+      <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+      <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+    </symbol>
+    <symbol id="icon-clock" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="10"/>
+      <polyline points="12 6 12 12 16 14"/>
+    </symbol>
+    <symbol id="icon-car" viewBox="0 0 24 24">
+      <path d="M14 16H9m10 0h3v-3.15a1 1 0 0 0-.84-.99L16 11l-2.7-3.6a1 1 0 0 0-.8-.4H8.5a1 1 0 0 0-.8.4L5 11l-5.16.86a1 1 0 0 0-.84.99V16h3m14 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm-10 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/>
+    </symbol>
+    <symbol id="icon-file-text" viewBox="0 0 24 24">
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+      <polyline points="14 2 14 8 20 8"/>
+      <line x1="16" y1="13" x2="8" y2="13"/>
+      <line x1="16" y1="17" x2="8" y2="17"/>
+      <polyline points="10 9 9 9 8 9"/>
+    </symbol>
+    <symbol id="icon-settings" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="3"/>
+      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+    </symbol>
+    <symbol id="icon-lock" viewBox="0 0 24 24">
+      <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+      <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+    </symbol>
+    <symbol id="icon-plus" viewBox="0 0 24 24">
+      <line x1="12" y1="5" x2="12" y2="19"/>
+      <line x1="5" y1="12" x2="19" y2="12"/>
+    </symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24">
+      <polyline points="20 6 9 17 4 12"/>
+    </symbol>
+    <symbol id="icon-search" viewBox="0 0 24 24">
+      <circle cx="11" cy="11" r="8"/>
+      <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </symbol>
+    <symbol id="icon-edit" viewBox="0 0 24 24">
+      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+    </symbol>
+    <symbol id="icon-trash" viewBox="0 0 24 24">
+      <polyline points="3 6 5 6 21 6"/>
+      <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+    </symbol>
+    <symbol id="icon-log-out" viewBox="0 0 24 24">
+      <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+      <polyline points="16 17 21 12 16 7"/>
+      <line x1="21" y1="12" x2="9" y2="12"/>
+    </symbol>
+    <symbol id="icon-arrow-left" viewBox="0 0 24 24">
+      <line x1="19" y1="12" x2="5" y2="12"/>
+      <polyline points="12 19 5 12 12 5"/>
+    </symbol>
+    <symbol id="icon-moon" viewBox="0 0 24 24">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+    </symbol>
+    <symbol id="icon-sun" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="5"/>
+      <line x1="12" y1="1" x2="12" y2="3"/>
+      <line x1="12" y1="21" x2="12" y2="23"/>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+      <line x1="1" y1="12" x2="3" y2="12"/>
+      <line x1="21" y1="12" x2="23" y2="12"/>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+    </symbol>
+    <symbol id="icon-menu" viewBox="0 0 24 24">
+      <line x1="3" y1="12" x2="21" y2="12"/>
+      <line x1="3" y1="6" x2="21" y2="6"/>
+      <line x1="3" y1="18" x2="21" y2="18"/>
+    </symbol>
+    <symbol id="icon-x" viewBox="0 0 24 24">
+      <line x1="18" y1="6" x2="6" y2="18"/>
+      <line x1="6" y1="6" x2="18" y2="18"/>
+    </symbol>
+  </svg>
+
+  <!-- ==================== AUTH / LOGIN GATE ==================== -->
+  <div id="authScreen" class="auth-overlay">
+    <div class="auth-card">
+      <div class="auth-logo">∑</div>
+      <h2>MatheCoach Admin</h2>
+      <p>Bitte gib deine PIN ein, um auf das Kunden- und Stunden-Management zuzugreifen.</p>
+      
+      <form id="authForm">
+        <div class="pin-input-group">
+          <input type="password" id="pinInput" class="pin-field" placeholder="••••" maxlength="8" autofocus required>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
+          <svg class="icon" style="width: 1.1rem; height: 1.1rem;"><use href="#icon-lock"/></svg> Anmelden
+        </button>
+      </form>
+      <div id="authError" style="color: var(--danger); font-size: 0.88rem; margin-top: 1rem; display: none;">
+        Falsche PIN. Bitte erneut versuchen.
+      </div>
+      <div class="auth-hint">
+        Standard-PIN bei Ersteinrichtung: <strong>1234</strong> (kann in den Einstellungen geändert werden).
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MAIN CRM APPLICATION ==================== -->
+  <div class="app-layout" id="appLayout" style="display: none;">
+    
+    <!-- SIDEBAR -->
+    <aside class="app-sidebar" id="appSidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo-badge">∑</div>
+        <div class="sidebar-logo-text">Mathe<span>CRM</span></div>
+      </div>
+
+      <ul class="sidebar-menu">
+        <li>
+          <button class="nav-item active" data-tab="dashboard">
+            <svg class="icon"><use href="#icon-dash"/></svg> Übersicht
+          </button>
+        </li>
+        <li>
+          <button class="nav-item" data-tab="students">
+            <svg class="icon"><use href="#icon-users"/></svg> Schülerkartei
+          </button>
+        </li>
+        <li>
+          <button class="nav-item" data-tab="sessions">
+            <svg class="icon"><use href="#icon-clock"/></svg> Stunden & Termine
+          </button>
+        </li>
+        <li>
+          <button class="nav-item" data-tab="trips">
+            <svg class="icon"><use href="#icon-car"/></svg> Fahrtkosten & Travelcalc
+          </button>
+        </li>
+        <li>
+          <button class="nav-item" data-tab="invoices">
+            <svg class="icon"><use href="#icon-file-text"/></svg> Abrechnung & Berichte
+          </button>
+        </li>
+        <li>
+          <button class="nav-item" data-tab="settings">
+            <svg class="icon"><use href="#icon-settings"/></svg> Einstellungen & Sync
+          </button>
+        </li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <a href="index.html" class="btn btn-secondary btn-sm" title="Zur öffentlichen Website">
+          <svg class="icon" style="width: 1rem; height: 1rem;"><use href="#icon-arrow-left"/></svg> Zur Website
+        </a>
+        <button id="logoutBtn" class="icon-btn" title="Abmelden">
+          <svg class="icon" style="width: 1.1rem; height: 1.1rem;"><use href="#icon-log-out"/></svg>
+        </button>
+      </div>
+    </aside>
+
+    <!-- MAIN WRAPPER -->
+    <div class="app-main">
+      
+      <!-- TOPBAR -->
+      <header class="app-topbar">
+        <div class="topbar-left">
+          <button class="icon-btn mobile-toggle" id="sidebarToggleBtn" aria-label="Menü">
+            <svg class="icon" style="width: 1.2rem; height: 1.2rem;"><use href="#icon-menu"/></svg>
+          </button>
+          <div class="topbar-title" id="tabTitle">Übersicht & KPIs</div>
+        </div>
+
+        <div class="topbar-right">
+          <!-- Quick action buttons -->
+          <button class="btn btn-primary btn-sm" id="btnQuickAddSession">
+            <svg class="icon" style="width: 1rem; height: 1rem;"><use href="#icon-plus"/></svg> + Stunde
+          </button>
+          <button class="btn btn-secondary btn-sm" id="btnQuickAddStudent">
+            <svg class="icon" style="width: 1rem; height: 1rem;"><use href="#icon-users"/></svg> + Schüler
+          </button>
+          <a href="App/Travelcalc/index.html" target="_blank" class="btn btn-accent btn-sm" title="Fahrtenrechner öffnen">
+            <svg class="icon" style="width: 1rem; height: 1rem;"><use href="#icon-car"/></svg> Travelcalc
+          </a>
+          <!-- Theme toggle -->
+          <button class="icon-btn" id="adminThemeToggleBtn" title="Theme umschalten">
+            <svg class="icon" id="adminThemeIcon" style="width: 1.1rem; height: 1.1rem;"><use href="#icon-moon"/></svg>
+          </button>
+        </div>
+      </header>
+
+      <!-- CONTENT CONTAINER -->
+      <main class="content-container">
+
+        <!-- ==================== TAB 1: DASHBOARD ==================== -->
+        <section class="tab-pane active" id="pane-dashboard">
+          
+          <div class="kpi-grid">
+            <div class="kpi-card">
+              <div class="kpi-header">
+                <span class="kpi-label">Umsatz diesen Monat</span>
+                <div class="kpi-icon emerald">€</div>
+              </div>
+              <div class="kpi-value" id="kpiRevenue">0 €</div>
+              <div class="kpi-sub" id="kpiRevenueSub">Bezahlt: 0 € · Offen: 0 €</div>
+            </div>
+
+            <div class="kpi-card">
+              <div class="kpi-header">
+                <span class="kpi-label">Gehaltene Stunden</span>
+                <div class="kpi-icon teal"><svg class="icon" style="width: 1.1rem; height: 1.1rem;"><use href="#icon-clock"/></svg></div>
+              </div>
+              <div class="kpi-value" id="kpiHours">0 h</div>
+              <div class="kpi-sub" id="kpiSessionsCount">0 Einheiten (à 90 Min.)</div>
+            </div>
+
+            <div class="kpi-card">
+              <div class="kpi-header">
+                <span class="kpi-label">Aktive Schüler</span>
+                <div class="kpi-icon amber"><svg class="icon" style="width: 1.1rem; height: 1.1rem;"><use href="#icon-users"/></svg></div>
+              </div>
+              <div class="kpi-value" id="kpiStudents">0</div>
+              <div class="kpi-sub">Regelmäßige Betreuung</div>
+            </div>
+
+            <div class="kpi-card">
+              <div class="kpi-header">
+                <span class="kpi-label">Fahrtkosten (Travelcalc)</span>
+                <div class="kpi-icon blue"><svg class="icon" style="width: 1.1rem; height: 1.1rem;"><use href="#icon-car"/></svg></div>
+              </div>
+              <div class="kpi-value" id="kpiTravelCosts">0 €</div>
+              <div class="kpi-sub" id="kpiTravelKm">0 km Gesamtdistanz</div>
+            </div>
+          </div>
+
+          <div class="dash-columns">
+            <!-- Left Panel: Nächste Stunden -->
+            <div class="dash-panel">
+              <div class="panel-header">
+                <h3>Aktuelle & Anstehende Stunden</h3>
+                <button class="btn btn-secondary btn-sm" id="btnDashNewSession">+ Neue Stunde</button>
+              </div>
+              <div class="table-responsive">
+                <table class="data-table" id="recentSessionsTable">
+                  <thead>
+                    <tr>
+                      <th>Datum</th>
+                      <th>Schüler</th>
+                      <th>Thema & Ort</th>
+                      <th>Betrag</th>
+                      <th>Status</th>
+                      <th>Aktion</th>
+                    </tr>
+                  </thead>
+                  <tbody id="recentSessionsTbody">
+                    <!-- Populated via JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Right Panel: Schüler-Schnellzugriff -->
+            <div class="dash-panel">
+              <div class="panel-header">
+                <h3>Aktive Schüler</h3>
+                <button class="btn btn-secondary btn-sm" id="btnDashNewStudent">+ Anlegen</button>
+              </div>
+              <div id="quickStudentsList" style="display: flex; flex-direction: column; gap: 0.85rem;">
+                <!-- Populated via JS -->
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== TAB 2: STUDENTS ==================== -->
+        <section class="tab-pane" id="pane-students" style="display: none;">
+          <div class="dash-panel">
+            <div class="panel-header">
+              <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+                <h3>Schülerkartei</h3>
+                <div style="position: relative; width: 260px;">
+                  <input type="text" id="studentSearchInput" class="form-control" placeholder="Schüler, Eltern oder Ort suchen..." style="padding-left: 2.2rem;">
+                  <svg class="icon" style="position: absolute; left: 0.75rem; top: 50%; transform: translateY(-50%); width: 1rem; height: 1rem; color: var(--text-muted);"><use href="#icon-search"/></svg>
+                </div>
+              </div>
+              <button class="btn btn-primary btn-sm" id="btnAddStudentModalOpen">
+                <svg class="icon" style="width: 1rem; height: 1rem;"><use href="#icon-plus"/></svg> Neuer Schüler
+              </button>
+            </div>
+
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Klasse / Schule</th>
+                    <th>Kontakt (Eltern/Tel)</th>
+                    <th>Adresse / Ort</th>
+                    <th>Honorar (90 Min)</th>
+                    <th>Besonderheiten (ADHS)</th>
+                    <th>Aktionen</th>
+                  </tr>
+                </thead>
+                <tbody id="studentsTableTbody">
+                  <!-- Populated via JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== TAB 3: SESSIONS ==================== -->
+        <section class="tab-pane" id="pane-sessions" style="display: none;">
+          <div class="dash-panel">
+            <div class="panel-header">
+              <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+                <h3>Unterrichtsstunden & Termine</h3>
+                <select id="sessionMonthFilter" class="form-control" style="width: auto;">
+                  <!-- Populated dynamically -->
+                </select>
+                <select id="sessionStudentFilter" class="form-control" style="width: auto;">
+                  <option value="">Alle Schüler</option>
+                </select>
+              </div>
+              <button class="btn btn-primary btn-sm" id="btnAddSessionModalOpen">
+                <svg class="icon" style="width: 1rem; height: 1rem;"><use href="#icon-plus"/></svg> Stunde erfassen
+              </button>
+            </div>
+
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Datum & Uhrzeit</th>
+                    <th>Schüler</th>
+                    <th>Fach & Thema</th>
+                    <th>Ort</th>
+                    <th>Dauer</th>
+                    <th>Honorar + Fahrt</th>
+                    <th>Gesamt</th>
+                    <th>Status</th>
+                    <th>Aktionen</th>
+                  </tr>
+                </thead>
+                <tbody id="sessionsTableTbody">
+                  <!-- Populated via JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== TAB 4: TRIPS & TRAVELCALC ==================== -->
+        <section class="tab-pane" id="pane-trips" style="display: none;">
+          <div class="dash-panel">
+            <div class="panel-header">
+              <div>
+                <h3>Fahrtenbuch & Reisekosten (Travelcalc Sync)</h3>
+                <p style="font-size: 0.88rem; color: var(--text-muted); margin-top: 0.2rem;">
+                  Alle Fahrten zu Schülern werden automatisch hier synchronisiert und für die Abrechnung/Steuer erfasst.
+                </p>
+              </div>
+              <a href="App/Travelcalc/index.html" target="_blank" class="btn btn-accent btn-sm">
+                <svg class="icon" style="width: 1rem; height: 1rem;"><use href="#icon-car"/></svg> Travelcalc Vollbild
+              </a>
+            </div>
+
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Datum</th>
+                    <th>Schüler / Anlass</th>
+                    <th>Startpunkt</th>
+                    <th>Zielort</th>
+                    <th>Distanz (km)</th>
+                    <th>Hin/Rück</th>
+                    <th>Fahrtkosten</th>
+                    <th>Aktion</th>
+                  </tr>
+                </thead>
+                <tbody id="tripsTableTbody">
+                  <!-- Populated via JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== TAB 5: INVOICES & REPORTS ==================== -->
+        <section class="tab-pane" id="pane-invoices" style="display: none;">
+          <div class="dash-panel">
+            <div class="panel-header">
+              <div>
+                <h3>Monatsabrechnung & Belege für Eltern</h3>
+                <p style="font-size: 0.88rem; color: var(--text-muted); margin-top: 0.2rem;">
+                  Erstelle mit einem Klick eine saubere, druckbare Abrechnung der gehaltenen Stunden und Fahrtkosten.
+                </p>
+              </div>
+            </div>
+
+            <div class="form-row" style="margin-bottom: 2rem; max-width: 600px;">
+              <div class="form-group">
+                <label class="form-label">Schüler auswählen</label>
+                <select id="invoiceStudentSelect" class="form-control">
+                  <!-- Populated via JS -->
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Monat auswählen</label>
+                <input type="month" id="invoiceMonthSelect" class="form-control">
+              </div>
+            </div>
+
+            <button class="btn btn-primary" id="btnGenerateInvoice">
+              <svg class="icon" style="width: 1.1rem; height: 1.1rem;"><use href="#icon-file-text"/></svg> Abrechnung generieren & drucken
+            </button>
+
+            <!-- Render Area for Invoice Preview -->
+            <div id="invoicePreviewArea" style="margin-top: 2.5rem; display: none;">
+              <!-- Generated dynamically -->
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== TAB 6: SETTINGS ==================== -->
+        <section class="tab-pane" id="pane-settings" style="display: none;">
+          <div class="dash-panel" style="max-width: 680px;">
+            <div class="panel-header">
+              <h3>CRM-Einstellungen & Cloud-Synchronisation</h3>
+            </div>
+
+            <!-- PIN settings -->
+            <div style="margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border);">
+              <h4 style="margin-bottom: 1rem;">Sicherheit & PIN</h4>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Alte PIN</label>
+                  <input type="password" id="oldPinInput" class="form-control" placeholder="Aktuelle PIN">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Neue PIN (mind. 4 Stellen)</label>
+                  <input type="password" id="newPinInput" class="form-control" placeholder="Neue PIN">
+                </div>
+              </div>
+              <button class="btn btn-secondary btn-sm" id="btnChangePin">PIN aktualisieren</button>
+              <span id="pinStatusMsg" style="font-size: 0.85rem; margin-left: 0.8rem;"></span>
+            </div>
+
+            <!-- Default Honorar & Kilometer -->
+            <div style="margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border);">
+              <h4 style="margin-bottom: 1rem;">Standard-Konditionen</h4>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Standard-Honorar (pro 90 Min.)</label>
+                  <input type="number" id="settingDefaultRate" class="form-control" value="60">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Kilometerpauschale Anfahrt (€/km)</label>
+                  <input type="number" step="0.05" id="settingDefaultKmRate" class="form-control" value="0.50">
+                </div>
+              </div>
+              <button class="btn btn-secondary btn-sm" id="btnSaveRates">Konditionen speichern</button>
+            </div>
+
+            <!-- Cloud Sync (Supabase / Firebase) -->
+            <div style="margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border);">
+              <h4 style="margin-bottom: 0.4rem;">Optionale Cloud-Datenbank (Live-Sync Handy & PC)</h4>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+                Verbinde kostenlos ein Supabase-Projekt für nahtlose Echtzeit-Synchronisation zwischen Smartphone (Travelcalc) und PC (Admin CRM).
+              </p>
+              
+              <div class="form-group">
+                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; margin-bottom: 0.8rem;">
+                  <input type="checkbox" id="cloudSyncEnabled">
+                  <span style="font-weight: 600;">Cloud-Synchronisation aktivieren</span>
+                </label>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Supabase Project URL</label>
+                <input type="text" id="supabaseUrlInput" class="form-control" placeholder="https://xyzcompany.supabase.co">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Supabase Anon Key</label>
+                <input type="password" id="supabaseKeyInput" class="form-control" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...">
+              </div>
+
+              <button class="btn btn-primary btn-sm" id="btnSaveCloudSync">Cloud-Verbindung speichern & testen</button>
+              <div id="cloudSyncStatusMsg" style="font-size: 0.85rem; margin-top: 0.6rem;"></div>
+            </div>
+
+            <!-- Backup & Export -->
+            <div>
+              <h4 style="margin-bottom: 0.4rem;">Datensicherung (Local-First Backup)</h4>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+                Alle Schülerdaten, Termine und Fahrten können jederzeit als JSON-Datei gesichert und wiederhergestellt werden.
+              </p>
+              <div style="display: flex; gap: 0.8rem; flex-wrap: wrap;">
+                <button class="btn btn-secondary btn-sm" id="btnExportBackup">
+                  <svg class="icon" style="width: 1rem; height: 1rem;"><use href="#icon-file-text"/></svg> Backup herunterladen (JSON)
+                </button>
+                <label class="btn btn-secondary btn-sm" style="margin: 0; cursor: pointer;">
+                  Backup einspielen
+                  <input type="file" id="importBackupFile" accept=".json" style="display: none;">
+                </label>
+                <button class="btn btn-danger btn-sm" id="btnResetDatabase">Datenbank zurücksetzen</button>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL: SCHÜLER ANLEGEN / BEARBEITEN ==================== -->
+  <div class="modal-backdrop hidden" id="studentModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="studentModalTitle">Neuen Schüler anlegen</h3>
+        <button class="icon-btn close-modal-btn" data-modal="studentModal">
+          <svg class="icon" style="width: 1.1rem; height: 1.1rem;"><use href="#icon-x"/></svg>
+        </button>
+      </div>
+      <form id="studentForm">
+        <input type="hidden" id="studentEditId">
+        <div class="modal-body">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Name des Schülers *</label>
+              <input type="text" id="studName" class="form-control" placeholder="z. B. Lars Müller" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Eltern / Ansprechpartner</label>
+              <input type="text" id="studParent" class="form-control" placeholder="z. B. Sabine Müller">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Telefon / WhatsApp</label>
+              <input type="text" id="studPhone" class="form-control" placeholder="+49 170 1234567">
+            </div>
+            <div class="form-group">
+              <label class="form-label">E-Mail</label>
+              <input type="email" id="studEmail" class="form-control" placeholder="eltern@beispiel.de">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Adresse (für Anfahrt & Vor-Ort-Unterricht)</label>
+            <input type="text" id="studAddress" class="form-control" placeholder="Straße, Hausnummer, PLZ Ort (z. B. Waldackerstr. 14, 63128 Dietzenbach)">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Klassenstufe & Schulform</label>
+              <input type="text" id="studGrade" class="form-control" placeholder="z. B. 12. Klasse (Gymnasium)">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Fach</label>
+              <input type="text" id="studSubject" class="form-control" value="Mathematik">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Honorar pro 90 Min. (€)</label>
+              <input type="number" id="studRate" class="form-control" value="65" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Anfahrtspauschale (€, falls vor Ort)</label>
+              <input type="number" id="studTravelDefault" class="form-control" value="10">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Bevorzugter Unterrichtsort</label>
+            <select id="studLocationPref" class="form-control">
+              <option value="office">Büroraum Dietzenbach (reizarm)</option>
+              <option value="home">Beim Schüler Zuhause</option>
+              <option value="online">Online per Tablet / Whiteboard</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Neurodivergenz / ADHS Besonderheiten & Stärken</label>
+            <textarea id="studNeuroNotes" class="form-control" placeholder="z. B. Diagnostiziertes ADHS, braucht visuelle Struktur, Reizpausen, stark in geometrischem Verständnis..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Allgemeine Notizen & bisherige Themen</label>
+            <textarea id="studNotes" class="form-control" placeholder="Themen, Klassenarbeiten, Prüfungsangst..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+              <input type="checkbox" id="studActive" checked>
+              <span>Aktiver Schüler (in Betreuung)</span>
+            </label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary close-modal-btn" data-modal="studentModal">Abbrechen</button>
+          <button type="submit" class="btn btn-primary">Speichern</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL: STUNDE ANLEGEN / BEARBEITEN ==================== -->
+  <div class="modal-backdrop hidden" id="sessionModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="sessionModalTitle">Neue Unterrichtsstunde erfassen</h3>
+        <button class="icon-btn close-modal-btn" data-modal="sessionModal">
+          <svg class="icon" style="width: 1.1rem; height: 1.1rem;"><use href="#icon-x"/></svg>
+        </button>
+      </div>
+      <form id="sessionForm">
+        <input type="hidden" id="sessionEditId">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label">Schüler auswählen *</label>
+            <select id="sessStudentSelect" class="form-control" required>
+              <option value="">Schüler wählen...</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Datum *</label>
+              <input type="date" id="sessDate" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Uhrzeit</label>
+              <input type="time" id="sessTime" class="form-control" value="16:00">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Dauer (Minuten)</label>
+              <select id="sessDuration" class="form-control">
+                <option value="90" selected>90 Minuten (Standard)</option>
+                <option value="60">60 Minuten</option>
+                <option value="120">120 Minuten</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Fach</label>
+              <input type="text" id="sessSubject" class="form-control" value="Mathematik">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Behandelte Themen & Lernfortschritt</label>
+            <input type="text" id="sessTopics" class="form-control" placeholder="z. B. Kettenregel & Produktregel bei Analysis">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Unterrichtsort</label>
+              <select id="sessLocationType" class="form-control">
+                <option value="office">Büroraum Dietzenbach</option>
+                <option value="home">Beim Schüler Zuhause</option>
+                <option value="online">Online per Tablet</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Anfahrtskosten (€)</label>
+              <input type="number" step="0.50" id="sessTravelCost" class="form-control" value="0">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Unterrichtshonorar (€)</label>
+              <input type="number" id="sessFee" class="form-control" value="65" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Status</label>
+              <select id="sessStatus" class="form-control">
+                <option value="completed">Gehalten / Offen</option>
+                <option value="paid">Bezahlt</option>
+                <option value="planned">Geplant / Termin</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Notizen zur Stunde</label>
+            <textarea id="sessNotes" class="form-control" placeholder="Was hat gut geklappt? Was muss wiederholt werden?"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary close-modal-btn" data-modal="sessionModal">Abbrechen</button>
+          <button type="submit" class="btn btn-primary">Stunde speichern</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Load Database and Admin Logic -->
+  <script src="shared-db.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>
