@@ -118,6 +118,19 @@
       <line x1="3" y1="6" x2="21" y2="6"/>
       <line x1="3" y1="18" x2="21" y2="18"/>
     </symbol>
+    <symbol id="icon-alert-triangle" viewBox="0 0 24 24">
+      <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+      <line x1="12" y1="9" x2="12" y2="13"/>
+      <line x1="12" y1="17" x2="12.01" y2="17"/>
+    </symbol>
+    <symbol id="icon-target" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="10"/>
+      <circle cx="12" cy="12" r="6"/>
+      <circle cx="12" cy="12" r="2"/>
+    </symbol>
+    <symbol id="icon-heart" viewBox="0 0 24 24">
+      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+    </symbol>
   </svg>
 
   <!-- ==================== NAVIGATION ==================== -->
@@ -130,15 +143,15 @@
         </a>
 
         <ul class="nav-menu" id="navMenu">
-          <li><a href="#ueber-mich" class="nav-link">Mein Weg</a></li>
-          <li><a href="#zielgruppen" class="nav-link">Eltern & Schüler</a></li>
+          <li><a href="#problem" class="nav-link">Das Problem</a></li>
+          <li><a href="#ueber-mich" class="nav-link">Der Guide</a></li>
           <li><a href="#methodik" class="nav-link">Didaktik</a></li>
           <li><a href="#ablauf" class="nav-link">Ablauf</a></li>
+          <li><a href="#transformation" class="nav-link">Erfolge</a></li>
           <li><a href="#standorte" class="nav-link">Orte</a></li>
           <li><a href="#preise" class="nav-link">Honorar</a></li>
-          <li><a href="#nachweise" class="nav-link">Nachweise</a></li>
           <li><a href="#faq" class="nav-link">FAQ</a></li>
-          <li><a href="#kontakt" class="btn btn-primary btn-sm">Kontaktieren</a></li>
+          <li><a href="#kontakt" class="btn btn-primary btn-sm">Erstgespräch buchen</a></li>
         </ul>
 
         <div class="nav-actions">
@@ -162,18 +175,18 @@
   </header>
 
   <main>
-    <!-- ==================== HERO SECTION ==================== -->
+    <!-- ==================== 1. HERO SECTION (DER CHARAKTER & DAS ZIEL) ==================== -->
     <section class="hero" id="hero">
       <div class="hero-glow"></div>
       <div class="container hero-grid">
         <div class="hero-content">
           <div class="section-tag">
-            <svg class="icon"><use href="#icon-brain"/></svg> 1-zu-1 Mathe-Nachhilfe & ADHS-Mentoring
+            <svg class="icon"><use href="#icon-brain"/></svg> 1-zu-1 Mathe-Coaching & ADHS-Mentoring
           </div>
-          <h1>Mathematik verstehen – <span style="color: var(--primary);">ohne Druck</span> und Überforderung.</h1>
+          <h1>Mathematik verstehen – <span style="color: var(--primary);">ohne Tränen</span> und Überforderung.</h1>
           <p class="hero-lead">
-            Einfühlsames 1-zu-1 Coaching für Oberstufe, Abitur und <strong>neurodivergente Köpfe (ADHS, Autismus & Co.)</strong>, 
-            die logisch denken, aber im klassischen Schulsystem an ihre Grenzen stoßen.
+            Individuelles 1-zu-1 Coaching für Oberstufe, Abitur und <strong>neurodivergente Köpfe (ADHS, Autismus & Co.)</strong>, 
+            die logisch denken, aber im starren Schulsystem an ihre Grenzen stoßen. Reizarm, auf Augenhöhe und ohne Notendruck.
           </p>
 
           <div class="hero-cta-group">
@@ -181,7 +194,7 @@
               <svg class="icon"><use href="#icon-whatsapp"/></svg> Direkt per WhatsApp schreiben
             </a>
             <a href="#kontakt" class="btn btn-secondary">
-              <svg class="icon"><use href="#icon-mail"/></svg> Kennenlernen anfragen
+              <svg class="icon"><use href="#icon-mail"/></svg> Kennenlernen anfragen (15 Min.)
             </a>
           </div>
         </div>
@@ -213,60 +226,178 @@
             </div>
             <div class="hero-stat-item">
               <h4>IQ 120</h4>
-              <p>Top 9% Logik</p>
+              <p>91% (Top 9%) Logik</p>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ==================== ÜBER MICH & MEIN WEG (STORY) ==================== -->
-    <section class="section section-soft" id="ueber-mich" aria-labelledby="story-title">
+    <!-- ==================== 2. DAS PROBLEM (SCHURKE, ÄUSSERES, INNERES & PHILOSOPHISCHES PROBLEM) ==================== -->
+    <section class="section section-soft" id="problem" aria-labelledby="problem-title">
       <div class="container">
         <div class="section-header">
-          <div class="section-tag"><svg class="icon"><use href="#icon-award"/></svg> Persönlicher Hintergrund</div>
-          <h2 id="story-title">Mein Weg: Vom Schulfrust zum Mathe-Mentor</h2>
-          <p>Warum ich genau verstehe, was in deinem Kopf vorgeht, wenn die Schule dich nicht versteht.</p>
+          <div class="section-tag"><svg class="icon"><use href="#icon-alert-triangle"/></svg> Das eigentliche Problem</div>
+          <h2 id="problem-title">Warum herkömmlicher Unterricht neurodivergente Köpfe im Stich lässt</h2>
+          <p>Wenn Noten absacken und Hausaufgaben im Streit enden, liegt das nicht an mangelnder Intelligenz. Es liegt an einem System, das starre Schablonen verlangt.</p>
+        </div>
+
+        <div class="problem-grid">
+          <!-- 1. Der Schurke -->
+          <div class="problem-card villain">
+            <div class="problem-tag villain-tag">
+              <svg class="icon"><use href="#icon-alert-triangle"/></svg> Der Schurke: Das Schulsystem
+            </div>
+            <h3>Frontalunterricht & 45-Minuten-Hektik</h3>
+            <p>
+              Reizüberflutung, starre Rechenwege und permanenter Zeitdruck. Wer nicht im monotonen Einheitstakt mitzieht, 
+              wird im Klassenzimmer vorschnell als „unkonzentriert“ oder „faul“ abgestempelt.
+            </p>
+          </div>
+
+          <!-- 2. Äußeres Problem -->
+          <div class="problem-card">
+            <div class="problem-tag external-tag">
+              <svg class="icon"><use href="#icon-file-text"/></svg> Äußeres Problem
+            </div>
+            <h3>Absackende Noten & Klausurpanik</h3>
+            <p>
+              4er und 5er häufen sich. Formeln in Analysis oder Geometrie wirken wie Hieroglyphen. 
+              Klassenarbeiten werden zum Zitterspiel und die Versetzung oder das Abitur geraten in Gefahr.
+            </p>
+          </div>
+
+          <!-- 3. Inneres Problem -->
+          <div class="problem-card">
+            <div class="problem-tag internal-tag">
+              <svg class="icon"><use href="#icon-heart"/></svg> Inneres Problem
+            </div>
+            <h3>Selbstzweifel, Scham & Tränen</h3>
+            <p>
+              Beim Schüler brennt sich ein: <em>„Ich bin wohl einfach zu dumm für Mathe.“</em> 
+              Und bei den Eltern: Hilflosigkeit, quälende Zukunftssorgen und zermürbender Dauerstreit am Esstisch.
+            </p>
+          </div>
+
+          <!-- 4. Philosophisches Problem -->
+          <div class="problem-card">
+            <div class="problem-tag philo-tag">
+              <svg class="icon"><use href="#icon-shield"/></svg> Philosophisches Problem
+            </div>
+            <h3>Es ist einfach ungerecht</h3>
+            <p>
+              Kein junger Mensch sollte an einer starren Schulschablone zerbrechen. 
+              Ein Kopf, der kreativ und vernetzt denkt, braucht lediglich Erklärungen, die zu seiner Denkweise passen.
+            </p>
+          </div>
+        </div>
+
+        <!-- Zielgruppen-Perspektiven (Eltern vs Schüler) -->
+        <div class="audience-grid">
+          <!-- Eltern -->
+          <div class="audience-card parents">
+            <span class="audience-badge">Für Eltern</span>
+            <h3>Entlastung & endlich wieder Frieden zu Hause</h3>
+            <div class="audience-pain-box">
+              „Mein Kind sitzt stundenlang vor den Aufgaben, blockiert und wir streiten uns nur noch über die Schule.“
+            </div>
+            <ul class="audience-list">
+              <li class="audience-item">
+                <svg class="icon"><use href="#icon-check"/></svg>
+                <div><strong>Kein Streit mehr am Nachmittag:</strong> Ich übernehme die Mathe-Begleitung mit professioneller Ruhe und Geduld.</div>
+              </li>
+              <li class="audience-item">
+                <svg class="icon"><use href="#icon-check"/></svg>
+                <div><strong>Echtes ADHS-Verständnis:</strong> Ich kenne Konzentrationsschwankungen aus eigener Erfahrung und verurteile das Kind niemals.</div>
+              </li>
+              <li class="audience-item">
+                <svg class="icon"><use href="#icon-check"/></svg>
+                <div><strong>Volle 90-Min-Einheiten:</strong> Zeit für ruhiges Ankommen und tiefes Verankern – kein hektischer 45-Min-Takt.</div>
+              </li>
+              <li class="audience-item">
+                <svg class="icon"><use href="#icon-check"/></svg>
+                <div><strong>100% Flexibilität:</strong> Keine Knebelverträge, keine Mindestlaufzeiten – ehrliche Zusammenarbeit auf Vertrauensbasis.</div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Schüler -->
+          <div class="audience-card students">
+            <span class="audience-badge">Für Schüler</span>
+            <h3>Augenhöhe, Verständnis & echte Aha-Momente</h3>
+            <div class="audience-pain-box">
+              „Der Lehrer erklärt es zum zehnten Mal genauso unverständlich und ich traue mich gar nicht mehr nachzufragen.“
+            </div>
+            <ul class="audience-list">
+              <li class="audience-item">
+                <svg class="icon"><use href="#icon-check"/></svg>
+                <div><strong>Keine dummen Fragen:</strong> Wir wiederholen Grundlagen so oft und auf so viele Arten, bis der Knoten platzt.</div>
+              </li>
+              <li class="audience-item">
+                <svg class="icon"><use href="#icon-check"/></svg>
+                <div><strong>Augenhöhe statt Lehrer-Monolog:</strong> Wir knacken Aufgaben als Team. Du bestimmst das Lerntempo.</div>
+              </li>
+              <li class="audience-item">
+                <svg class="icon"><use href="#icon-check"/></svg>
+                <div><strong>Prüfungsangst & Blackouts abbauen:</strong> Klare Notfall-Strategien für Klassenarbeiten und Abiturprüfungen.</div>
+              </li>
+              <li class="audience-item">
+                <svg class="icon"><use href="#icon-check"/></svg>
+                <div><strong>Die Logik verstehen:</strong> Wir leiten Formeln anschaulich her, statt nur stur Formelsammlungen auswendig zu lernen.</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 3. DER GUIDE (EMPATHIE & AUTORITÄT) ==================== -->
+    <section class="section" id="ueber-mich" aria-labelledby="guide-title">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag"><svg class="icon"><use href="#icon-award"/></svg> Dein Mentor & Guide</div>
+          <h2 id="guide-title">Ich kenne deinen Kampf – weil ich denselben Weg gegangen bin</h2>
+          <p>Mathematik-Verständnis mit Empathie aus eigener Erfahrung und überdurchschnittlicher analytischer Kompetenz.</p>
         </div>
 
         <div class="story-grid">
-          <!-- Timeline: Was ich durchgemacht habe -->
+          <!-- Timeline: Vom Schulkampf zum Mentor -->
           <div class="story-timeline">
             <div class="timeline-step active">
               <div class="timeline-dot"></div>
-              <div class="timeline-year">Schulzeit & Jugend</div>
-              <h4>Kampf im starren Schulsystem (Unerkanntes ADHS)</h4>
-              <p>Trotz starkem logischen Verständnis führten monotone Aufgaben und Frontalunterricht oft zu Notenfrust, Flüchtigkeitsfehlern und Unverständnis bei Lehrkräften.</p>
+              <div class="timeline-year">1. Empathie: Eigene Schulzeit</div>
+              <h4>Kampf im starren System (Unerkanntes ADHS)</h4>
+              <p>Monotone Aufgaben und Frontalunterricht führten zu Notenfrust, Flüchtigkeitsfehlern und dem ständigen Gefühl, nicht ins Schablonenmuster der Lehrer zu passen.</p>
             </div>
 
             <div class="timeline-step active">
               <div class="timeline-dot"></div>
-              <div class="timeline-year">Der Wendepunkt</div>
-              <h4>Eigene Lernstrategien & Abitur mit Mathe- & Physik-LK</h4>
+              <div class="timeline-year">2. Der Wendepunkt</div>
+              <h4>Eigene Lernstrategien & Mathe-/Physik-LK</h4>
               <p>Ich entwickelte eigene visuelle Strukturierungsmethoden. Das Ergebnis: Erfolgreiches Abitur mit den Leistungskursen Mathematik und Physik.</p>
             </div>
 
             <div class="timeline-step active">
               <div class="timeline-dot"></div>
-              <div class="timeline-year">Studium & Talent</div>
-              <h4>Nanostrukturtechnik & Elektro-/Informationstechnik</h4>
-              <p>An der Universität tauchte ich tief in höhere Mathematik und theoretische Physik ein. Dabei wurde mir klar: Mein größtes Talent ist es, komplexe Sachverhalte greifbar und lebendig zu erklären.</p>
+              <div class="timeline-year">3. Fundierte Kompetenz</div>
+              <h4>Nanostrukturtechnik & E-Technik Studium</h4>
+              <p>Tiefes Eintauchen in höhere Mathematik und theoretische Physik an der Universität. Dabei entdeckte ich meine größte Stärke: Komplexe Abstraktionen greifbar und lebendig zu erklären.</p>
             </div>
 
             <div class="timeline-step active">
               <div class="timeline-dot"></div>
-              <div class="timeline-year">Praxis & Referenz</div>
+              <div class="timeline-year">4. Nachgewiesene Praxis</div>
               <h4>Gefragtester Mathe-Tutor bei der Schülerhilfe</h4>
-              <p>Schüler wollten fast ausschließlich in meinen Unterricht. Der Grund: Geduldige Augenhöhe, absolute Reizarmut und der Wille, erst aufzuhören, wenn der Knoten wirklich geplatzt ist.</p>
+              <p>Schüler wollten fast ausschließlich in meinen Unterricht. Der Grund: Ruhige Augenhöhe, absolute Reizarmut und der Wille, erst aufzuhören, wenn der Knoten wirklich geplatzt ist.</p>
             </div>
           </div>
 
-          <!-- Story Details Card -->
+          <!-- Guide Story & Authority Card -->
           <div class="story-content-card">
             <h3>Hallo, ich bin Farid! 👋</h3>
             <p>
-              Ich unterrichte Mathematik nicht wie ein typischer Schullehrer. Ich kenne das beklemmende Gefühl vor einer Klausur, wenn das Gehirn blockiert, 
-              und den Druck, wenn Lehrer und Eltern anfangen zu verzweifeln.
+              Ich unterrichte Mathematik nicht wie ein typischer Schullehrer. Ich kenne das beklemmende Gefühl vor einer Klausur, 
+              wenn das Gehirn blockiert, und die Hilflosigkeit, wenn Lehrer und Eltern anfangen zu verzweifeln.
             </p>
             
             <div class="story-quote-highlight">
@@ -279,77 +410,15 @@
               Noch wichtiger ist mir jedoch, <strong>wie wir dein Selbstvertrauen zurückgewinnen</strong>: 
               Schritt für Schritt, mit viel Geduld, Humor und ohne jede Bloßstellung.
             </p>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- ==================== FÜR WEN? (DUAL AUDIENCE) ==================== -->
-    <section class="section" id="zielgruppen" aria-labelledby="zielgruppen-title">
-      <div class="container">
-        <div class="section-header">
-          <div class="section-tag"><svg class="icon"><use href="#icon-shield"/></svg> Zielgruppen im Fokus</div>
-          <h2 id="zielgruppen-title">Zwei Perspektiven – eine gemeinsame Lösung</h2>
-          <p>Gute Nachhilfe nimmt beiden Seiten den Druck: den Schülern die Angst, den Eltern die ständige Sorge.</p>
-        </div>
-
-        <div class="audience-grid">
-          <!-- Card 1: Für Eltern -->
-          <div class="audience-card parents">
-            <span class="audience-badge">Für Eltern</span>
-            <h3>Entlastung & endlich wieder Frieden am Esstisch</h3>
-            
-            <div class="audience-pain-box">
-              „Mein Kind sitzt stundenlang vor den Aufgaben, resigniert und wir streiten uns nur noch über die Schule.“
+            <div style="margin-top: 1.8rem; display: flex; flex-wrap: wrap; gap: 0.8rem;">
+              <a href="#nachweise" class="btn btn-secondary btn-sm">
+                <svg class="icon"><use href="#icon-file-text"/></svg> Zeugnisse & Mensa-Nachweis einsehen
+              </a>
+              <a href="#kontakt" class="btn btn-primary btn-sm">
+                <svg class="icon"><use href="#icon-arrow-right"/></svg> Kennenlernen vereinbaren
+              </a>
             </div>
-
-            <ul class="audience-list">
-              <li class="audience-item">
-                <svg class="icon"><use href="#icon-check"/></svg>
-                <div><strong>Kein Streit mehr zu Hause:</strong> Ich übernehme die Mathe-Begleitung mit professioneller Ruhe und Fachkompetenz.</div>
-              </li>
-              <li class="audience-item">
-                <svg class="icon"><use href="#icon-check"/></svg>
-                <div><strong>Echtes ADHS-Verständnis:</strong> Ich kenne Konzentrationsschwankungen aus eigener Erfahrung und verurteile das Kind niemals.</div>
-              </li>
-              <li class="audience-item">
-                <svg class="icon"><use href="#icon-check"/></svg>
-                <div><strong>Volle 90-Min-Einheiten:</strong> Genügend Zeit für warmes Reinkommen und tiefe Verankerung – kein hektischer 45-Min-Takt.</div>
-              </li>
-              <li class="audience-item">
-                <svg class="icon"><use href="#icon-check"/></svg>
-                <div><strong>100% Flexibilität:</strong> Keine Mindestlaufzeiten, keine Knebelverträge, ehrliches Feedback nach jeder Etappe.</div>
-              </li>
-            </ul>
-          </div>
-
-          <!-- Card 2: Für Schüler -->
-          <div class="audience-card students">
-            <span class="audience-badge">Für Schüler</span>
-            <h3>Verständnis auf Augenhöhe & echte Aha-Momente</h3>
-
-            <div class="audience-pain-box">
-              „Der Lehrer erklärt es zum zehnten Mal genauso unverständlich und ich traue mich gar nicht mehr zu fragen.“
-            </div>
-
-            <ul class="audience-list">
-              <li class="audience-item">
-                <svg class="icon"><use href="#icon-check"/></svg>
-                <div><strong>Es gibt keine dummen Fragen:</strong> Wir wiederholen Grundlagen so oft und auf so viele Arten, bis es bei dir Klick macht.</div>
-              </li>
-              <li class="audience-item">
-                <svg class="icon"><use href="#icon-check"/></svg>
-                <div><strong>Augenhöhe statt Lehrer-Monolog:</strong> Wir erarbeiten Aufgaben als Team. Du bestimmst das Tempo.</div>
-              </li>
-              <li class="audience-item">
-                <svg class="icon"><use href="#icon-check"/></svg>
-                <div><strong>Prüfungsangst & Blackouts abbauen:</strong> Klare Notfall-Strategien für Klausuren und Abiturprüfungen.</div>
-              </li>
-              <li class="audience-item">
-                <svg class="icon"><use href="#icon-check"/></svg>
-                <div><strong>Selber Denken lernen:</strong> Du verstehst die Logik dahinter, statt nur stur Formeln auswendig zu lernen.</div>
-              </li>
-            </ul>
           </div>
         </div>
       </div>
@@ -451,8 +520,163 @@
       </div>
     </section>
 
-    <!-- ==================== UNTERRICHTSORTE ==================== -->
-    <section class="section section-soft" id="standorte" aria-labelledby="standorte-title">
+    <!-- ==================== 6. DIE TRANSFORMATION & ERFOLGE (ENDING IN SUCCESS & AVOIDING FAILURE) ==================== -->
+    <section class="section section-soft" id="transformation" aria-labelledby="transformation-title">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag"><svg class="icon"><use href="#icon-target"/></svg> Die Heldenreise</div>
+          <h2 id="transformation-title">Die Verwandlung: Vom Schulfrust zur Gelassenheit</h2>
+          <p>Was sich verändert, wenn Mathe verständlich wird, die Chemie stimmt und der Notendruck weicht:</p>
+        </div>
+
+        <!-- Vorher vs. Nachher Transformation -->
+        <div class="transformation-grid">
+          <!-- Vorher -->
+          <div class="transformation-card before">
+            <div class="transformation-header">
+              <span class="transformation-badge">Vorher (Ohne passende Hilfe)</span>
+            </div>
+            <ul class="transformation-list">
+              <li>
+                <svg class="icon"><use href="#icon-x"/></svg>
+                <div><strong>Tränen & Streit:</strong> Jeder Hausaufgabennachmittag eskaliert und belastet die ganze Familie.</div>
+              </li>
+              <li>
+                <svg class="icon"><use href="#icon-x"/></svg>
+                <div><strong>Blackouts in Klausuren:</strong> Gelerntes ist plötzlich wie weggeblasen, Panik vor jeder Arbeit.</div>
+              </li>
+              <li>
+                <svg class="icon"><use href="#icon-x"/></svg>
+                <div><strong>Zerstörtes Selbstbild:</strong> Das Kind hält sich für „dumm“ und verliert die Freude am Lernen.</div>
+              </li>
+              <li>
+                <svg class="icon"><use href="#icon-x"/></svg>
+                <div><strong>Gefährdeter Abschluss:</strong> Schlechte Noten gefährden Versetzung, Schulform oder das Abitur.</div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Nachher -->
+          <div class="transformation-card after">
+            <div class="transformation-header">
+              <span class="transformation-badge">Nachher (Mit Farids Mentoring)</span>
+            </div>
+            <ul class="transformation-list">
+              <li>
+                <svg class="icon"><use href="#icon-check"/></svg>
+                <div><strong>Entspannte Nachmittage:</strong> Mathe-Hausaufgaben laufen selbstständig, ruhig und ohne Tränen.</div>
+              </li>
+              <li>
+                <svg class="icon"><use href="#icon-check"/></svg>
+                <div><strong>Souveräne Klausuren:</strong> Klare Notfall-Strategien und echtes Verständnis statt Auswendiglernen.</div>
+              </li>
+              <li>
+                <svg class="icon"><use href="#icon-check"/></svg>
+                <div><strong>Stolz & Selbstvertrauen:</strong> Der Schüler merkt: <em>„Ich kann logisch denken – ich brauche nur meine Methode!“</em></div>
+              </li>
+              <li>
+                <svg class="icon"><use href="#icon-check"/></svg>
+                <div><strong>Sichere Noten:</strong> Notensprung um 1 bis 3 Notenstufen und beste Voraussetzungen fürs Abitur.</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Was steht auf dem Spiel? (Avoiding Failure / The Stakes) -->
+        <div class="stakes-banner">
+          <div class="stakes-title">
+            <svg class="icon"><use href="#icon-alert-triangle"/></svg> Was steht auf dem Spiel, wenn man nichts unternimmt?
+          </div>
+          <p>
+            Mathe-Lücken wachsen von Monat zu Monat. Ohne die richtige, reizarme Begleitung verfestigt sich bei Schülern die Überzeugung, 
+            „einfach nicht für Mathe gemacht zu sein“. Das führt zu chronischer Prüfungsangst und verschenkten Zukunftschancen. 
+            Lasst es nicht so weit kommen.
+          </p>
+          <a href="#kontakt" class="btn btn-primary btn-sm">
+            <svg class="icon"><use href="#icon-arrow-right"/></svg> Jetzt Kennenlernen vereinbaren (15 Min.)
+          </a>
+        </div>
+
+        <!-- Social Proof / Echte Stimmen direkt in der Transformation -->
+        <div style="margin-top: 4rem;">
+          <div class="section-header" style="margin-bottom: 2rem;">
+            <div class="section-tag"><svg class="icon"><use href="#icon-star"/></svg> Echte Stimmen</div>
+            <h3>Was Schüler und Eltern nach dem Coaching berichten</h3>
+          </div>
+
+          <div class="reviews-grid">
+            <div class="review-card">
+              <div>
+                <div class="review-card-top">
+                  <div class="review-stars">
+                    <svg class="icon"><use href="#icon-star"/></svg>
+                    <svg class="icon"><use href="#icon-star"/></svg>
+                    <svg class="icon"><use href="#icon-star"/></svg>
+                    <svg class="icon"><use href="#icon-star"/></svg>
+                    <svg class="icon"><use href="#icon-star"/></svg>
+                  </div>
+                </div>
+                <p class="review-text">„Dank der Nachhilfe habe ich Analysis endlich verstanden. Besonders geholfen hat mir, dass Farid genau verstanden hat, wie mein Kopf bei ADHS tickt. Kein Stress, keine Hektik – absolut empfehlenswert!“</p>
+              </div>
+              <div class="reviewer-info">
+                <div class="reviewer-avatar">L</div>
+                <div class="reviewer-meta">
+                  <h4>Lars M.</h4>
+                  <p>Schüler · Mathematik Leistungskurs</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="review-card">
+              <div>
+                <div class="review-card-top">
+                  <div class="review-stars">
+                    <svg class="icon"><use href="#icon-star"/></svg>
+                    <svg class="icon"><use href="#icon-star"/></svg>
+                    <svg class="icon"><use href="#icon-star"/></svg>
+                    <svg class="icon"><use href="#icon-star"/></svg>
+                    <svg class="icon"><use href="#icon-star"/></svg>
+                  </div>
+                </div>
+                <p class="review-text">„Meine Tochter hatte in der Oberstufe extreme Blockaden in Mathe. Durch Farids ruhige, verständnisvolle und strukturierte Art ging sie wieder gerne zum Lernen und hat ihr Abi mit einer tollen Note abgeschlossen.“</p>
+              </div>
+              <div class="reviewer-info">
+                <div class="reviewer-avatar">S</div>
+                <div class="reviewer-meta">
+                  <h4>Sabine K.</h4>
+                  <p>Mutter einer Abiturientin (Klasse 12)</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="review-card">
+              <div>
+                <div class="review-card-top">
+                  <div class="review-stars">
+                    <svg class="icon"><use href="#icon-star"/></svg>
+                    <svg class="icon"><use href="#icon-star"/></svg>
+                    <svg class="icon"><use href="#icon-star"/></svg>
+                    <svg class="icon"><use href="#icon-star"/></svg>
+                    <svg class="icon"><use href="#icon-star"/></svg>
+                  </div>
+                </div>
+                <p class="review-text">„Endlich jemand, der nicht nur stur Formeln vorrechnet, sondern erklärt, WARUM man etwas so rechnet. Der Unterricht im reizarmen Raum in Dietzenbach hat unserem Sohn enorm geholfen.“</p>
+              </div>
+              <div class="reviewer-info">
+                <div class="reviewer-avatar">M</div>
+                <div class="reviewer-meta">
+                  <h4>Familie Meier</h4>
+                  <p>Eltern eines Schülers (10. Klasse Realschule)</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 7. UNTERRICHTSORTE ==================== -->
+    <section class="section" id="standorte" aria-labelledby="standorte-title">
       <div class="container">
         <div class="section-header">
           <div class="section-tag"><svg class="icon"><use href="#icon-map-pin"/></svg> Flexible Orte</div>
@@ -491,8 +715,8 @@
       </div>
     </section>
 
-    <!-- ==================== HONORAR & PREISE ==================== -->
-    <section class="section" id="preise" aria-labelledby="preise-title">
+    <!-- ==================== 8. HONORAR & PREISE ==================== -->
+    <section class="section section-soft" id="preise" aria-labelledby="preise-title">
       <div class="container">
         <div class="section-header">
           <div class="section-tag"><svg class="icon"><use href="#icon-shield"/></svg> Transparente Konditionen</div>
@@ -575,8 +799,8 @@
       </div>
     </section>
 
-    <!-- ==================== NACHWEISE & BELEGE (PDFs) ==================== -->
-    <section class="section section-soft" id="nachweise" aria-labelledby="nachweise-title">
+    <!-- ==================== 9. NACHWEISE & BELEGE (PDFs) ==================== -->
+    <section class="section" id="nachweise" aria-labelledby="nachweise-title">
       <div class="container">
         <div class="credentials-container">
           <div class="section-tag"><svg class="icon"><use href="#icon-award"/></svg> Transparenz & Vertrauen</div>
@@ -651,86 +875,7 @@
       </div>
     </section>
 
-    <!-- ==================== BEWERTUNGEN & ERFAHRUNGEN ==================== -->
-    <section class="section" id="bewertungen" aria-labelledby="bewertungen-title">
-      <div class="container">
-        <div class="section-header">
-          <div class="section-tag"><svg class="icon"><use href="#icon-star"/></svg> Echte Stimmen</div>
-          <h2 id="bewertungen-title">Was Schüler und Eltern berichten</h2>
-          <p>Echte Rückmeldungen aus meiner bisherigen Nachhilfepraxis.</p>
-        </div>
-
-        <div class="reviews-grid">
-          <div class="review-card">
-            <div>
-              <div class="review-card-top">
-                <div class="review-stars">
-                  <svg class="icon"><use href="#icon-star"/></svg>
-                  <svg class="icon"><use href="#icon-star"/></svg>
-                  <svg class="icon"><use href="#icon-star"/></svg>
-                  <svg class="icon"><use href="#icon-star"/></svg>
-                  <svg class="icon"><use href="#icon-star"/></svg>
-                </div>
-              </div>
-              <p class="review-text">„Dank der Nachhilfe habe ich Analysis endlich verstanden. Besonders geholfen hat mir, dass Farid genau verstanden hat, wie mein Kopf bei ADHS tickt. Kein Stress, keine Hektik – absolut empfehlenswert!“</p>
-            </div>
-            <div class="reviewer-info">
-              <div class="reviewer-avatar">L</div>
-              <div class="reviewer-meta">
-                <h4>Lars M.</h4>
-                <p>Schüler · Mathematik Leistungskurs</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="review-card">
-            <div>
-              <div class="review-card-top">
-                <div class="review-stars">
-                  <svg class="icon"><use href="#icon-star"/></svg>
-                  <svg class="icon"><use href="#icon-star"/></svg>
-                  <svg class="icon"><use href="#icon-star"/></svg>
-                  <svg class="icon"><use href="#icon-star"/></svg>
-                  <svg class="icon"><use href="#icon-star"/></svg>
-                </div>
-              </div>
-              <p class="review-text">„Meine Tochter hatte in der Oberstufe extreme Blockaden in Mathe. Durch Farids ruhige, verständnisvolle und strukturierte Art ging sie wieder gerne zum Lernen und hat ihr Abi mit einer tollen Note abgeschlossen.“</p>
-            </div>
-            <div class="reviewer-info">
-              <div class="reviewer-avatar">S</div>
-              <div class="reviewer-meta">
-                <h4>Sabine K.</h4>
-                <p>Mutter einer Abiturientin (Klasse 12)</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="review-card">
-            <div>
-              <div class="review-card-top">
-                <div class="review-stars">
-                  <svg class="icon"><use href="#icon-star"/></svg>
-                  <svg class="icon"><use href="#icon-star"/></svg>
-                  <svg class="icon"><use href="#icon-star"/></svg>
-                  <svg class="icon"><use href="#icon-star"/></svg>
-                  <svg class="icon"><use href="#icon-star"/></svg>
-                </div>
-              </div>
-              <p class="review-text">„Endlich jemand, der nicht nur stur Formeln vorrechnet, sondern erklärt, WARUM man etwas so rechnet. Der Unterricht im reizarmen Raum in Dietzenbach hat unserem Sohn enorm geholfen.“</p>
-            </div>
-            <div class="reviewer-info">
-              <div class="reviewer-avatar">M</div>
-              <div class="reviewer-meta">
-                <h4>Familie Meier</h4>
-                <p>Eltern eines Schülers (10. Klasse Realschule)</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==================== FAQ AKKORDEON ==================== -->
+    <!-- ==================== 10. FAQ AKKORDEON ==================== -->
     <section class="section section-soft" id="faq" aria-labelledby="faq-title">
       <div class="container">
         <div class="section-header">
@@ -793,17 +938,17 @@
       </div>
     </section>
 
-    <!-- ==================== KONTAKT SECTION ==================== -->
+    <!-- ==================== 11. FINALER CALL TO ACTION (KONTAKT) ==================== -->
     <section class="section" id="kontakt" aria-labelledby="kontakt-title">
       <div class="container">
         <div class="contact-card">
           <div class="contact-grid">
             <div>
-              <div class="section-tag"><svg class="icon"><use href="#icon-mail"/></svg> Unverbindlich Kontaktieren</div>
-              <h2 id="kontakt-title">Lass uns sprechen!</h2>
+              <div class="section-tag"><svg class="icon"><use href="#icon-mail"/></svg> Unverbindlicher Chemie-Check</div>
+              <h2 id="kontakt-title">Bereit für entspannte Nachmittage und echte Mathe-Erfolge?</h2>
               <p>
-                Egal ob Schüler oder Elternteil: Schreibt mir kurz von eurer aktuellen Situation. 
-                Wir vereinbaren ein kurzes, entspanntes Kennenlernen (15 Min.), um zu prüfen, ob die Chemie stimmt.
+                Egal ob Elternteil oder Schüler: Schreibt mir unverbindlich von eurer aktuellen Situation. 
+                Wir vereinbaren ein kurzes, entspanntes Kennenlernen (15 Min.), um zu prüfen, ob die Chemie stimmt – ganz ohne Druck und Verpflichtung.
               </p>
 
               <div class="contact-direct-list">
