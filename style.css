@@ -38,9 +38,9 @@
   --shadow-md: 0 4px 12px -2px rgba(15, 23, 42, 0.06), 0 2px 6px -1px rgba(15, 23, 42, 0.03);
   --shadow-lg: 0 12px 28px -4px rgba(15, 23, 42, 0.08), 0 4px 10px -2px rgba(15, 23, 42, 0.03);
   
-  --radius-sm: 8px;
-  --radius-md: 14px;
-  --radius-lg: 20px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
   --radius-full: 9999px;
   
   --font-heading: 'Lexend', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -96,6 +96,9 @@
 [data-focus="sensory"] .hero-glow {
   display: none !important;
 }
+[data-focus="sensory"] body {
+  background-image: none !important;
+}
 
 /* ==========================================================================
    RESET & ACCESSIBLE BASE
@@ -116,6 +119,11 @@ html {
 body {
   font-family: var(--font-body);
   background-color: var(--bg-page);
+  /* Mathematical coordinate grid background */
+  background-image: 
+    linear-gradient(to right, rgba(15, 23, 42, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.035) 1px, transparent 1px);
+  background-size: 32px 32px;
   color: var(--text-sec);
   line-height: var(--line-height-body);
   font-size: 1.05rem;
@@ -123,6 +131,12 @@ body {
   overflow-x: hidden;
   transition: background-color 0.25s ease, color 0.25s ease;
   -webkit-font-smoothing: antialiased;
+}
+
+[data-theme="dark"] body {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
 }
 
 :focus-visible {
@@ -486,6 +500,48 @@ a:hover {
   max-width: 640px;
 }
 
+.live-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.35rem 0.95rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-sec);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 1.25rem;
+  width: fit-content;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #10b981;
+  box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6);
+  animation: pulse-dot 2s infinite;
+  flex-shrink: 0;
+}
+@keyframes pulse-dot {
+  0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6); }
+  70% { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+.gradient-highlight {
+  background: linear-gradient(135deg, var(--primary) 0%, #0284c7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+[data-theme="dark"] .gradient-highlight {
+  background: linear-gradient(135deg, var(--primary) 0%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .hero-lead {
   font-size: 1.15rem;
   line-height: 1.7;
@@ -512,7 +568,7 @@ a:hover {
   }
 }
 
-/* Hero Profile Card */
+/* Hero Profile Card (Didaktik-Matrix) */
 .hero-profile-card {
   background-color: var(--bg-surface);
   border: 1px solid var(--border);
@@ -561,6 +617,26 @@ a:hover {
   margin: 0;
 }
 
+.hero-verified-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  background: var(--primary-light);
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-full);
+  margin-bottom: 0.35rem;
+  width: fit-content;
+}
+.hero-verified-badge .icon {
+  width: 0.95em;
+  height: 0.95em;
+}
+
 .hero-quote-box {
   background-color: var(--bg-surface-soft);
   border-left: 4px solid var(--primary);
@@ -594,8 +670,36 @@ a:hover {
   margin: 0;
 }
 
+.hero-bonus-banner {
+  margin-top: 1.3rem;
+  padding: 1rem 1.15rem;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, rgba(13, 148, 136, 0.07) 0%, rgba(217, 119, 6, 0.05) 100%);
+  border: 1px solid rgba(13, 148, 136, 0.25);
+  position: relative;
+}
+[data-theme="dark"] .hero-bonus-banner {
+  background: linear-gradient(135deg, rgba(20, 184, 166, 0.12) 0%, rgba(251, 191, 36, 0.08) 100%);
+  border-color: rgba(20, 184, 166, 0.3);
+}
+.bonus-tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--primary);
+  margin-bottom: 0.3rem;
+}
+.hero-bonus-banner p {
+  font-size: 0.86rem;
+  line-height: 1.55;
+  color: var(--text-sec);
+  margin: 0;
+}
+
 /* ==========================================================================
-   STORYBRAND 7 COMPONENTS
+   STORYBRAND COMPONENTS
    ========================================================================== */
 
 /* 1. Problem Cards (Villain, External, Internal, Philosophical) */
@@ -626,6 +730,20 @@ a:hover {
 .problem-card.villain {
   border-color: rgba(239, 68, 68, 0.35);
   background-color: rgba(239, 68, 68, 0.03);
+}
+
+.diagnostic-idx {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--primary);
+  background-color: var(--primary-light);
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: 1.1rem;
+  width: fit-content;
 }
 
 .problem-tag {
@@ -956,6 +1074,44 @@ a:hover {
   border-left: 4px solid var(--primary);
   padding-left: 1.2rem;
   margin: 1.6rem 0;
+}
+
+.guide-bonus-box {
+  margin-top: 1.6rem;
+  padding: 1.3rem 1.5rem;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, rgba(13, 148, 136, 0.08) 0%, rgba(217, 119, 6, 0.05) 100%);
+  border: 1px solid rgba(13, 148, 136, 0.3);
+  position: relative;
+}
+[data-theme="dark"] .guide-bonus-box {
+  background: linear-gradient(135deg, rgba(20, 184, 166, 0.12) 0%, rgba(251, 191, 36, 0.07) 100%);
+  border-color: rgba(20, 184, 166, 0.35);
+}
+.bonus-box-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.74rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--primary);
+  background: var(--bg-surface);
+  padding: 0.2rem 0.65rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border);
+  margin-bottom: 0.6rem;
+}
+.guide-bonus-box h4 {
+  font-size: 1.05rem;
+  margin-bottom: 0.45rem;
+  color: var(--text-main);
+}
+.guide-bonus-box p {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--text-sec);
+  margin: 0;
 }
 
 /* ==========================================================================
