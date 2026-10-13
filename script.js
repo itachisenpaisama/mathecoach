@@ -28,6 +28,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function applyTheme(theme) {
     root.setAttribute('data-theme', theme);
+    if (theme === 'dark') {
+      root.classList.add('dark');
+    } else {
+      root.classList.remove('dark');
+    }
     if (themeIcon) {
       themeIcon.innerHTML = theme === 'dark' 
         ? '<use href="#icon-sun"/>' 
