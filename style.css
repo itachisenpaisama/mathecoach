@@ -711,6 +711,68 @@ header {
 }
 
 /* --------------------------------------------------------------------------
+   6b. TRUST BAR / GOOGLE E-E-A-T PROOF
+   -------------------------------------------------------------------------- */
+.trust-bar-section {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid hsl(var(--border) / 0.6);
+  background-color: hsl(var(--card));
+  position: relative;
+  z-index: 2;
+}
+
+.trust-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius);
+  border: 1px solid hsl(var(--border));
+  background-color: hsl(var(--secondary) / 0.4);
+  transition: border-color 0.15s, background-color 0.15s, transform 0.15s;
+}
+
+.trust-item:hover {
+  border-color: hsl(var(--foreground) / 0.2);
+  background-color: hsl(var(--secondary) / 0.8);
+  transform: translateY(-1px);
+}
+
+.trust-icon {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: calc(var(--radius) - 2px);
+  background-color: hsl(var(--background));
+  border: 1px solid hsl(var(--border));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: hsl(var(--brand));
+  flex-shrink: 0;
+}
+
+.trust-text h4 {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin: 0 0 0.125rem 0;
+  color: hsl(var(--foreground));
+  letter-spacing: -0.01em;
+}
+
+.trust-text p {
+  font-size: 0.75rem;
+  color: hsl(var(--muted-foreground));
+  margin: 0;
+  line-height: 1.35;
+}
+
+/* --------------------------------------------------------------------------
    7. SECTION 2: DAS PROBLEM (URSACHENANALYSE)
    -------------------------------------------------------------------------- */
 .problem-grid {
@@ -1726,6 +1788,10 @@ textarea.form-control {
     gap: 3rem;
   }
 
+  .trust-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   .problem-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -1784,6 +1850,7 @@ textarea.form-control {
     padding-bottom: 4.5rem;
   }
 
+  .trust-grid,
   .problem-grid,
   .audience-grid,
   .comparison-grid,
@@ -1808,5 +1875,36 @@ textarea.form-control {
   .footer-content {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  /* Mobile Sticky Conversion Action Bar */
+  .mobile-sticky-bar {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 49;
+    background-color: hsl(var(--background) / 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-top: 1px solid hsl(var(--border));
+    padding: 0.625rem 1rem;
+    gap: 0.625rem;
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.08);
+  }
+
+  .mobile-action-btn {
+    flex: 1;
+    height: 2.375rem;
+    font-size: 0.8125rem;
+    justify-content: center;
+    border-radius: calc(var(--radius) - 2px);
+    text-decoration: none;
+  }
+
+  body {
+    padding-bottom: 3.8rem;
   }
 }
