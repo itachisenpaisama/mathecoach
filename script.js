@@ -113,9 +113,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // ========================================================
   // 5. ACCESSIBLE FAQ ACCORDION
   // ========================================================
-  const faqItems = document.querySelectorAll('.faq-item');
+  const faqItems = document.querySelectorAll('.faq-item, .faq-row');
   faqItems.forEach(item => {
-    const questionBtn = item.querySelector('.faq-question');
+    const questionBtn = item.querySelector('.faq-question, .faq-trigger-btn');
     if (questionBtn) {
       questionBtn.addEventListener('click', () => {
         const isActive = item.classList.contains('active');
@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
         faqItems.forEach(other => {
           if (other !== item) {
             other.classList.remove('active');
-            const otherBtn = other.querySelector('.faq-question');
+            const otherBtn = other.querySelector('.faq-question, .faq-trigger-btn');
             if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
           }
         });
