@@ -188,6 +188,42 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // ========================================================
+  // 7. LEAD-MAGNET FORM HANDLER (Erfolgsguide PDF)
+  // ========================================================
+  const leadMagnetForm = document.getElementById('leadMagnetForm');
+  const leadStatusMsg = document.getElementById('leadStatusMsg');
+
+  if (leadMagnetForm) {
+    leadMagnetForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('leadName') ? document.getElementById('leadName').value.trim() : '';
+      const email = document.getElementById('leadEmail') ? document.getElementById('leadEmail').value.trim() : '';
+
+      // Optional: E-Mail für Newsletter/Ressourcen speichern
+      if (email) {
+        try {
+          const storedLeads = JSON.parse(localStorage.getItem('mathecoach_lead_subscribers') || '[]');
+          storedLeads.push({ name: name || 'Interessent', email, date: new Date().toISOString() });
+          localStorage.setItem('mathecoach_lead_subscribers', JSON.stringify(storedLeads));
+        } catch (err) {
+          console.warn('Could not save lead subscriber', err);
+        }
+      }
+
+      if (leadStatusMsg) {
+        leadStatusMsg.style.display = 'block';
+        leadStatusMsg.style.color = 'var(--success)';
+        leadStatusMsg.innerHTML = '<svg class="icon"><use href="#icon-check"/></svg> Download gestartet! Viel Erfolg beim Lesen.';
+      }
+
+      // PDF in neuem Tab öffnen
+      window.open('Dokumente/Nachhilfe_Erfolgsguide.pdf', '_blank');
+
+      leadMagnetForm.reset();
+    });
+  }
+
   function escapeHtml(str) {
     const div = document.createElement('div');
     div.textContent = str;
