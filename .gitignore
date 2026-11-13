@@ -2,7 +2,5 @@
 *.bak_autonomous
 .DS_Store
 Thumbs.db
-App/
-App
 .agents/
 .conversation/
