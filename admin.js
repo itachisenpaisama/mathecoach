@@ -379,6 +379,9 @@ document.addEventListener('DOMContentLoaded', () => {
                       <svg class="icon" style="width:0.85rem;height:0.85rem;"><use href="#icon-message-circle"/></svg>
                     </a>
                   ` : ''}
+                  <a href="App/Travelcalc/index.html?studentId=${st.id}&name=${encodeURIComponent(st.name)}&dest=${encodeURIComponent(st.address || '')}" target="_blank" class="icon-btn" title="Fahrtkosten in Travelcalc berechnen" style="width:1.9rem;height:1.9rem; color: #0ea5e9;">
+                    <svg class="icon" style="width:0.85rem;height:0.85rem;"><use href="#icon-car"/></svg>
+                  </a>
                   <button class="btn btn-secondary btn-sm" onclick="window.editStudent('${st.id}')" title="Bearbeiten" style="padding: 0.35rem 0.55rem;">
                     <svg class="icon" style="width:0.85rem;height:0.85rem;"><use href="#icon-edit"/></svg>
                   </button>
@@ -442,6 +445,9 @@ document.addEventListener('DOMContentLoaded', () => {
                   <button class="btn btn-secondary btn-sm" onclick="window.viewStudentDetails('${st.id}')" title="Details / Schülerakte ansehen" style="padding: 0.35rem 0.55rem;">
                     <svg class="icon" style="width:0.85rem;height:0.85rem;"><use href="#icon-eye"/></svg>
                   </button>
+                  <a href="App/Travelcalc/index.html?studentId=${st.id}&name=${encodeURIComponent(st.name)}&dest=${encodeURIComponent(st.address || '')}" target="_blank" class="icon-btn" title="Fahrtkosten in Travelcalc berechnen" style="width:1.9rem;height:1.9rem; color: #0ea5e9;">
+                    <svg class="icon" style="width:0.85rem;height:0.85rem;"><use href="#icon-car"/></svg>
+                  </a>
                   <button class="btn btn-secondary btn-sm" onclick="window.editStudent('${st.id}')" title="Bearbeiten" style="padding: 0.35rem 0.55rem;">
                     <svg class="icon" style="width:0.85rem;height:0.85rem;"><use href="#icon-edit"/></svg>
                   </button>

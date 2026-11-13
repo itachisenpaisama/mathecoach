@@ -1,12 +1,42 @@
 /**
  * FARID HÄDER — MATHEMATIK & MINT-COACHING
- * Interactions: Interactive blackboard, FAQ accordion, modals for legal notices,
- * and seamless bilingual switching (DE | EN).
+ * Modern Interactions: Dual-Audience Switcher, Didactic Blackboard with KaTeX,
+ * Interactive Learning Guide, Portal Login with SharedDB, FAQ Accordion, Legal Modals,
+ * and Bilingual (DE / EN) Support.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  'use strict';
+
   // ========================================================
-  // 1. DIDACTIC NOTEPAD (INTERACTIVE CHALKBOARD DEMONSTRATION)
+  // 1. DUAL AUDIENCE SWITCHER (FÜR ELTERN // FÜR SCHÜLER)
+  // ========================================================
+  const audElternBtn = document.getElementById('audElternBtn');
+  const audSchuelerBtn = document.getElementById('audSchuelerBtn');
+  const paneEltern = document.getElementById('paneEltern');
+  const paneSchueler = document.getElementById('paneSchueler');
+
+  function setAudience(audience) {
+    if (audience === 'schueler') {
+      if (audSchuelerBtn) audSchuelerBtn.classList.add('active');
+      if (audElternBtn) audElternBtn.classList.remove('active');
+      if (paneSchueler) paneSchueler.classList.add('active');
+      if (paneEltern) paneEltern.classList.remove('active');
+    } else {
+      if (audElternBtn) audElternBtn.classList.add('active');
+      if (audSchuelerBtn) audSchuelerBtn.classList.remove('active');
+      if (paneEltern) paneEltern.classList.add('active');
+      if (paneSchueler) paneSchueler.classList.remove('active');
+    }
+  }
+
+  if (audElternBtn && audSchuelerBtn) {
+    audElternBtn.addEventListener('click', () => setAudience('eltern'));
+    audSchuelerBtn.addEventListener('click', () => setAudience('schueler'));
+  }
+
+  // ========================================================
+  // 2. DIDACTIC NOTEPAD (INTERACTIVE CHALKBOARD DEMONSTRATOR)
   // ========================================================
   const didacticData = {
     de: {
@@ -179,7 +209,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (chalkAhaText) chalkAhaText.textContent = data.aha;
 
-    // Render KaTeX formulas
     if (window.renderMathInElement) {
       const canvas = document.querySelector('.chalkboard-canvas');
       if (canvas) {
@@ -205,13 +234,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Initial render
   setTimeout(() => {
     renderNotepad('kurvendiskussion');
   }, 250);
 
   // ========================================================
-  // 2. FAQ ACCORDION
+  // 3. FAQ ACCORDION
   // ========================================================
   const faqEntries = document.querySelectorAll('.faq-entry');
   faqEntries.forEach(entry => {
@@ -220,7 +248,6 @@ document.addEventListener('DOMContentLoaded', () => {
       trigger.addEventListener('click', () => {
         const isOpen = entry.classList.contains('active');
 
-        // Single-active accordion to maintain visual serenity
         faqEntries.forEach(other => {
           if (other !== entry) {
             other.classList.remove('active');
@@ -236,7 +263,110 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ========================================================
-  // 3. LEGAL MODALS (IMPRESSUM & DATENSCHUTZ)
+  // 4. PORTAL LOGIN MODAL (ADMIN & CUSTOMER)
+  // ========================================================
+  const navLoginBtn = document.getElementById('navLoginBtn');
+  const openLoginFooterLink = document.getElementById('openLoginFooterLink');
+  const loginModal = document.getElementById('loginModal');
+  const closeLoginModal = document.getElementById('closeLoginModal');
+  const tabLoginAdmin = document.getElementById('tabLoginAdmin');
+  const tabLoginCustomer = document.getElementById('tabLoginCustomer');
+  const loginAdminPane = document.getElementById('loginAdminPane');
+  const loginCustomerPane = document.getElementById('loginCustomerPane');
+  const adminLoginForm = document.getElementById('adminLoginForm');
+  const adminPinInput = document.getElementById('adminPinInput');
+  const adminLoginFeedback = document.getElementById('adminLoginFeedback');
+
+  function openLogin() {
+    if (loginModal) {
+      loginModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      if (adminPinInput) adminPinInput.focus();
+    }
+  }
+
+  function closeLogin() {
+    if (loginModal) {
+      loginModal.classList.remove('active');
+      document.body.style.overflow = '';
+      if (adminLoginFeedback) adminLoginFeedback.style.display = 'none';
+      if (adminLoginForm) adminLoginForm.reset();
+    }
+  }
+
+  if (navLoginBtn) navLoginBtn.addEventListener('click', openLogin);
+  if (openLoginFooterLink) {
+    openLoginFooterLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      openLogin();
+    });
+  }
+  if (closeLoginModal) closeLoginModal.addEventListener('click', closeLogin);
+
+  if (tabLoginAdmin && tabLoginCustomer) {
+    tabLoginAdmin.addEventListener('click', () => {
+      tabLoginAdmin.classList.add('active');
+      tabLoginCustomer.classList.remove('active');
+      loginAdminPane.style.display = 'block';
+      loginCustomerPane.style.display = 'none';
+    });
+
+    tabLoginCustomer.addEventListener('click', () => {
+      tabLoginCustomer.classList.add('active');
+      tabLoginAdmin.classList.remove('active');
+      loginAdminPane.style.display = 'none';
+      loginCustomerPane.style.display = 'block';
+    });
+  }
+
+  if (adminLoginForm) {
+    adminLoginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const pin = adminPinInput ? adminPinInput.value.trim() : '';
+
+      let isValid = false;
+      if (window.MatheDB && typeof window.MatheDB.verifyPin === 'function') {
+        isValid = window.MatheDB.verifyPin(pin);
+      } else {
+        isValid = (pin === '1234');
+      }
+
+      if (isValid) {
+        if (window.MatheDB && typeof window.MatheDB.login === 'function') {
+          window.MatheDB.login(pin);
+        }
+        if (adminLoginFeedback) {
+          adminLoginFeedback.style.display = 'block';
+          adminLoginFeedback.style.color = '#10B981';
+          adminLoginFeedback.textContent = '✓ PIN korrekt! Weiterleitung ins Admin-Portal...';
+        }
+        setTimeout(() => {
+          window.location.href = 'admin.html';
+        }, 400);
+      } else {
+        if (adminLoginFeedback) {
+          adminLoginFeedback.style.display = 'block';
+          adminLoginFeedback.style.color = '#EF4444';
+          adminLoginFeedback.textContent = 'Falsche PIN. Bitte erneut versuchen.';
+        }
+        if (adminPinInput) {
+          adminPinInput.value = '';
+          adminPinInput.focus();
+        }
+      }
+    });
+  }
+
+  // Keyboard shortcut for quick admin access: Ctrl + Shift + A
+  document.addEventListener('keydown', (e) => {
+    if (e.ctrlKey && e.shiftKey && (e.key === 'A' || e.key === 'a')) {
+      e.preventDefault();
+      openLogin();
+    }
+  });
+
+  // ========================================================
+  // 5. LEGAL MODALS (IMPRESSUM & DATENSCHUTZ)
   // ========================================================
   const openImpressum = document.getElementById('openImpressum');
   const openDatenschutz = document.getElementById('openDatenschutz');
@@ -278,8 +408,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Close on backdrop click
-  [impressumModal, datenschutzModal].forEach(modal => {
+  // Close modals on backdrop click
+  [loginModal, impressumModal, datenschutzModal].forEach(modal => {
     if (modal) {
       modal.addEventListener('click', (e) => {
         if (e.target === modal) {
@@ -289,16 +419,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Close on Escape key
+  // Close modals on Escape key
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
+      closeModal(loginModal);
       closeModal(impressumModal);
       closeModal(datenschutzModal);
     }
   });
 
   // ========================================================
-  // 4. MOBILE HAMBURGER MENU
+  // 6. MOBILE HAMBURGER MENU
   // ========================================================
   const menuToggle = document.getElementById('menuToggle');
   const navLinks = document.getElementById('navLinks');
@@ -318,7 +449,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ========================================================
-  // 5. CONTACT FORM SUBMISSION
+  // 7. CONTACT FORM SUBMISSION
   // ========================================================
   const contactForm = document.getElementById('contactForm');
   const formFeedback = document.getElementById('formFeedback');
@@ -331,14 +462,15 @@ document.addEventListener('DOMContentLoaded', () => {
       const name = document.getElementById('contactName')?.value.trim();
       const info = document.getElementById('contactInfo')?.value.trim();
       const message = document.getElementById('contactMessage')?.value.trim();
+      const grade = document.getElementById('contactGrade')?.value.trim() || '';
 
       if (!name || !info || !message) {
         if (formFeedback) {
           formFeedback.style.display = 'block';
-          formFeedback.style.color = '#DC2626';
+          formFeedback.style.color = '#EF4444';
           formFeedback.textContent = currentLang === 'en' 
             ? 'Please fill in all required fields.' 
-            : 'Bitte fülle alle markierten Felder aus.';
+            : 'Bitte fülle alle erforderlichen Felder aus.';
         }
         return;
       }
@@ -348,19 +480,40 @@ document.addEventListener('DOMContentLoaded', () => {
         submitContactBtn.textContent = currentLang === 'en' ? 'Sending message...' : 'Nachricht wird gesendet...';
       }
 
+      // Save inquiry to local CRM database if available
+      try {
+        if (window.MatheDB && typeof window.MatheDB.saveStudent === 'function') {
+          // Pre-register as interested lead
+          const existing = window.MatheDB.getStudents();
+          const already = existing.find(s => s.phone === info || s.email === info);
+          if (!already) {
+            window.MatheDB.saveStudent({
+              name: name,
+              parentName: name,
+              phone: info.includes('@') ? '' : info,
+              email: info.includes('@') ? info : '',
+              grade: grade,
+              notes: 'Website-Anfrage: ' + message,
+              active: false
+            });
+          }
+        }
+      } catch (err) {
+        console.warn('CRM lead pre-save notice:', err);
+      }
+
       setTimeout(() => {
         if (submitContactBtn) {
-          submitContactBtn.textContent = currentLang === 'en' ? '✓ Message sent!' : '✓ Nachricht übermittelt!';
+          submitContactBtn.textContent = currentLang === 'en' ? '✓ Message sent!' : '✓ Anfrage erfolgreich übermittelt!';
           submitContactBtn.style.backgroundColor = '#16A34A';
-          submitContactBtn.style.borderColor = '#16A34A';
         }
 
         if (formFeedback) {
           formFeedback.style.display = 'block';
-          formFeedback.style.color = '#15803D';
+          formFeedback.style.color = '#10B981';
           formFeedback.innerHTML = currentLang === 'en'
-            ? `Thank you, <strong>${escapeHtml(name)}</strong>! Your inquiry has been received. I will reach out personally within 24 hours.`
-            : `Vielen Dank, <strong>${escapeHtml(name)}</strong>! Ich habe deine Anfrage erhalten und melde mich innerhalb von 24 Stunden persönlich bei dir.`;
+            ? `Thank you, <strong>${escapeHtml(name)}</strong>! Your message has been received. I will reach out personally via WhatsApp/E-Mail within a few hours to arrange a call.`
+            : `Vielen Dank, <strong>${escapeHtml(name)}</strong>! Ich habe deine Anfrage erhalten und melde mich innerhalb weniger Stunden persönlich per WhatsApp/E-Mail zur Terminabstimmung.`;
         }
 
         contactForm.reset();
@@ -370,49 +523,14 @@ document.addEventListener('DOMContentLoaded', () => {
             submitContactBtn.disabled = false;
             submitContactBtn.textContent = currentLang === 'en' ? 'Request 15-Minute Intro' : 'Kennenlerngespräch anfragen';
             submitContactBtn.style.backgroundColor = '';
-            submitContactBtn.style.borderColor = '';
           }
         }, 5000);
-      }, 600);
+      }, 500);
     });
   }
 
   // ========================================================
-  // 6. FREE SUCCESS GUIDE DOWNLOAD HANDLER
-  // ========================================================
-  const guideDownloadForm = document.getElementById('guideDownloadForm');
-  const guideFeedback = document.getElementById('guideFeedback');
-
-  if (guideDownloadForm) {
-    guideDownloadForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const email = document.getElementById('guideEmail')?.value.trim();
-
-      if (email) {
-        try {
-          const subscribers = JSON.parse(localStorage.getItem('fh_guide_subscribers') || '[]');
-          subscribers.push({ email, timestamp: new Date().toISOString() });
-          localStorage.setItem('fh_guide_subscribers', JSON.stringify(subscribers));
-        } catch (err) {
-          console.warn('Storage warning', err);
-        }
-      }
-
-      if (guideFeedback) {
-        guideFeedback.style.display = 'block';
-        guideFeedback.style.color = '#15803D';
-        guideFeedback.textContent = currentLang === 'en'
-          ? '✓ Download started! Enjoy reading the guide.'
-          : '✓ Download gestartet! Viel Erfolg beim Lesen des Leitfadens.';
-      }
-
-      window.open('Dokumente/Nachhilfe_Erfolgsguide.pdf', '_blank');
-      guideDownloadForm.reset();
-    });
-  }
-
-  // ========================================================
-  // 7. BILINGUAL LANGUAGE SWITCHER (DE | EN)
+  // 8. BILINGUAL LANGUAGE SWITCHER (DE | EN)
   // ========================================================
   const langDeBtn = document.getElementById('langDeBtn');
   const langEnBtn = document.getElementById('langEnBtn');
@@ -432,42 +550,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // Update dynamic text
     renderNotepad(currentTopic);
-
-    // Update main hero and navigation when in English
-    const heroTitle = document.querySelector('.hero-title');
-    const heroLead = document.querySelector('.hero-lead');
-    const heroBadge = document.querySelector('.hero-badge');
-    const navCtaBtn = document.getElementById('navCtaBtn');
-
-    if (lang === 'en') {
-      if (heroTitle) {
-        heroTitle.innerHTML = 'Mathematics is not a talent contest. It is a <em>logical language</em> anyone can master.';
-      }
-      if (heroLead) {
-        heroLead.textContent = 'Patient 1-on-1 math coaching for middle school, high school, and Abitur exams. We address old gaps from the foundation up, remove homework stress from family life, and give unconventional minds (including ADHD) the time standard classrooms lack.';
-      }
-      if (heroBadge) {
-        heroBadge.innerHTML = '<span class="hero-badge-dot"></span> School Year 2026/27 · 1-on-1 Sessions in Dietzenbach & Online';
-      }
-      if (navCtaBtn) {
-        navCtaBtn.textContent = 'Book 15-Min. Call';
-      }
-    } else {
-      if (heroTitle) {
-        heroTitle.innerHTML = 'Mathematik ist kein Talentwettbewerb. Es ist eine <em>logische Sprache</em>, die jeder lernen kann.';
-      }
-      if (heroLead) {
-        heroLead.textContent = 'Geduldiges 1-zu-1 Coaching für Mittelstufe, Oberstufe und Abitur. Wir schließen alte Wissenslücken von Grund auf, nehmen den Leistungsdruck aus dem Familienalltag und geben unkonventionellen Denkern (auch bei ADHS) die Zeit, die das normale Schulsystem nicht hat.';
-      }
-      if (heroBadge) {
-        heroBadge.innerHTML = '<span class="hero-badge-dot"></span> Schuljahr 2026/27 · 1-zu-1 Plätze in Dietzenbach & Online';
-      }
-      if (navCtaBtn) {
-        navCtaBtn.textContent = '15 Min. Kennenlernen';
-      }
-    }
   }
 
   if (langDeBtn && langEnBtn) {
@@ -475,7 +558,6 @@ document.addEventListener('DOMContentLoaded', () => {
     langEnBtn.addEventListener('click', () => setLanguage('en'));
   }
 
-  // Restore saved language
   if (currentLang === 'en') {
     setLanguage('en');
   }
